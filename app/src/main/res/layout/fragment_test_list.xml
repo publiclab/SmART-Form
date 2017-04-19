@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Normal View when list items exist -->
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- floating action button
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/publish"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center" />
+    -->
+
+    <Button
+        android:id="@+id/add_test_button"
+        android:text="@string/add_new_test"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/start_test_btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/custom_empty_view"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/no_tests_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/no_tests" />
+
+        <Button
+            android:id="@+id/new_test_button"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/btn_start_test"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:background="@drawable/start_test_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</FrameLayout>

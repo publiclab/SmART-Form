@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <TextView
+        android:text="@string/uploadTitle_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <RadioButton
+        android:text="@string/uploadResult1_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
+        android:id="@+id/uploadRadio1" />
+
+    <RadioButton
+        android:text="@string/uploadResult2_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
+        android:id="@+id/uploadRadio2" />
+
+    <RadioButton
+        android:text="@string/uploadResult3_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
+        android:id="@+id/uploadRadio3"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:text="@string/uploadBtn_text"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/upload_result_btn"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_uploadResult_btn" />
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/id_latest_result"
+        android:text="@string/result_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result_01"
+        android:background="@drawable/border"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result_02"
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result_03"
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:text="Continue"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:background="@drawable/start_test_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_createTest_btn"
+        android:onClick="launchCamera"
+        android:layout_marginTop="93dp"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

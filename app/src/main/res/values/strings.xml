@@ -1,0 +1,153 @@
+<resources>
+    <string name="app_name">SmartForm</string>
+    <string name="title_name">SMARTFORM</string>
+    <string name="testBtn_text">TEST</string>
+    <string name="resultBtn_text">RESULT</string>
+    <string name="uploadBtn_text">UPLOAD</string>
+    <string name="aboutBtn_text">ABOUT</string>
+    <string name="uploadTitle_text">Upload Results</string>
+    <string name="uploadResult1_text">Upload Result 1</string>
+    <string name="uploadResult2_text">Upload Result 2</string>
+    <string name="uploadResult3_text">Upload Result 3</string>
+    <string name="about_text">The project is to design a smart phone app analyzing the indoor air concentration of formaldehyde:
+        the users will expose the chemical sensor indoor, then take a picture through SmART-Form app.
+        The app will recognize the color identity of chemical sensor and return the result of air concentration of formaldehyde. \n\n Shane</string>
+    <string name="result_title_text">Latest Results: 3</string>
+    <string name="result_01">Result 1</string>
+    <string name="result_02">Result 2</string>
+    <string name="result_03">Result 3</string>
+    <string name="btn_start_test">Start Test</string>
+    <string name="cannot">Cannot</string>
+    <string name="album_name">SampleBadge</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_image_capture">Enter a title for Picture</string>
+    <string name="capture_image">Snap</string>
+    <string name="save_image">Save</string>
+    <string name="recapture_image">Retake Picture</string>
+    <string name="capturing_image">Image Preview</string>
+    <string name="done">Done</string>
+    <string name="btn_create_test">New Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="before_bitmapBtn">Before</string>
+    <string name="after_bitmapBtn">After</string>
+
+    <!-- TODO -->
+    <string name="title_activity_test">testActivity</string>
+    <string name="test_title_hint">Enter a title for the test.</string>
+
+    <string name="test_title_label">Title</string>
+    <string name="test_details_label">Details</string>
+    <string name="test_finished_label">finished?</string>
+    <string name="tests_title">tests</string>
+    <string name="date_picker_title">Date of test</string>
+    <string name="time_picker_title">Time of test</string>
+
+    <string name="new_test">New test</string>
+    <string name="show_subtitle">Show Hint</string>
+    <string name="hide_subtitle">Hide Hint</string>
+    <string name="subtitle">Test Manual</string>
+    <string name="hints">
+        Instructions:
+
+        \n1.You should have an electronic or paper copy of images of badges “before” and “after” exposures.  These are just images and there will be no color change during this beta test.  These images are provided so that you can give us feedback on use of the app.
+        \n2.Open the app and select “New test”
+        \n3.Name your test and take a picture of the test location
+        \n4.Select the “Before” button and take a picture of the “Before” image
+        \n5.Pretend to wait 72 hours (you can move forward right away)
+        \n6.Select the “After” button and take a picture of the “After” image
+        \n7.Select “Upload my data to database”
+        \n8.Complete the sampling survey as much as you would like (this data will not be used for research purposes, but this section is available so you can give us feedback on the survey)
+        \n9.Complete the follow-up beta testing survey</string>
+    <string name="delete_test">Delete</string>
+
+    <string name="no_tests">There are currently no tests to display.</string>
+    <string name="add_new_test">New test</string>
+
+    <string name="take">Snap It</string>
+    <string name="add_image">Add image</string>
+    <string name="image_of_test">Photographic evidence of test</string>
+
+    <string name="test_report_text">Upload Data</string>
+    
+    <string name="test_report">%1$s:
+        The test was created on %2$s. %3$s, and the result is %4$s.</string>
+    <string name="test_report_finished">The test is finished</string>
+    <string name="test_report_unfinished">The test is not finished</string>
+    <string name="test_report_subject">Smartform test Report</string>
+    <string name="send_report">Send test report</string>
+    <string name="result">Result</string>
+    <string name="survey">Survey</string>
+    <string name="accept">Accept</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+    <string name="copyright">
+        COPYRIGHTS:
+
+        \nCopyright 2017 SMARTFORM.
+
+        \nAll Rights Reserved.
+
+        \n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)</string>
+    <string name="eula">
+        This is a consent form for your participation in this research study.
+
+        \n\nThe purpose of this research project is to develop a low-cost and highly accurate technique for assessing
+        domestic formaldehyde concentrations and is being conducted by Ohio State University in conjunction with the
+        Public Laboratory for Open Technology and Science (Public Lab). Insights from citizen scientists and other
+        relevant members of the public is key to developing the most robust and useable technology possible.
+
+        \n\nYou are invited to participate in this research project because you are:
+        A member of an environmental or citizen science organization (Public Lab, Global Community Monitor, or the
+        Sierra Club’s formaldehyde campaign) A resident of Waycross, GA where the technology developed by this project
+        will be first deployed.
+
+        \n\nYour participation in this research study is voluntary. You may choose not to participate. If you decide to
+        participate in this research survey, you may withdraw at any time. If you decide not to participate in this
+        study or if you withdraw from participating at any time, there will be no penalty or loss of benefits that
+        the participant is entitled to. You may skip any questions you do not wish to answer. If you want do not wish
+        to complete this survey just close your browser.
+
+        \n\nThe procedure involves filling an online survey that will take approximately 20 minutes. Your responses will
+        be confidential and we do not collect identifying information such as your name, email address or IP address.
+        The survey questions will be about your interest in testing for airborne formaldehyde, how we should build
+        the software and hardware for this technology to best suit your needs, and reflections on past community
+        science studies (if applicable).
+
+        \n\nWe will work to make sure that no one sees your survey responses without approval. But, because we are using
+        the Internet, there is a chance that someone could access your online responses without permission. In some
+        cases, this information could be used to identify you. Your data will be protected with a code to reduce the
+        risk that other people can view the responses. We will do our best to keep your information confidential.
+        All data is stored in a password protected electronic format. To help protect your confidentiality, the surveys
+        will not contain information that will personally identify you. The results of this study will be used for
+        scholarly, technical development, public education purposes only and may be shared with Ohio State University
+        representatives.
+
+        \n\nFor questions, concerns, or complaints about the study, or you feel you have been harmed as a result of study
+        participation, you may contact Karen Dannemiller at 614-292-4031.
+
+        \n\nFor questions about your rights as a participant in this study or to discuss other study-related concerns or
+        complaints with someone who is not part of the research team, you may contact Ms. Sandra Meadows in the Office
+        of Responsible Research Practices at 1-800-678-6251.This research has been reviewed according to Ohio State
+        University IRB procedures for research involving human subjects.
+
+        \n\nPlease print a copy of this consent form for your records, if you so desire.
+
+
+        \n\nELECTRONIC CONSENT: Please select your choice below.  
+
+        \n\nClicking on the "agree" button below indicates that:   
+
+        \n*You have ready the above information 
+
+        \n*You voluntarily agree to participate 
+
+        \n*You are at least 18 years of age   
+
+        \n\nIf you do not wish to participate in the research study,
+        please decline participation by clicking on the "disagree" button. </string>
+
+    <string name="title_activity_intro">IntroActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
