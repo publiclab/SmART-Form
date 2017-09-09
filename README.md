@@ -7,8 +7,11 @@ Creation of this app was funded by National Science Foundation (NSF) grant 16450
 ## Contact:
 
 Karen Dannemiller, PhD   (dannemiller dot 70 at osu dot edu)
-Rongjun Qin, PhD (qin dot 324 at osu dot edu)
-Jessica Castner, PhD, RN, FAEN (jpcastner15 at gmail dot com)
-Nick Shapiro, PhD (nick at publiclab dot org)
-Gretchen Gehrke
 
+Rongjun Qin, PhD (qin dot 324 at osu dot edu)
+
+Jessica Castner, PhD, RN, FAEN (jpcastner15 at gmail dot com)
+
+Nick Shapiro, PhD (nick at publiclab dot org)
+
+Gretchen Gehrke, PhD (gretchen at publiclab dot org)
