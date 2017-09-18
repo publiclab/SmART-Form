@@ -26,7 +26,7 @@ Our process for accepting changes operates by [Pull Request (PR)](https://help.g
 
 1.  **Create or modify the files** with your changes. If you want to show other people work that isn't ready to merge in, commit your changes then create a pull request (PR) with _WIP_ or _Work In Progress_ in the title.
 
-        https://github.com/edgi-govdata-archiving/<repository-name>/pull/new/master
+        https://github.com/publiclab/<repository-name>/pull/new/master
 
 1.  Once your changes are ready for final review, commit your changes then modify or **create your pull request (PR)**, assign as a reviewer or ping (using "`@<username>`") a reop owner (someone able to merge in PRs) active on the project.
 
@@ -34,4 +34,4 @@ Our process for accepting changes operates by [Pull Request (PR)](https://help.g
 
 1.  Once you have integrated comments, or waited for feedback, an owner should merge your changes in!
 
-_These guidelines are based on [EDGI](https://github.com/edgi-govdata-archiving/overview/blob/master/CONTRIBUTING.md)'s._
+_These guidelines are based on [PublicLab](https://github.com/publiclab/plots2/blob/master/CONTRIBUTING.md)'s._
