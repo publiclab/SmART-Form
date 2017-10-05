@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#999999"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/camera_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/camera_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ContentDescription" />
+
+
+        <SurfaceView
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <LinearLayout
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorTransparent">
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/camera_layer"
+                android:layout_width="100dp"
+                android:layout_height="85dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/badge_layer"
+                tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorTransparent">
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/capture_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/capture_image"
+                android:textColor="@color/colorAccent"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <View
+                android:id="@+id/vertical_divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/done_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/save_image"
+                android:textColor="@color/colorAccent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

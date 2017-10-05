@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Normal View when list items exist -->
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/add_test_button"
+        android:text="@string/add_new_test"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/start_test_btn"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="120dp" />
+
+    <Button
+        android:id="@+id/health_survey_button"
+        android:text="@string/health_survey"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/start_test_btn"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="70dp" />
+
+    <Button
+        android:id="@+id/user_survey_button"
+        android:text="@string/user_survey"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/start_test_btn"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/text_bg"
+        android:id="@+id/hint_view1">
+        <TextView
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/hints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/text_bg"
+        android:id="@+id/about_view1">
+        <TextView
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/about_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/text_bg"
+        android:id="@+id/copyright_view1">
+
+        <TextView
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/copyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/text_id1"
+                android:background="@color/colorAccent"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/copy_id1"
+                android:textColor="@color/colorAccent"
+                android:text="COPY"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/custom_empty_view"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/no_tests_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/no_tests" />
+
+        <Button
+            android:id="@+id/new_test_button"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/btn_start_test"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:background="@drawable/start_test_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_bg"
+            android:id="@+id/hint_view2">
+            <TextView
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/hints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_bg"
+            android:id="@+id/about_view2">
+            <TextView
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/about_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_bg"
+            android:id="@+id/copyright_view2">
+
+            <TextView
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/copyright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/text_id2"
+                    android:background="@color/colorAccent"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/copy_id2"
+                    android:textColor="@color/colorAccent"
+                    android:text="COPY"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
