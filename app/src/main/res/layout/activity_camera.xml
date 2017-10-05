@@ -49,37 +49,40 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/capture_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/capture_image"
+                android:textColor="@color/colorAccent"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <View
+                android:id="@+id/vertical_divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/done_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/save_image"
+                android:textColor="@color/colorAccent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+
     </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/capture_image_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/capture_image"
-            android:background="?android:attr/selectableItemBackground" />
-
-        <View
-            android:id="@+id/vertical_divider"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent" />
-
-        <Button
-            android:id="@+id/done_image_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/done"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground" />
-    </LinearLayout>
 
 </LinearLayout>

@@ -29,8 +29,8 @@
     <string name="btn_create_test">New Project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_camera">CameraActivity</string>
-    <string name="before_bitmapBtn">Before</string>
-    <string name="after_bitmapBtn">After</string>
+    <string name="before_bitmapBtn">Before Exposure</string>
+    <string name="after_bitmapBtn">After Exposure</string>
 
     <!-- TODO -->
     <string name="title_activity_test">testActivity</string>
@@ -44,9 +44,9 @@
     <string name="time_picker_title">Time of test</string>
 
     <string name="new_test">New test</string>
-    <string name="show_subtitle">Show Hint</string>
-    <string name="hide_subtitle">Hide Hint</string>
-    <string name="subtitle">Test Manual</string>
+    <string name="show_subtitle">Hint</string>
+    <string name="hide_subtitle">Hide</string>
+    <string name="subtitle">App Hint</string>
     <string name="hints">
         Instructions:
 
@@ -81,21 +81,30 @@
     <string name="accept">Accept</string>
     <string name="agree">Agree</string>
     <string name="disagree">Disagree</string>
+    <string name="about">ABOUT</string>
+    <string name="info">INFO</string>
     <string name="copyright">
-        COPYRIGHTS:
+        COPYRIGHT:
 
         \nCopyright 2017 SMARTFORM.
 
+        \nThe Ohio State University.
+
         \nAll Rights Reserved.
 
-        \n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)</string>
+        \n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)
+
+        \nPI: Karen Dannemiller
+        \nCo-PI: Rongjun Qin
+        \nDeveloper: Siyang Zhang
+        \n\nThis app is currently under beta test, all measurements are not reliable and not related to your actual surroundings.</string>
     <string name="eula">
         This is a consent form for your participation in this research study.
 
         \n\nThe purpose of this research project is to develop a low-cost and highly accurate technique for assessing
         domestic formaldehyde concentrations and is being conducted by Ohio State University in conjunction with the
         Public Laboratory for Open Technology and Science (Public Lab). Insights from citizen scientists and other
-        relevant members of the public is key to developing the most robust and useable technology possible.
+        relevant members of the public are key to developing the most robust and useable technology possible.
 
         \n\nYou are invited to participate in this research project because you are:
         A member of an environmental or citizen science organization (Public Lab, Global Community Monitor, or the
@@ -134,20 +143,100 @@
         \n\nPlease print a copy of this consent form for your records, if you so desire.
 
 
-        \n\nELECTRONIC CONSENT: Please select your choice below.  
+        \n\nELECTRONIC CONSENT: Please select your choice below.
 
-        \n\nClicking on the "agree" button below indicates that:   
+        \n\nClicking on the "agree" button below indicates that:
 
-        \n*You have ready the above information 
+        \n*You have ready the above information
 
-        \n*You voluntarily agree to participate 
+        \n*You voluntarily agree to participate
 
-        \n*You are at least 18 years of age   
+        \n*You are at least 18 years of age
 
         \n\nIf you do not wish to participate in the research study,
-        please decline participation by clicking on the "disagree" button. </string>
+        please decline participation by clicking on the "disagree" button.
+    </string>
 
+    <string name="survey_intro">
+        This is an user experience survey.
+
+        \n\n You will be asked for few questions about this app.
+
+        \n\n Please share your comments or suggestions with us.
+    </string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="error_prompt">Error</string>
+    <string name="thanks_prompt">Thanks</string>
+    <string name="promoter_prompt">Promoter</string>
+    <string name="detractor_prompt">detractor</string>
+    <string name="new_survey">Start your survey</string>
+    <string name="timer_stop_button">Stop</string>
+    <string name="timer_start_button">Start</string>
+    <string name="hint">Hints</string>
+    <string name="camera_hints">Please match the highlighted triangle with the colored area approximately</string>
+    <string name="test_about_text">About Formaldehyde</string>
+    <string name="health_survey">Health Survey</string>
+    <string name="user_survey">User Survey</string>
+    <string name="about_us">
+        ABOUT US
+
+        \n\n The purpose of this research project is to design a smartphone app to allow community scientists
+        to determine the formaldehyde concentrations in their homes or in outdoor air.
+
+        \n\n We would like to receive feedback from you about your experience using the app in this beta test.
+        Your participation is voluntary and all questions are voluntary.
+
+        \n\n Contributing your data will help us!
+
+        \n\n Email: dannemiller.70@osu.edu
+
+        \n\n Phone: 614-292-4031
+    </string>
+    <string name="TestList">TestList</string>
+    <string name="about_title">What does my formaldehyde level mean?</string>
+    <string name="about_detail">The exact healthy levels for indoor formaldehyde isn’t set. Here are some current recommendations:
+        \n\n8 ppb for indoor at home
+        \n(Agency for Toxic Substances and Disease Registry (ATSDR) chronic minimum risk level)
+        \n40 ppb for indoor at home over 8 hours
+        \n(Health Canada\'s Residential Indoor Air Quality Guideline for 8 hours)
+        \n16 ppb for workplace over 8 hours
+        \n(NIOSH Recommended Exposure Limit (REL) for 8 hours)
+        \n750 ppb (500 ppb action level) for workplace danger limit:   \t(OSHA workplace limit)
+        \n\nHere are two ways to cut down indoor formaldehyde levels:
+        \n\nSTEP 1 Remove or stop the source. Common sources include:
+        \nSmoking
+        \nPressed wood products (plywood/particleboard)
+        \nAdhesives used in new carpet
+        \nCertain types of new hardwood flooring
+        \nGas stove
+        \nOther gas appliances
+        \nUse of nail polish
+        \nUse of adhesives/glues
+        \nUse of paints
+        \nNew indoor paint
+        \nAll-purpose cleaner (certain types)
+        \nWindow cleaner (certain types)
+        \n\nOther steps might include:
+        \n\nNot smoking indoors
+        \nRemoving pressed wood products (plywood/particleboard)
+        \nWhen possible, go outdoors if you must use paints/adhesives/glues\nail polish
+        \nUsing a vent fan with gas appliances
+        \nUsing no-VOC or low-VOC indoor paint
+        \nChanging to natural cleaning products or soap and water
+        \n\nSTEP 2: Increase ventilation.
+        \n\nThis only applies if the outdoor air has low formaldehyde concentrations, which it does in most cases.
+        \nOpen windows (this works best by opening windows on two sides of the house for a cross-breeze)
+        \nWindow fans (drawing outdoor air into the house)
+        \n\nOther steps might include:
+        \nHome air filters and purifiers - Activated carbon filters are the best for removing formaldehyde,
+        but they may not work for long because they get saturated quickly. Otherwise, home air filters and
+        purifiers don’t usually work well on changing indoor formaldehyde levels. Household plants can also
+        improve overall indoor air quality, but their ability to reduce formaldehyde is likely very small.
+        \n\nIndoor Formaldehyde and Health  Formaldehyde can cause irritation to the skin and lining of the eyes,
+        nose, mouth, throat, and airways. This irritation might worsen the symptoms for people with conditions like
+        respiratory diseases and allergies. Being around higher levels of formaldehyde for long periods of time has
+        also been linked to some cancers.
+        \n\nMore information can be found at www.epa.gov/formaldehyde</string>
 </resources>

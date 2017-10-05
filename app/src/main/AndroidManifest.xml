@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shane.smartform">
+    package="edu.osu.siyang.smartform">
 
-    <uses-feature android:name="android.hardware.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -13,21 +13,21 @@
 
     <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
         android:supportsRtl="true" android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TestListActivity">
+        <activity android:name="edu.osu.siyang.smartform.Activity.TestListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.IntroActivity" android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".Activity.TestPagerActivity" android:label="@string/app_name">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Activity.TestListActivity" />
+        <activity android:name="edu.osu.siyang.smartform.Activity.IntroActivity" android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat"></activity>
+        <activity android:name="edu.osu.siyang.smartform.Activity.TestPagerActivity" android:label="@string/app_name">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="edu.osu.siyang.smartform.Activity.TestListActivity" />
         </activity>
-        <activity android:name=".Activity.TestCameraActivity" android:label="@string/app_name"
+        <activity android:name="edu.osu.siyang.smartform.Activity.TestCameraActivity" android:label="@string/app_name"
             android:screenOrientation="landscape"></activity>
-        <activity android:name=".Activity.CameraActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="edu.osu.siyang.smartform.Activity.CameraActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
