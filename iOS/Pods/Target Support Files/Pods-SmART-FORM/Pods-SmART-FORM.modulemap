@@ -1,0 +1,6 @@
+framework module Pods_SmART_FORM {
+  umbrella header "Pods-SmART-FORM-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,767 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F1110233D4095711C954BE8 /* Pods_SmART_FORM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC230D28C280C987C7A77FC /* Pods_SmART_FORM.framework */; };
+		680459CB1F4CC8790014FDBC /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680459CA1F4CC8790014FDBC /* ConsentViewController.swift */; };
+		680459CD1F4CDE400014FDBC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680459CC1F4CDE400014FDBC /* TabBarController.swift */; };
+		682B4B2F1F1762D0005474BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006511ED4B55300E81328 /* AppDelegate.swift */; };
+		687980831F98E419004CDB63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689006581ED4B55300E81328 /* Assets.xcassets */; };
+		6890065C1ED4B55300E81328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6890065A1ED4B55300E81328 /* LaunchScreen.storyboard */; };
+		689006671ED4B55400E81328 /* SmART_FORMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006661ED4B55400E81328 /* SmART_FORMTests.swift */; };
+		689006721ED4B55400E81328 /* SmART_FORMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006711ED4B55400E81328 /* SmART_FORMUITests.swift */; };
+		68AE62271F1767C200CA4920 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AE62261F1767C200CA4920 /* ContactViewController.swift */; };
+		68B908271EF06D6E00AB90EC /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B908261EF06D6E00AB90EC /* TestCell.swift */; };
+		68DA091F1F2903E600915AD7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA091E1F2903E600915AD7 /* AboutViewController.swift */; };
+		68F1CEA11EE4A84300950569 /* TestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F1CEA01EE4A84300950569 /* TestsTableViewController.swift */; };
+		68F1CEA51EE5247400950569 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F1CEA41EE5247400950569 /* TestViewController.swift */; };
+		68F1CEA71EE5368200950569 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F1CEA61EE5368200950569 /* CameraViewController.swift */; };
+		68F1CEA91EE5933000950569 /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F1CEA81EE5933000950569 /* TestStore.swift */; };
+		68F35E241EE46E1900D8FB4E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F35E231EE46E1900D8FB4E /* Test.swift */; };
+		68F35E311EE479AC00D8FB4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F35E301EE479AC00D8FB4E /* Main.storyboard */; };
+		7E556C2DE5992B0597E38DDF /* Pods_SmART_FORMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92A433D0E6606D2DEEEB0D3 /* Pods_SmART_FORMTests.framework */; };
+		F5F429ACCDFB62DD494BC749 /* Pods_SmART_FORMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21979BD990B09668C259C0C9 /* Pods_SmART_FORMUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		689006631ED4B55400E81328 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 689006461ED4B55300E81328 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6890064D1ED4B55300E81328;
+			remoteInfo = "SmART-FORM";
+		};
+		6890066E1ED4B55400E81328 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 689006461ED4B55300E81328 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6890064D1ED4B55300E81328;
+			remoteInfo = "SmART-FORM";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05E570D1CB89FE63607C2979 /* Pods-SmART-FORMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMTests/Pods-SmART-FORMTests.debug.xcconfig"; sourceTree = "<group>"; };
+		09E486B647B8B82FABD24E1A /* Pods-SmART-FORMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMUITests/Pods-SmART-FORMUITests.release.xcconfig"; sourceTree = "<group>"; };
+		21979BD990B09668C259C0C9 /* Pods_SmART_FORMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmART_FORMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ABD790FB7D9BA27A4886F9C /* Pods-SmART-FORMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMTests/Pods-SmART-FORMTests.release.xcconfig"; sourceTree = "<group>"; };
+		680459CA1F4CC8790014FDBC /* ConsentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
+		680459CC1F4CDE400014FDBC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		6890064E1ED4B55300E81328 /* SmART-FORM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SmART-FORM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		689006511ED4B55300E81328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		689006581ED4B55300E81328 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6890065B1ED4B55300E81328 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6890065D1ED4B55300E81328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		689006621ED4B55400E81328 /* SmART-FORMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmART-FORMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		689006661ED4B55400E81328 /* SmART_FORMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmART_FORMTests.swift; sourceTree = "<group>"; };
+		689006681ED4B55400E81328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6890066D1ED4B55400E81328 /* SmART-FORMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmART-FORMUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		689006711ED4B55400E81328 /* SmART_FORMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmART_FORMUITests.swift; sourceTree = "<group>"; };
+		689006731ED4B55400E81328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68AE62261F1767C200CA4920 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		68B908261EF06D6E00AB90EC /* TestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		68DA091E1F2903E600915AD7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		68F1CEA01EE4A84300950569 /* TestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsTableViewController.swift; sourceTree = "<group>"; };
+		68F1CEA41EE5247400950569 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		68F1CEA61EE5368200950569 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		68F1CEA81EE5933000950569 /* TestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
+		68F35E231EE46E1900D8FB4E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		68F35E301EE479AC00D8FB4E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		772657D79D1ABD0F77B4BA6B /* Pods-SmART-FORM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORM/Pods-SmART-FORM.debug.xcconfig"; sourceTree = "<group>"; };
+		83584B784AF8CF07B95FA223 /* Pods-SmART-FORMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMUITests/Pods-SmART-FORMUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E92A433D0E6606D2DEEEB0D3 /* Pods_SmART_FORMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmART_FORMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDC230D28C280C987C7A77FC /* Pods_SmART_FORM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmART_FORM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE2159199872DF2381560099 /* Pods-SmART-FORM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORM.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORM/Pods-SmART-FORM.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6890064B1ED4B55300E81328 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F1110233D4095711C954BE8 /* Pods_SmART_FORM.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6890065F1ED4B55400E81328 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E556C2DE5992B0597E38DDF /* Pods_SmART_FORMTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6890066A1ED4B55400E81328 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5F429ACCDFB62DD494BC749 /* Pods_SmART_FORMUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48F4D4EC61F440C7116692DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				772657D79D1ABD0F77B4BA6B /* Pods-SmART-FORM.debug.xcconfig */,
+				EE2159199872DF2381560099 /* Pods-SmART-FORM.release.xcconfig */,
+				05E570D1CB89FE63607C2979 /* Pods-SmART-FORMTests.debug.xcconfig */,
+				5ABD790FB7D9BA27A4886F9C /* Pods-SmART-FORMTests.release.xcconfig */,
+				83584B784AF8CF07B95FA223 /* Pods-SmART-FORMUITests.debug.xcconfig */,
+				09E486B647B8B82FABD24E1A /* Pods-SmART-FORMUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		689006451ED4B55300E81328 = {
+			isa = PBXGroup;
+			children = (
+				689006501ED4B55300E81328 /* SmART-FORM */,
+				689006651ED4B55400E81328 /* SmART-FORMTests */,
+				689006701ED4B55400E81328 /* SmART-FORMUITests */,
+				6890064F1ED4B55300E81328 /* Products */,
+				48F4D4EC61F440C7116692DF /* Pods */,
+				98F353B1D433FECCA90BBD95 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6890064F1ED4B55300E81328 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6890064E1ED4B55300E81328 /* SmART-FORM.app */,
+				689006621ED4B55400E81328 /* SmART-FORMTests.xctest */,
+				6890066D1ED4B55400E81328 /* SmART-FORMUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		689006501ED4B55300E81328 /* SmART-FORM */ = {
+			isa = PBXGroup;
+			children = (
+				68F35E301EE479AC00D8FB4E /* Main.storyboard */,
+				68AE62261F1767C200CA4920 /* ContactViewController.swift */,
+				68DA091E1F2903E600915AD7 /* AboutViewController.swift */,
+				689006511ED4B55300E81328 /* AppDelegate.swift */,
+				689006581ED4B55300E81328 /* Assets.xcassets */,
+				6890065A1ED4B55300E81328 /* LaunchScreen.storyboard */,
+				6890065D1ED4B55300E81328 /* Info.plist */,
+				68F35E231EE46E1900D8FB4E /* Test.swift */,
+				68F1CEA01EE4A84300950569 /* TestsTableViewController.swift */,
+				68F1CEA41EE5247400950569 /* TestViewController.swift */,
+				68F1CEA61EE5368200950569 /* CameraViewController.swift */,
+				68F1CEA81EE5933000950569 /* TestStore.swift */,
+				68B908261EF06D6E00AB90EC /* TestCell.swift */,
+				680459CA1F4CC8790014FDBC /* ConsentViewController.swift */,
+				680459CC1F4CDE400014FDBC /* TabBarController.swift */,
+			);
+			path = "SmART-FORM";
+			sourceTree = "<group>";
+		};
+		689006651ED4B55400E81328 /* SmART-FORMTests */ = {
+			isa = PBXGroup;
+			children = (
+				689006661ED4B55400E81328 /* SmART_FORMTests.swift */,
+				689006681ED4B55400E81328 /* Info.plist */,
+			);
+			path = "SmART-FORMTests";
+			sourceTree = "<group>";
+		};
+		689006701ED4B55400E81328 /* SmART-FORMUITests */ = {
+			isa = PBXGroup;
+			children = (
+				689006711ED4B55400E81328 /* SmART_FORMUITests.swift */,
+				689006731ED4B55400E81328 /* Info.plist */,
+			);
+			path = "SmART-FORMUITests";
+			sourceTree = "<group>";
+		};
+		98F353B1D433FECCA90BBD95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDC230D28C280C987C7A77FC /* Pods_SmART_FORM.framework */,
+				E92A433D0E6606D2DEEEB0D3 /* Pods_SmART_FORMTests.framework */,
+				21979BD990B09668C259C0C9 /* Pods_SmART_FORMUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6890064D1ED4B55300E81328 /* SmART-FORM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 689006761ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORM" */;
+			buildPhases = (
+				69FA19F69ABB093F5D4F4E97 /* [CP] Check Pods Manifest.lock */,
+				6890064A1ED4B55300E81328 /* Sources */,
+				6890064B1ED4B55300E81328 /* Frameworks */,
+				6890064C1ED4B55300E81328 /* Resources */,
+				D42CDAB06E5854E35C4D9219 /* [CP] Embed Pods Frameworks */,
+				D05A099CC379A23C51C5BBB9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SmART-FORM";
+			productName = "SmART-FORM";
+			productReference = 6890064E1ED4B55300E81328 /* SmART-FORM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		689006611ED4B55400E81328 /* SmART-FORMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 689006791ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORMTests" */;
+			buildPhases = (
+				BDBF876263349B3131AFFDA2 /* [CP] Check Pods Manifest.lock */,
+				6890065E1ED4B55400E81328 /* Sources */,
+				6890065F1ED4B55400E81328 /* Frameworks */,
+				689006601ED4B55400E81328 /* Resources */,
+				5899F012274E11712278668D /* [CP] Embed Pods Frameworks */,
+				52ACEC075FC78CBA4A98A9CF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				689006641ED4B55400E81328 /* PBXTargetDependency */,
+			);
+			name = "SmART-FORMTests";
+			productName = "SmART-FORMTests";
+			productReference = 689006621ED4B55400E81328 /* SmART-FORMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6890066C1ED4B55400E81328 /* SmART-FORMUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6890067C1ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORMUITests" */;
+			buildPhases = (
+				F7FEBC4A10B323983E94E757 /* [CP] Check Pods Manifest.lock */,
+				689006691ED4B55400E81328 /* Sources */,
+				6890066A1ED4B55400E81328 /* Frameworks */,
+				6890066B1ED4B55400E81328 /* Resources */,
+				F9635B2BEA9B6F687023D3DB /* [CP] Embed Pods Frameworks */,
+				9136EFF6898C648360F2B411 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6890066F1ED4B55400E81328 /* PBXTargetDependency */,
+			);
+			name = "SmART-FORMUITests";
+			productName = "SmART-FORMUITests";
+			productReference = 6890066D1ED4B55400E81328 /* SmART-FORMUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		689006461ED4B55300E81328 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Siyang Zhang";
+				TargetAttributes = {
+					6890064D1ED4B55300E81328 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = LTYWXUY99M;
+						ProvisioningStyle = Automatic;
+					};
+					689006611ED4B55400E81328 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = LTYWXUY99M;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6890064D1ED4B55300E81328;
+					};
+					6890066C1ED4B55400E81328 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = LTYWXUY99M;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6890064D1ED4B55300E81328;
+					};
+				};
+			};
+			buildConfigurationList = 689006491ED4B55300E81328 /* Build configuration list for PBXProject "SmART-FORM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 689006451ED4B55300E81328;
+			productRefGroup = 6890064F1ED4B55300E81328 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6890064D1ED4B55300E81328 /* SmART-FORM */,
+				689006611ED4B55400E81328 /* SmART-FORMTests */,
+				6890066C1ED4B55400E81328 /* SmART-FORMUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6890064C1ED4B55300E81328 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68F35E311EE479AC00D8FB4E /* Main.storyboard in Resources */,
+				687980831F98E419004CDB63 /* Assets.xcassets in Resources */,
+				6890065C1ED4B55300E81328 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		689006601ED4B55400E81328 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6890066B1ED4B55400E81328 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52ACEC075FC78CBA4A98A9CF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORMTests/Pods-SmART-FORMTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5899F012274E11712278668D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORMTests/Pods-SmART-FORMTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69FA19F69ABB093F5D4F4E97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9136EFF6898C648360F2B411 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORMUITests/Pods-SmART-FORMUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDBF876263349B3131AFFDA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D05A099CC379A23C51C5BBB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORM/Pods-SmART-FORM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D42CDAB06E5854E35C4D9219 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORM/Pods-SmART-FORM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7FEBC4A10B323983E94E757 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F9635B2BEA9B6F687023D3DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmART-FORMUITests/Pods-SmART-FORMUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6890064A1ED4B55300E81328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				682B4B2F1F1762D0005474BC /* AppDelegate.swift in Sources */,
+				68F1CEA51EE5247400950569 /* TestViewController.swift in Sources */,
+				680459CD1F4CDE400014FDBC /* TabBarController.swift in Sources */,
+				68F35E241EE46E1900D8FB4E /* Test.swift in Sources */,
+				68DA091F1F2903E600915AD7 /* AboutViewController.swift in Sources */,
+				68B908271EF06D6E00AB90EC /* TestCell.swift in Sources */,
+				68F1CEA11EE4A84300950569 /* TestsTableViewController.swift in Sources */,
+				68AE62271F1767C200CA4920 /* ContactViewController.swift in Sources */,
+				680459CB1F4CC8790014FDBC /* ConsentViewController.swift in Sources */,
+				68F1CEA91EE5933000950569 /* TestStore.swift in Sources */,
+				68F1CEA71EE5368200950569 /* CameraViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6890065E1ED4B55400E81328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				689006671ED4B55400E81328 /* SmART_FORMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		689006691ED4B55400E81328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				689006721ED4B55400E81328 /* SmART_FORMUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		689006641ED4B55400E81328 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6890064D1ED4B55300E81328 /* SmART-FORM */;
+			targetProxy = 689006631ED4B55400E81328 /* PBXContainerItemProxy */;
+		};
+		6890066F1ED4B55400E81328 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6890064D1ED4B55300E81328 /* SmART-FORM */;
+			targetProxy = 6890066E1ED4B55400E81328 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6890065A1ED4B55300E81328 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6890065B1ED4B55300E81328 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		689006741ED4B55400E81328 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		689006751ED4B55400E81328 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		689006771ED4B55400E81328 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 772657D79D1ABD0F77B4BA6B /* Pods-SmART-FORM.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "SmART-FORM/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		689006781ED4B55400E81328 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE2159199872DF2381560099 /* Pods-SmART-FORM.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "SmART-FORM/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		6890067A1ED4B55400E81328 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05E570D1CB89FE63607C2979 /* Pods-SmART-FORMTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				INFOPLIST_FILE = "SmART-FORMTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmART-FORM.app/SmART-FORM";
+			};
+			name = Debug;
+		};
+		6890067B1ED4B55400E81328 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ABD790FB7D9BA27A4886F9C /* Pods-SmART-FORMTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				INFOPLIST_FILE = "SmART-FORMTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmART-FORM.app/SmART-FORM";
+			};
+			name = Release;
+		};
+		6890067D1ED4B55400E81328 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83584B784AF8CF07B95FA223 /* Pods-SmART-FORMUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				INFOPLIST_FILE = "SmART-FORMUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "SmART-FORM";
+			};
+			name = Debug;
+		};
+		6890067E1ED4B55400E81328 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09E486B647B8B82FABD24E1A /* Pods-SmART-FORMUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = LTYWXUY99M;
+				INFOPLIST_FILE = "SmART-FORMUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "SmART-FORM";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		689006491ED4B55300E81328 /* Build configuration list for PBXProject "SmART-FORM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				689006741ED4B55400E81328 /* Debug */,
+				689006751ED4B55400E81328 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		689006761ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				689006771ED4B55400E81328 /* Debug */,
+				689006781ED4B55400E81328 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		689006791ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6890067A1ED4B55400E81328 /* Debug */,
+				6890067B1ED4B55400E81328 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6890067C1ED4B55400E81328 /* Build configuration list for PBXNativeTarget "SmART-FORMUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6890067D1ED4B55400E81328 /* Debug */,
+				6890067E1ED4B55400E81328 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 689006461ED4B55300E81328 /* Project object */;
+}
