@@ -25,6 +25,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
@@ -36,17 +38,22 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 import edu.osu.siyang.smartform.Activity.AppEULA;
 import edu.osu.siyang.smartform.Activity.IntroActivity;
 import edu.osu.siyang.smartform.Activity.TestPagerActivity;
 import edu.osu.siyang.smartform.Bean.Test;
 import edu.osu.siyang.smartform.Bean.TestLab;
-
-import java.util.ArrayList;
-import java.util.UUID;
-
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 public class TestListFragment extends ListFragment {
+
+	public TourGuide mTutorialHandler;
 
 	private static final String TAG = "TestListFragment";
 
@@ -55,7 +62,7 @@ public class TestListFragment extends ListFragment {
 	private boolean mAboutVisible;
 	private boolean mInfoVisible;
 	private Callbacks mCallbacks;
-	
+
 	private Button mNewTestButton;
 	private Button mAddTestButton;
 	private Button mHealthSurveyButton;
@@ -74,6 +81,12 @@ public class TestListFragment extends ListFragment {
 	private FloatingActionButton floatingActionButton;
 	private static String uniqueID = null;
 	private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
+
+	private SharedPreferences mPref;
+	private SharedPreferences.Editor mEditor;
+
+	public TestListFragment() {
+	}
 
 	public synchronized static String id(Context context) {
 		if (uniqueID == null) {
@@ -126,11 +139,10 @@ public class TestListFragment extends ListFragment {
 			@Override
 			public void run() {
 				//  Initialize SharedPreferences
-				SharedPreferences getPrefs = PreferenceManager
-						.getDefaultSharedPreferences(getActivity().getApplicationContext());
+				SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
 				//  Create a new boolean and preference and set it to true
-				boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+				final boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
 
 				//  If the activity has never started before...
 				if (isFirstStart) {
@@ -231,9 +243,38 @@ public class TestListFragment extends ListFragment {
 
 		// Link Button for Empty Display
 		mNewTestButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.new_test_button);
+
+		//  Initialize SharedPreferences
+		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+		//  Create a new boolean and preference and set it to true
+		final boolean isFirstTour = mPref.getBoolean("firstTour", true);
+
+		/* setup enter and exit animation */
+		Animation enterAnimation = new AlphaAnimation(0f, 1f);
+		enterAnimation.setDuration(600);
+		enterAnimation.setFillAfter(true);
+
+		Animation exitAnimation = new AlphaAnimation(1f, 0f);
+		exitAnimation.setDuration(600);
+		exitAnimation.setFillAfter(true);
+
+		if(isFirstTour) {
+			mTutorialHandler = TourGuide.init(this.getActivity()).with(TourGuide.Technique.Click)
+					.setPointer(new Pointer())
+					.setToolTip(new ToolTip().setTitle("Welcome!").setDescription("Click on Start Test to begin"))
+					.setOverlay(new Overlay()
+							.setEnterAnimation(enterAnimation)
+							.setExitAnimation(exitAnimation))
+					.playOn(mNewTestButton);
+		}
+
 		mNewTestButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+				}
 				Test test = new Test();
 				TestLab.get(getActivity()).addTest(test);
 
@@ -261,6 +302,10 @@ public class TestListFragment extends ListFragment {
 				startActivity(browserIntent);
 			}
 		});
+
+		//Hide survey buttons
+		//mUserSurveyButton.setVisibility(View.INVISIBLE);
+		//mHealthSurveyButton.setVisibility(View.INVISIBLE);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 			if(getActivity().getActionBar()!=null) {
@@ -472,7 +517,7 @@ public class TestListFragment extends ListFragment {
 
 			TextView dateTextView = (TextView) convertView
 					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_dateTextView);
-			String formatDate = DateFormat.format("EEEE, MMM dd, yyyy",
+			String formatDate = DateFormat.format("yyyy-MM-dd hh:mm:ss a",
 					c.getDate()).toString();
 			dateTextView.setText(formatDate);
 

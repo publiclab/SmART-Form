@@ -1,11 +1,12 @@
 package edu.osu.siyang.smartform.Fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,6 +17,8 @@ import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
@@ -25,9 +28,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +39,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -43,23 +51,36 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import edu.osu.siyang.smartform.Activity.CameraActivity;
-import edu.osu.siyang.smartform.Activity.TestCameraActivity;
-import edu.osu.siyang.smartform.Activity.TimerService;
-import edu.osu.siyang.smartform.Bean.Photo;
-import edu.osu.siyang.smartform.Util.PictureUtils;
-import edu.osu.siyang.smartform.Bean.Test;
-import edu.osu.siyang.smartform.Bean.TestLab;
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
-public class TestFragment extends DialogFragment{
+import edu.osu.siyang.smartform.Activity.CameraActivity;
+import edu.osu.siyang.smartform.Activity.TimerService;
+import edu.osu.siyang.smartform.Bean.Photo;
+import edu.osu.siyang.smartform.Bean.Test;
+import edu.osu.siyang.smartform.Bean.TestLab;
+import edu.osu.siyang.smartform.Util.PictureUtils;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
+
+import static android.graphics.Color.CYAN;
+
+public class TestFragment extends DialogFragment {
+
+	public TourGuide mTutorialHandler;
+	public static BufferedWriter out;
 
 	public static final String EXTRA_TEST_ID = "com.osu.siyang.smartform.test_id";
 	private static final String DIALOG_DATE = "date";
@@ -95,7 +116,7 @@ public class TestFragment extends DialogFragment{
 	private String date_time;
 	private Calendar calendar;
 	private SimpleDateFormat simpleDateFormat;
-	private SharedPreferences mpref;
+	private SharedPreferences mPref;
 	private SharedPreferences.Editor mEditor;
 	private InputMethodManager imm;
 
@@ -129,9 +150,14 @@ public class TestFragment extends DialogFragment{
 	}
 
 	private void updateDate() {
-		String formatDate = DateFormat.format("EEEE, MMM dd, yyyy",
-				mTest.getDate()).toString();
-		mDateButton.setText(formatDate);
+		final Handler someHandler = new Handler();
+		someHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				mDateButton.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.US).format(new Date()));
+				someHandler.postDelayed(this, 1000);
+			}
+		}, 10);
 	}
 
 	private void updateTime() {
@@ -154,7 +180,7 @@ public class TestFragment extends DialogFragment{
 	@Override
 	public void onStart() {
 		super.onStart();
-		showPhoto();
+		//showPhoto();
 		showResult();
 	}
 
@@ -188,6 +214,22 @@ public class TestFragment extends DialogFragment{
 
 		// Test Title
 		mTitleField = (EditText) v.findViewById(edu.osu.siyang.smartform.R.id.test_title);
+		mTitleField.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (keyCode == 66) {
+					mTitleField.setFocusableInTouchMode(false);
+					mTitleField.setFocusable(false);
+					imm.hideSoftInputFromWindow(mTitleField.getWindowToken(), 0);
+
+					mCounter=0;
+
+					return true;
+				}
+				return false;
+			}
+		});
+
 		mTitleField.setFocusableInTouchMode(false);
 		mTitleField.setFocusable(false);
 		mTitleField.setText(mTest.getTitle());
@@ -212,7 +254,40 @@ public class TestFragment extends DialogFragment{
 		imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		// Edit title
 		mTitleEdit = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.title_edit);
-		mTitleEdit.setOnClickListener(new View.OnClickListener() {
+
+		//  Initialize SharedPreferences
+		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+		//  Create a new boolean and preference and set it to true
+		final boolean isFirstTour = mPref.getBoolean("firstTour", true);
+
+		/* setup enter and exit animation */
+		Animation enterAnimation = new AlphaAnimation(0f, 1f);
+		enterAnimation.setDuration(600);
+		enterAnimation.setFillAfter(true);
+
+		Animation exitAnimation = new AlphaAnimation(1f, 0f);
+		exitAnimation.setDuration(600);
+		exitAnimation.setFillAfter(true);
+
+		if(isFirstTour) {
+			mTutorialHandler = TourGuide.init(this.getActivity()).with(TourGuide.Technique.Click)
+					.setPointer(new Pointer())
+					.setToolTip(new ToolTip().setTitle("Test detail").setDescription("Click to edit parameters"))
+					.setOverlay(new Overlay()
+							.setEnterAnimation(enterAnimation)
+							.setExitAnimation(exitAnimation))
+					.playOn(mTitleEdit);
+
+			try {
+				createFileOnDevice(true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		mTitleEdit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "mCounter = " + mCounter);
@@ -232,12 +307,19 @@ public class TestFragment extends DialogFragment{
 						mCounter=0;
 						break;
 				}
+
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					mTutorialHandler.setToolTip(new ToolTip().setTitle("Before button").setDescription("Click to take the before exposure image").setGravity(Gravity.TOP)).playOn(mBeforeButton);
+				}
 			}
 		});
 
 		// Date Button
 		mDateButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
+		if (mTest.getDate() == null) mTest.setDate(new Date());
 		updateDate();
+
 		/*
 		mDateButton.setOnClickListener(new View.OnClickListener() {
 
@@ -253,17 +335,18 @@ public class TestFragment extends DialogFragment{
 		Log.d("KIO", "Date is: " + mDateButton);
 		*/
 
+
 		// Time Button
 		mTimeButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_time);
-		mpref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-		mEditor = mpref.edit();
-		String str_value = mpref.getString("data", "");
+		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		mEditor = mPref.edit();
+		String str_value = mPref.getString("data", "");
 		mTimeButton.setText("Start countdown");
 		mTimeButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				/*
+
 				Log.d(TAG, "click on timer");
 				calendar = Calendar.getInstance();
 				simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -274,9 +357,8 @@ public class TestFragment extends DialogFragment{
 
 				Intent intent_service = new Intent(getActivity().getApplicationContext(), TimerService.class);
 				getActivity().startService(intent_service);
-				//mTimer = 1;
+				// mTimer = 1;
 				// getActivity().startService(new Intent(getActivity(), TimerService.class));
-				*/
 				FragmentManager fm = getActivity().getSupportFragmentManager();
 				TimePickerFragment dialog = TimePickerFragment
 						.newInstance(mTest.getDate());
@@ -284,6 +366,7 @@ public class TestFragment extends DialogFragment{
 				dialog.show(fm, DIALOG_TIME);
 			}
 		});
+
 
 		// "finished" Check box
 		mFinishedCheckBox = (CheckBox) v.findViewById(edu.osu.siyang.smartform.R.id.test_finished);
@@ -299,6 +382,7 @@ public class TestFragment extends DialogFragment{
 				});
 
 		// Photo Button
+		/*
 		mPhotoButton = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.test_imageButton);
 		mPhotoButton.setOnClickListener(new OnClickListener() {
 
@@ -308,15 +392,23 @@ public class TestFragment extends DialogFragment{
 				startActivityForResult(i, REQUEST_PHOTO);
 			}
 		});
+		*/
 
 		// Before Button
 		mBeforeButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.before_bitmapBtn);
 		mBeforeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mTimeButton.performClick();
+				//mTimeButton.performClick();
 				Intent i = new Intent(getActivity(), CameraActivity.class);
+				i.putExtra("TEST_PARAM", mTest.getTitle());
+				i.putExtra("TEST_TAG", "before");
 				startActivityForResult(i, REQUEST_BEFORE);
+
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					mTutorialHandler.setToolTip(new ToolTip().setTitle("After button").setDescription("Click to take the after exposure image").setGravity(Gravity.TOP)).playOn(mAfterButton);
+				}
 			}
 		});
 
@@ -327,7 +419,23 @@ public class TestFragment extends DialogFragment{
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getActivity(), CameraActivity.class);
+				i.putExtra("TEST_PARAM", mTest.getTitle());
+				i.putExtra("TEST_TAG", "after");
 				startActivityForResult(i, REQUEST_AFTER);
+
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					mTutorialHandler.setToolTip(new ToolTip().setTitle("Upload button").setDescription("Click to upload data and finish").setGravity(Gravity.TOP)).playOn(mUploadButton);
+				}
+
+				// Write to log file
+				writeToFile("Date: " + mTest.getDate());
+				writeToFile("ID: " + mTest.getId());
+				writeToFile("Title: " + mTest.getTitle());
+				writeToFile("Result: " + mTest.getResult());
+				writeToFile("Before: " + mTest.getBefore());
+				writeToFile("After: " + mTest.getAfter());
+
 			}
 		});
 
@@ -346,6 +454,7 @@ public class TestFragment extends DialogFragment{
 		}
 
 		// Photographic Evidence
+		/*
 		mPhotoView = (ImageView) v.findViewById(edu.osu.siyang.smartform.R.id.test_imageView);
 		mPhotoView.setOnClickListener(new View.OnClickListener() {
 
@@ -361,6 +470,7 @@ public class TestFragment extends DialogFragment{
 				ImageFragment.newInstance(path).show(fm, DIALOG_IMAGE);
 			}
 		});
+		*/
 
 		// Test Report
 		mUploadButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.test_uploadButton);
@@ -368,6 +478,18 @@ public class TestFragment extends DialogFragment{
 
 			@Override
 			public void onClick(View v) {
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					//  Make a new preferences editor
+					mEditor = mPref.edit();
+
+					//  Edit preference to make it false because we don't want this to run again
+					mEditor.putBoolean("firstTour", false);
+
+					//  Apply changes
+					mEditor.apply();
+				}
+
 				//new AppEULA(getActivity()).show();
 				mFinishedCheckBox.setChecked(true);
 				mTest.setFinished(true);
@@ -386,7 +508,36 @@ public class TestFragment extends DialogFragment{
 				getActivity().setContentView(edu.osu.siyang.smartform.R.layout.fragment_aboutformaldehyde);
 			}
 		});
+
+		// Hide about button
+		//mAboutButton.setVisibility(View.INVISIBLE);
+
 		return v;
+	}
+
+	private void createFileOnDevice(Boolean append) throws IOException {
+                /*
+                 * Function to initially create the log file and it also writes the time of creation to file.
+                 */
+		File Root = Environment.getExternalStorageDirectory();
+		if(Root.canWrite()){
+			File  LogFile = new File(Root, "Log.txt");
+			FileWriter LogWriter = new FileWriter(LogFile, append);
+			out = new BufferedWriter(LogWriter);
+			Date date = new Date();
+			out.write("Logged at" + String.valueOf(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "\n"));
+			out.close();
+
+		}
+	}
+
+	public void writeToFile(String message) {
+		try {
+			out.write(message + "\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -416,6 +567,7 @@ public class TestFragment extends DialogFragment{
 				mBeforeButton.setEnabled(false);
 				mAfterButton.setEnabled(false);
 				mUploadButton.setEnabled(true);
+				mResultField.setBackgroundColor(Color.CYAN);
 				break;
 			case 3:
 				mBeforeButton.setEnabled(false);
@@ -423,7 +575,6 @@ public class TestFragment extends DialogFragment{
 				mUploadButton.setEnabled(false);
 				break;
 		}
-
 		getContext().registerReceiver(broadcastReceiver,new IntentFilter(TimerService.str_receiver));
 	}
 
@@ -437,7 +588,7 @@ public class TestFragment extends DialogFragment{
 	@Override
 	public void onStop() {
 		super.onStop();
-		PictureUtils.cleanImageView(mPhotoView);
+		//PictureUtils.cleanImageView(mPhotoView);
 	}
 
     /**
@@ -546,7 +697,7 @@ public class TestFragment extends DialogFragment{
 	}
 	private AlertDialog AskOption()
 	{
-		AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
 				//set message, title, and icon
 				.setTitle("Delete")
 				.setMessage("Are you sure about delete this test?")

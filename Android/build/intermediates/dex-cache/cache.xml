@@ -2,157 +2,301 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.3.1_3d655af822370d3960fde0a575aadf6786bdbe9d/classes.dex" />
+        revision="26.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/library-2.4.0_df292c19e27c8130b5893172ad55cec388f20219.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/net.i2p.android.ext/floatingactionbutton/1.9.0/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="45848f2ea86bee46af38b8a6774d120d6a5ae112">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c48e6c88ae8cc112beb2c39ee3d022fe889acc34/classes.dex" />
+        revision="26.0.2"
+        sha1="7c5e4db194c6ec3e62b70759ef913381ea4903d1">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/net.i2p.android.ext-floatingactionbutton-1.9.0_320ebfc62407a2959472e760eb08b8597ec7a94b.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="4168c13d4963070c6f58ffbfacc0cd473cb54e82">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d201b2615b42d2e1c6103fd753241a833c7a065b/classes.dex" />
+        revision="26.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.3.1_9d066ab39cf7c4507c391c9b86b367421b080d13.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.3.1_8d09635f62fc9e96ea90021225a346fc605be339/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.3.1_8df099685d6fcd0d1b6122ee3c35a248e101bb49/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.3.1_545faa93eb12704b8e97efd90b0e56b08afb93af/classes.dex" />
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.3.1_9d066ab39cf7c4507c391c9b86b367421b080d13.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.3.1_7da4043308052a5938e1e277bab541349369244b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.3.1_3b82524d02bfcb167f9087437e8f7c15d585f755/classes.dex" />
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.3.1_1e83979b60baf25bdf9480488aa923ce51011175.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.3.1_6df8e1d164d6141d6222d41f69884a4c92bfad7e/classes.dex" />
+        revision="26.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.3.1_0176404115053cdf9c9c5cba267a416798c2dc01.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.roughike/bottom-bar/2.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="a9cbdabba632cbf8be001cdbf34110cf42a64015">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.roughike-bottom-bar-2.3.1_d3501848f9e8fa3aebf6b16d50f14651a01c48fc/classes.dex" />
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.3.1_44a408d37a17b804a1c2f799ffa071ccc38a33ed.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.3.1_7609571d09ced87424dbf989afb84ac165af53b9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.3.1_58ba821424c8d78a28178cee1b297156deda1584/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="461cd433c2723981c7536d60acfcf3d86f3105fb">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.paolorotolo-appintro-4.1.0_f8a1ec81a88ea8272221ca0d7e8e383755b992a2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.3.1_aa1b8deeb27bc0c8d0c632024e4129001351de21/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_78a8524dac8fe24fcdc00d6e5a4f4a37f4f9928f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.3.1_29d6268983f4ad76b40d0b2c2ebda23916c114da/classes.dex" />
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.3.1_b862143e9d364bcdda3e7bc7871f1c09e844b3e9.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.3.1_c1f58c7a437a8f00b024033529214129df2b8fd7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.3.1_6f1b6b04e282f54f062920d1f6962a18e012c1d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.3.1_1e83979b60baf25bdf9480488aa923ce51011175.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.roughike/bottom-bar/2.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a9cbdabba632cbf8be001cdbf34110cf42a64015">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.roughike-bottom-bar-2.3.1_e18f12470de92837a6f283838bf7cdda64344a69.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.3.1_b862143e9d364bcdda3e7bc7871f1c09e844b3e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/siyangzhang/Downloads/SmartForm/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.3.1_8bbd887343ebf2f9853f37d0415897862f525cbe/classes.dex" />
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.3.1_44a408d37a17b804a1c2f799ffa071ccc38a33ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.3.1_b804d389c9e696173620ee6612e7dfb8e12024a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.3.1_b804d389c9e696173620ee6612e7dfb8e12024a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.roughike/bottom-bar/2.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9cbdabba632cbf8be001cdbf34110cf42a64015">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.roughike-bottom-bar-2.3.1_e18f12470de92837a6f283838bf7cdda64344a69.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.3.1_15136adedbd4a454df1a349b72eeb3ba78df43d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.3.1_f00ead0f8ea3d502b34d60f3d9f63c6e0f02f43a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.3.1_15136adedbd4a454df1a349b72eeb3ba78df43d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.3.1_fc4244d674efc5fa704efe3b96a34851fb8239ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="461cd433c2723981c7536d60acfcf3d86f3105fb">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.github.paolorotolo-appintro-4.1.0_994473d925b9d7cc506274e943aa277a92bbd7cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.3.1_fc4244d674efc5fa704efe3b96a34851fb8239ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.3.1_20062eea20cf31b2a1dc7427c423de45ec7146e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="461cd433c2723981c7536d60acfcf3d86f3105fb">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.github.paolorotolo-appintro-4.1.0_994473d925b9d7cc506274e943aa277a92bbd7cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.3.1_c1f58c7a437a8f00b024033529214129df2b8fd7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.3.1_20062eea20cf31b2a1dc7427c423de45ec7146e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.3.1_f00ead0f8ea3d502b34d60f3d9f63c6e0f02f43a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.3.1_6f1b6b04e282f54f062920d1f6962a18e012c1d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.3.1_0176404115053cdf9c9c5cba267a416798c2dc01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_78a8524dac8fe24fcdc00d6e5a4f4a37f4f9928f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/exploded-aar/com.github.worker8/tourguide/1.0.17-SNAPSHOT/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8fc5b2d799afab49b7642fd6204633fc75e31eac">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/com.github.worker8-tourguide-1.0.17-SNAPSHOT_e3959c2f8200b1d72de559db37765fd89d999a12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/siyangzhang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/siyangzhang/Downloads/SmartForm/Android/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_78a8524dac8fe24fcdc00d6e5a4f4a37f4f9928f.jar" />
     </item>
 
 </items>

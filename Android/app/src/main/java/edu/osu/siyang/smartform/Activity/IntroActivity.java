@@ -1,10 +1,6 @@
 package edu.osu.siyang.smartform.Activity;
 
 import android.Manifest;
-import edu.osu.siyang.smartform.R;
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -12,8 +8,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 
+import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.osu.siyang.smartform.R;
 
 public class IntroActivity extends AppIntro2 {
 

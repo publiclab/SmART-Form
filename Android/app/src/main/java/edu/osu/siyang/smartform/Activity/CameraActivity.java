@@ -1,38 +1,52 @@
 package edu.osu.siyang.smartform.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.content.ContentValues;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
-import java.util.UUID;
+
+import edu.osu.siyang.smartform.R;
 
 public class CameraActivity extends Activity implements PictureCallback, SurfaceHolder.Callback {
 
@@ -42,6 +56,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
     private static final String TAG = "CameraActivity";
 
+    private static final int focusAreaSize = 300;
+    private float mLightReading;
     private Camera mCamera;
     private Bitmap mCameraBitmap;
     private ImageView mCameraImage;
@@ -52,7 +68,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private byte[] mCameraData;
     private boolean mIsCapturing;
     private Uri imageUri;
-
+    private TextView text_lightreading;
+    private Toast toast;
     private OnClickListener mCaptureImageButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -93,11 +110,49 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         }
     };
 
+    private final SensorEventListener LightSensorListener
+            = new SensorEventListener(){
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            // TODO Auto-generated method stub
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if(event.sensor.getType() == Sensor.TYPE_LIGHT){
+                mLightReading = event.values[0];
+                if(mLightReading<20) {
+                    text_lightreading.setText("LIGHT: " + mLightReading + "; " + "Low light condition!");
+                } else {
+                    text_lightreading.setText("LIGHT: " + mLightReading);
+                }
+            }
+        }
+    };
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getActionBar().hide();
         setContentView(edu.osu.siyang.smartform.R.layout.activity_camera);
+
+        toast = new Toast(getApplicationContext());
+
+        text_lightreading = (TextView)findViewById(R.id.text_lightreading);
+        SensorManager mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+
+        Sensor LightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if(LightSensor != null){
+            mySensorManager.registerListener(
+                    LightSensorListener,
+                    LightSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+
+        }
 
         mCameraImage = (ImageView) findViewById(edu.osu.siyang.smartform.R.id.camera_image_view);
         mCameraImage.setVisibility(View.INVISIBLE);
@@ -118,6 +173,53 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mDoneImageButton.setEnabled(false);
 
         mIsCapturing = true;
+
+        mCameraPreview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mCamera != null) {
+                    Camera camera = mCamera;
+                    camera.cancelAutoFocus();
+                    Rect focusRect = calculateTapArea(event.getX(), event.getY(), 1f);
+
+                    Camera.Parameters parameters = camera.getParameters();
+                    if (parameters.getFocusMode().equals(
+                            Camera.Parameters.FOCUS_MODE_AUTO)) {
+                        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+                    }
+
+                    if (parameters.getMaxNumFocusAreas() > 0) {
+                        List<Camera.Area> mylist = new ArrayList<Camera.Area>();
+                        mylist.add(new Camera.Area(focusRect, 1000));
+                        parameters.setFocusAreas(mylist);
+                    }
+
+                    try {
+                        camera.cancelAutoFocus();
+                        camera.setParameters(parameters);
+                        camera.startPreview();
+                        camera.autoFocus(new Camera.AutoFocusCallback() {
+                            @Override
+                            public void onAutoFocus(boolean success, Camera camera) {
+                                if (camera.getParameters().getFocusMode().equals(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                                    Camera.Parameters parameters = camera.getParameters();
+                                    parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                                    if (parameters.getMaxNumFocusAreas() > 0) {
+                                        parameters.setFocusAreas(null);
+                                    }
+                                    camera.setParameters(parameters);
+                                    camera.startPreview();
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -152,7 +254,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
                     mCamera.startPreview();
                 }
             } catch (Exception e) {
-                Toast.makeText(CameraActivity.this, "Unable to open camera. Please go to settings for camera permission", Toast.LENGTH_LONG)
+                Toast.makeText(CameraActivity.this, "Unable to open camera. Please go to settings for camera permission", Toast.LENGTH_SHORT    )
                         .show();
             }
         }
@@ -174,6 +276,31 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         setupImageDisplay();
     }
 
+    /**
+     * Convert touch position x:y to {@link Camera.Area} position -1000:-1000 to 1000:1000.
+     */
+    private Rect calculateTapArea(float x, float y, float coefficient) {
+        int areaSize = Float.valueOf(focusAreaSize * coefficient).intValue();
+
+        int left = clamp((int) x - areaSize / 2, 0, mCameraPreview.getWidth() - areaSize);
+        int top = clamp((int) y - areaSize / 2, 0, mCameraPreview.getHeight() - areaSize);
+
+        RectF rectF = new RectF(left, top, left + areaSize, top + areaSize);
+        Matrix matrix = new Matrix();
+        matrix.mapRect(rectF);
+
+        return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right), Math.round(rectF.bottom));
+    }
+
+    private int clamp(int x, int min, int max) {
+        if (x > max) {
+            return max;
+        }
+        if (x < min) {
+            return min;
+        }
+        return x;
+    }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -181,6 +308,11 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             Camera.Parameters camParams = mCamera.getParameters();
             Camera.Size sc = getOptimalPreviewSize(camParams.getSupportedPreviewSizes(), width, height);
             camParams.setPreviewSize(sc.width, sc.height);
+
+            Rect newRect = new Rect(-100, -100, 100, 100);
+            Camera.Area focusArea = new Camera.Area(newRect, 1000);
+            List<Camera.Area> focusAreas = new ArrayList<Camera.Area>();
+            focusAreas.add(focusArea);
 
             // Flatten camera parameters
             String flattened = camParams.flatten();
@@ -192,11 +324,16 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
 
             // Customize camera parameters
-            camParams.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-            camParams.set("ISO", "200");
+            camParams.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+            camParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            camParams.set("mode","m");
+            camParams.set("aperture","28");
+            camParams.set("shutter-speed",9);
+            camParams.set("iso",200);
             camParams.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_FLUORESCENT);
             camParams.setPreviewSize(sc.width, sc.height);
             camParams.setExposureCompensation(0);
+            camParams.setFocusAreas(focusAreas);
             mCamera.setParameters(camParams);
 
             // Check camera parameters
@@ -207,7 +344,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             Log.i(TAG, "Preview Size setting = " + camParams.getPreviewSize());
 
 
-            Toast.makeText(CameraActivity.this, "Camera active", Toast.LENGTH_LONG).show();
+            Toast.makeText(CameraActivity.this, "Camera active", Toast.LENGTH_SHORT).show();
             try {
                 mCamera.setPreviewDisplay(holder);
                 if (mIsCapturing) {
@@ -215,7 +352,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
                     mCamera.startPreview();
                 }
             } catch (IOException e) {
-                Toast.makeText(CameraActivity.this, "Unable to start camera preview.", Toast.LENGTH_LONG).show();
+                Toast.makeText(CameraActivity.this, "Unable to start camera preview.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -308,6 +445,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCameraBitmap = Bitmap.createBitmap(cropBitmap, cropBitmap.getWidth()/4, cropBitmap.getHeight()/2 - cropBitmap.getWidth()/4,
                 cropBitmap.getWidth()/2, cropBitmap.getWidth()/2);
         cropBitmap.recycle();
+        mCameraBitmap = getResizedBitmap(mCameraBitmap, 250, 250);
         ActivityManager.MemoryInfo memoryInfo = getAvailableMemory();
         Log.i(TAG, " memoryInfo.availMem " + memoryInfo.availMem + "\n" );
         Log.i(TAG, " memoryInfo.lowMemory " + memoryInfo.lowMemory + "\n" );
@@ -327,18 +465,39 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCaptureImageButton.setOnClickListener(mRecaptureImageButtonClickListener);
     }
 
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
+
     private File openFileForImage() {
         File imageDirectory = null;
-        String filename = UUID.randomUUID().toString() + ".png";
         String storageState = Environment.getExternalStorageState();
         if (storageState.equals(Environment.MEDIA_MOUNTED)) {
             imageDirectory = new File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    "SmART-Form");
+                    "SmartForm" + "/" + getIntent().getStringExtra("TEST_EXP"));
             if (!imageDirectory.exists() && !imageDirectory.mkdirs()) {
                 imageDirectory = null;
             } else {
-                return new File(imageDirectory.getPath() + File.separator + filename);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM_dd_hh_mm_ss",
+                        Locale.getDefault());
+
+                return new File(imageDirectory.getPath() +
+                        File.separator + getIntent().getStringExtra("TEST_PARAM") + "_"
+                        + getIntent().getStringExtra("TEST_TAG") + "_" + dateFormat.format(new Date()) + ".png");
             }
         }
         return null;

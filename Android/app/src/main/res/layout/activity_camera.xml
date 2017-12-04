@@ -33,11 +33,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/colorTransparent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Tap here to focus"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBtnTextNormal"
+                    android:textSize="30sp"
+                    android:visibility="visible" />
             </LinearLayout>
             <ImageView
                 android:id="@+id/camera_layer"
-                android:layout_width="100dp"
-                android:layout_height="85dp"
+                android:layout_width="150dp"
+                android:layout_height="130dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/badge_layer"
                 tools:ignore="ContentDescription" />
@@ -46,6 +58,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/colorTransparent">
+
+                <TextView
+                    android:id="@+id/text_lightreading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:textAlignment="center"
+                    android:text="TextView"
+                    android:textColor="@color/colorBtnTextNormal"
+                    android:textSize="20sp"
+                    android:visibility="visible"  />
             </LinearLayout>
         </RelativeLayout>
 
