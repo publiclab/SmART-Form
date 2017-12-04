@@ -34,4 +34,4 @@ Our process for accepting changes operates by [Pull Request (PR)](https://help.g
 
 1.  Once you have integrated comments, or waited for feedback, an owner should merge your changes in!
 
-_These guidelines are based on [PublicLab](https://github.com/publiclab/plots2/blob/master/CONTRIBUTING.md)'s._
+_These guidelines are based on [EDGI](https://github.com/edgi-govdata-archiving/overview/blob/master/CONTRIBUTING.md)'s._
