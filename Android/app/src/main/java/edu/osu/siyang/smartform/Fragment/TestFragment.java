@@ -750,32 +750,32 @@ public class TestFragment extends DialogFragment {
 			mResultField.setText(Integer.toString(res) + " ppb");
 	}
 
-	//Linear equation
+
+	/**
+	 * Linear regression model
+	 * @param before
+	 * @param after
+	 * @return
+	 */
 	private int getResult(Bitmap before, Bitmap after) {
 		double b = 0;
 		double a = 0;
 		int result = 0;
-		b = getDifference(before);
-		a = getDifference(after);
+		b = getRatio(before);
+		a = getRatio(after);
 		if(b > a) {
-			result = (int) ((b - a) * 40 / 0.14);
+			result = (int) ((b - a) * 40 / 0.2433);
 		} else {
 			result = -1;
 		}
 		return result;
 	}
 
-	private double getDifference(Bitmap bitmap) {
-		Bitmap ref, act;
-		double dif = 0;
-		if(bitmap!=null) {
-			ref = Bitmap.createBitmap(bitmap, bitmap.getWidth() *2/3 -50, bitmap.getHeight() * 2 / 3, 50, 50);
-			act = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 3 - 50, bitmap.getHeight() * 2 / 3, 50, 50);
-			dif = getLightness(act) + (1 - getLightness(ref));
-		}
-		return dif;
-	}
-
+	/**
+	 * Color intensity in HSI
+	 * @param bitmap
+	 * @return
+	 */
 	private double getLightness(Bitmap bitmap) {
 		int redColors = 0;
 		int greenColors = 0;
@@ -797,8 +797,24 @@ public class TestFragment extends DialogFragment {
 		double green = (greenColors/pixelCount)/255.0;
 		double blue = (blueColors/pixelCount)/255.0;
 		double i = (red+green+blue)/3;
-		//Log.d(TAG, "illumi= " + i);
+		//Log.d(TAG, "intensity= " + i);
 		return i;
+	}
+
+	/**
+	 * Calibration patch correction
+	 * @param bitmap
+	 * @return
+	 */
+	private double getRatio(Bitmap bitmap) {
+		Bitmap ref, act;
+		double ratio = 0;
+		if(bitmap!=null) {
+			ref = Bitmap.createBitmap(bitmap, bitmap.getWidth() *2/3 -50, bitmap.getHeight() * 2 / 3, 50, 50);
+			act = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 3 - 50, bitmap.getHeight() * 2 / 3, 50, 50);
+			ratio = getLightness(act) / getLightness(ref); // Chemical badge intensity / calibrating patch intensity
+		}
+		return ratio;
 	}
 
 }
