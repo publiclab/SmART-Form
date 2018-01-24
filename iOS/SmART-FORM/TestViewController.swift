@@ -9,8 +9,18 @@
 
 import UIKit
 
-class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-
+class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    
+    var timer = Timer()
+    
+    @objc func tick() {
+        currentTimeLabel.text = DateFormatter.localizedString(from: Date(),
+                                                                        dateStyle: .medium,
+                                                                        timeStyle: .medium)
+    }
+    
     @IBOutlet weak var temperaturePicker: UIPickerView!
     @IBOutlet weak var humidityPicker: UIPickerView!
     @IBOutlet var testTitle: UITextField!
@@ -29,6 +39,11 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var humidity: String?
     var toastLabel: UILabel!
     var state = 0
+    var dataRecieved: String? {
+        willSet {
+            testResult.text = newValue
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         print("init TestViewController")
@@ -38,12 +53,20 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     deinit {
         print("deinit TestViewController")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(tick),
+                                     userInfo: nil,
+                                     repeats: true)
+        
         self.imageView.image = #imageLiteral(resourceName: "icon-camera-hint")
-        self.testTitle.becomeFirstResponder()
+        //self.testTitle.becomeFirstResponder()
         self.afterBtn.isEnabled = false
         self.afterBtn.backgroundColor = UIColor.gray
         // create tap gesture recognizer
@@ -187,10 +210,26 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveTestDetail" {
-            test = Test(id: testID, title: testTitle.text, result: testResult.text, date: Date(), image: imageView.image, temperature: temperature, humidity: humidity)
+            test = Test(id: testID!, title: testTitle.text, result: testResult.text, date: Date(), image: imageView.image, temperature: temperature, humidity: humidity)
+        }
+
+        if let viewControllerB = segue.destination as? CameraViewController {
+            viewControllerB.name = testTitle.text
+            viewControllerB.delegate = self
         }
     }
-
+    
+    func ratioChanged(ratio: String?) {
+        testResult.text = ratio
+    }
+    
+    // segue ViewControllerB -> ViewController
+    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? CameraViewController {
+            dataRecieved = sourceViewController.ratio
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -203,17 +242,20 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         beforeBtn.backgroundColor = UIColor.cyan
         afterBtn.isEnabled = true
         afterBtn.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+        testResult.backgroundColor = UIColor.cyan
     }
     
     @IBAction func afterImg(_ sender: UIButton) {
         afterBtn.backgroundColor = UIColor.cyan
+        testResult.backgroundColor = UIColor.cyan
+        /*
         let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
             // For beta test only, need data model to update
             let rppb = arc4random_uniform(10);
             self.testResult.text = String(rppb) + " ppb"
             self.testResult.backgroundColor = UIColor.cyan
-        }
+        } */
     }
     
     @IBAction func uploadData(_ sender: UIButton) {

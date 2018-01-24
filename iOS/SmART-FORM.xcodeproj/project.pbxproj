@@ -11,6 +11,8 @@
 		680459CB1F4CC8790014FDBC /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680459CA1F4CC8790014FDBC /* ConsentViewController.swift */; };
 		680459CD1F4CDE400014FDBC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680459CC1F4CDE400014FDBC /* TabBarController.swift */; };
 		682B4B2F1F1762D0005474BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006511ED4B55300E81328 /* AppDelegate.swift */; };
+		68318C8E201776B000AEB463 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68318C8D201776B000AEB463 /* CustomPhotoAlbum.swift */; };
+		683F49CC2017FE7E00693469 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683F49CB2017FE7E00693469 /* ImageViewController.swift */; };
 		687980831F98E419004CDB63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689006581ED4B55300E81328 /* Assets.xcassets */; };
 		6890065C1ED4B55300E81328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6890065A1ED4B55300E81328 /* LaunchScreen.storyboard */; };
 		689006671ED4B55400E81328 /* SmART_FORMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006661ED4B55400E81328 /* SmART_FORMTests.swift */; };
@@ -52,6 +54,8 @@
 		5ABD790FB7D9BA27A4886F9C /* Pods-SmART-FORMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMTests/Pods-SmART-FORMTests.release.xcconfig"; sourceTree = "<group>"; };
 		680459CA1F4CC8790014FDBC /* ConsentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
 		680459CC1F4CDE400014FDBC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		68318C8D201776B000AEB463 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
+		683F49CB2017FE7E00693469 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		6890064E1ED4B55300E81328 /* SmART-FORM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SmART-FORM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		689006511ED4B55300E81328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689006581ED4B55300E81328 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				68F35E301EE479AC00D8FB4E /* Main.storyboard */,
+				683F49CB2017FE7E00693469 /* ImageViewController.swift */,
+				68318C8D201776B000AEB463 /* CustomPhotoAlbum.swift */,
 				68AE62261F1767C200CA4920 /* ContactViewController.swift */,
 				68DA091E1F2903E600915AD7 /* AboutViewController.swift */,
 				689006511ED4B55300E81328 /* AppDelegate.swift */,
@@ -264,7 +270,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Siyang Zhang";
 				TargetAttributes = {
 					6890064D1ED4B55300E81328 = {
@@ -479,8 +485,10 @@
 				682B4B2F1F1762D0005474BC /* AppDelegate.swift in Sources */,
 				68F1CEA51EE5247400950569 /* TestViewController.swift in Sources */,
 				680459CD1F4CDE400014FDBC /* TabBarController.swift in Sources */,
+				68318C8E201776B000AEB463 /* CustomPhotoAlbum.swift in Sources */,
 				68F35E241EE46E1900D8FB4E /* Test.swift in Sources */,
 				68DA091F1F2903E600915AD7 /* AboutViewController.swift in Sources */,
+				683F49CC2017FE7E00693469 /* ImageViewController.swift in Sources */,
 				68B908271EF06D6E00AB90EC /* TestCell.swift in Sources */,
 				68F1CEA11EE4A84300950569 /* TestsTableViewController.swift in Sources */,
 				68AE62271F1767C200CA4920 /* ContactViewController.swift in Sources */,
@@ -543,7 +551,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -551,7 +561,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -593,7 +607,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -601,7 +617,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -634,7 +654,7 @@
 				DEVELOPMENT_TEAM = LTYWXUY99M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SmART-FORM/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";
@@ -651,7 +671,7 @@
 				DEVELOPMENT_TEAM = LTYWXUY99M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SmART-FORM/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";

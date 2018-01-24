@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Eula
+import Eula
 
 class TestsTableViewController: UITableViewController {
     
@@ -54,6 +54,14 @@ class TestsTableViewController: UITableViewController {
 
         if(tests.isEmpty) {
             UserDefaults.standard.set(0, forKey: "testID")
+        }
+        // Load any saved meals, otherwise load sample data.
+        if let savedTests = loadTests() {
+            tests += savedTests
+        }
+        else {
+            // Load the sample data.
+            tests = [Test]()
         }
         
         // setting a value for a key
@@ -104,6 +112,19 @@ class TestsTableViewController: UITableViewController {
     
     func userInfoUp(_ sender: UIButton) {
         userSurveyInfo.isHidden = true
+    }
+    
+    private func saveTests() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tests, toFile: Test.ArchiveURL.path)
+        if isSuccessfulSave {
+            print("Tests successfully saved.")
+        } else {
+            print("Failed to save tests...")
+        }
+    }
+
+    private func loadTests() -> [Test]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Test.ArchiveURL.path) as? [Test]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,6 +181,7 @@ class TestsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tests.remove(at: indexPath.row)
+            saveTests()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             
@@ -205,21 +227,22 @@ class TestsTableViewController: UITableViewController {
             //add the new test to the tests array
             if let test = testVC.test {
                 if tests.contains(where: {$0.id == test.id} ) {
+                    //update the tableView
                     let rowindex = tests.index(where: {$0.id == test.id} )
                     tests[rowindex!] = test
                     print("update old test")
-                    //update the tableView
-                    //let indexPath = IndexPath(row: rowindex!, section: 0)
-                    //tableView.insertRows(at: [indexPath], with: .automatic)
-                  
                 }
                 else {
+
                     tests.append(test)
-                    print("add new test")
                     //update the tableView
                     let indexPath = IndexPath(row: tests.count-1, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
+                    print("add new test")
+
                 }
+                // Save the tests
+                saveTests()
             }
         }
     }

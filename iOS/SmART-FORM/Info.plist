@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to capture badge images</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses Cameras</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app uses the Photos library to set cell images</string>
 	<key>UILaunchStoryboardName</key>
