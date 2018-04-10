@@ -16,14 +16,14 @@ class Test: NSObject, NSCoding{
     var image: UIImage?
     var temperature: String?
     var humidity: String?
-    
+    var state: Int?
     //MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("tests")
     
     
-    init?(id: String, title: String?, result: String?, date: Date?, image: UIImage?, temperature: String?, humidity: String?) {
+    init?(id: String, title: String?, result: String?, date: Date?, image: UIImage?, temperature: String?, humidity: String?, state: Int?) {
         self.id = id
         self.title = title
         self.result = result
@@ -31,6 +31,7 @@ class Test: NSObject, NSCoding{
         self.image = image
         self.temperature = temperature
         self.humidity = humidity
+        self.state = state
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -41,14 +42,14 @@ class Test: NSObject, NSCoding{
         
         let title = aDecoder.decodeObject(forKey: "title") as? String
         let result = aDecoder.decodeObject(forKey: "result") as? String
-        let date = aDecoder.decodeObject(forKey: "title") as? Date
+        let date = aDecoder.decodeObject(forKey: "date") as? Date
         let image = aDecoder.decodeObject(forKey: "image") as? UIImage
         let temperature = aDecoder.decodeObject(forKey: "temperature") as? String
         let humidity = aDecoder.decodeObject(forKey: "humidity") as? String
-        
+        let state = aDecoder.decodeObject(forKey: "state") as? Int
         
         // Must call designated initializer.
-        self.init(id: id, title: title, result: result, date: date, image: image, temperature: temperature, humidity: humidity)
+        self.init(id: id, title: title, result: result, date: date, image: image, temperature: temperature, humidity: humidity, state: state)
         
     }
 
@@ -61,6 +62,6 @@ class Test: NSObject, NSCoding{
         aCoder.encode(image, forKey: "image")
         aCoder.encode(temperature, forKey: "temperature")
         aCoder.encode(humidity, forKey: "humidity")
-
+        aCoder.encode(state, forKey: "state")
     }
 }

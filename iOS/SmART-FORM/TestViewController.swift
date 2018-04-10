@@ -24,21 +24,22 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
     @IBOutlet weak var temperaturePicker: UIPickerView!
     @IBOutlet weak var humidityPicker: UIPickerView!
     @IBOutlet var testTitle: UITextField!
-    @IBOutlet var testResult: UITextField!
-    @IBOutlet var imageView: UIImageView!
     @IBOutlet var beforeBtn: UIButton!
     @IBOutlet var afterBtn: UIButton!
+    @IBOutlet var testResult: UITextField!
+    @IBOutlet var unitType: UILabel!
     @IBOutlet var uploadBtn: UIButton!
-    @IBOutlet var aboutBtn: UIButton!
 
     var test: Test?
+    var testDate: Date?
     var testID: String?
-    var temperatureData = ["<65F", "65-80F", ">80F"]
-    var humidityData = ["0-80%", ">80%"]
+    var temperatureData = ["<65°F", "65-80°F", ">80°F"]
+    var humidityData = ["0-80% RH", ">80% RH"]
     var temperature: String?
     var humidity: String?
     var toastLabel: UILabel!
-    var state = 0
+    var crtState: Int?
+    var hintState = 0
     var dataRecieved: String? {
         willSet {
             testResult.text = newValue
@@ -56,29 +57,29 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view, typically from a nib.
-        
+        /*
         timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,
                                      selector: #selector(tick),
                                      userInfo: nil,
                                      repeats: true)
+        */
         
-        self.imageView.image = #imageLiteral(resourceName: "icon-camera-hint")
+        //self.imageView.image = #imageLiteral(resourceName: "icon-camera-hint")
         //self.testTitle.becomeFirstResponder()
         self.afterBtn.isEnabled = false
-        self.afterBtn.backgroundColor = UIColor.gray
+        //self.afterBtn.backgroundColor = UIColor.gray
         // create tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TestViewController.imageTapped(gesture:)))
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(TestViewController.imageLongPressed(gesture:)))
+        // let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TestViewController.imageTapped(gesture:)))
+        // let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(TestViewController.imageLongPressed(gesture:)))
 
         // add it to the image view;
-        imageView.addGestureRecognizer(tapGesture)
-        imageView.addGestureRecognizer(longGesture)
+        //imageView.addGestureRecognizer(tapGesture)
+        //imageView.addGestureRecognizer(longGesture)
         
         // make sure imageView can be interacted with by user
-        imageView.isUserInteractionEnabled = true
+        //imageView.isUserInteractionEnabled = true
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TestViewController.dismissKeyboard))
@@ -100,15 +101,38 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
         
         UserDefaults.standard.set(testID, forKey: "testID")
 
+        if test?.state != nil {
+            crtState = test?.state
+        } else {
+            crtState = 0
+        }
+        
         testTitle.text = test?.title
         testResult.text = test?.result
-        if (test?.image != nil) {
-            imageView.image = test?.image
+        if testDate != nil {
+            currentTimeLabel.text = testDate?.toString(dateFormat: "MMM dd, yyyy HH:mm")
+        } else {
+            testDate = Date()
+            currentTimeLabel.text = testDate?.toString(dateFormat: "MMM dd, yyyy HH:mm")
         }
+        if crtState == 1 {
+            unitType.text = "REMAINING"
+            self.beforeBtn.setImage(#imageLiteral(resourceName: "launchscreen"), for: .normal)
+            self.afterBtn.isEnabled = true
+        } else if crtState == 2 {
+            unitType.text = "PPB"
+            self.afterBtn.isEnabled = true
+            self.beforeBtn.setImage(#imageLiteral(resourceName: "launchscreen"), for: .normal)
+            self.afterBtn.setImage(#imageLiteral(resourceName: "launchscreen"), for: .normal)
+        }
+
         temperature = test?.temperature
         humidity = test?.humidity
         temperaturePicker.delegate = self
         humidityPicker.delegate = self
+        
+        let defaultRow1 = 1
+        temperaturePicker.selectRow(defaultRow1, inComponent: 0, animated: false)
         
         if let temperature = temperature, !temperature.isEmpty {
             var defaultRowIndex1 = temperatureData.index(of: temperature)
@@ -118,6 +142,7 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
         if let humidity = humidity, !humidity.isEmpty {
             var defaultRowIndex2 = humidityData.index(of: humidity)
             if(defaultRowIndex2 == nil) { defaultRowIndex2 = 0 }
+            // If humidity>80%, popup warning
             humidityPicker.selectRow(defaultRowIndex2!, inComponent: 0, animated: false)
         }
       
@@ -140,7 +165,7 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
         view.endEditing(true)
     }
     
-    
+    /*
     func imageTapped(gesture: UIGestureRecognizer) {
         // if the tapped view is a UIImageView then set it to imageview
         if (gesture.view as? UIImageView) != nil {
@@ -165,14 +190,16 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
             //showToast(message: "Tap here to snap the test location!")
         }
     }
+    */
     
     @IBAction func didTapHint(_ sender: UIBarButtonItem) {
-        if(state == 1) {
+        if(hintState == 1) {
             toastLabel.removeFromSuperview()
         }
         showToast(message: "Instructions:\n1.You should have an electronic or paper copy of images of badges “before” and “after” exposures. These are just images to simulate an actual test and there will be no color change during this beta test. These images are provided so that you can give us feedback on use of the app. \n2.Open the app and select “New test” \n3.Name your test and tap the black block to take a picture of the test location \n4.Select the “Before” button and take a picture of the “Before” image \n5.Select the “After” button and take a picture of the “After” image \n6.Select “Upload” and complete the sampling survey as much as you like \n7.Complete the follow-up beta testing survey, available on the main screen.")
     }
     
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -200,6 +227,13 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
             temperature = temperatureData[row]
         } else if pickerView == humidityPicker{
             humidity = humidityData[row]
+            if(row == 1){
+                let alert = UIAlertController(title: "Is the relative humidity high?", message: "The badge is unstable under high humidity (>80%). It's recommended you retake the photo with lower humidity for a better result.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
         }
     }
     
@@ -210,7 +244,7 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveTestDetail" {
-            test = Test(id: testID!, title: testTitle.text, result: testResult.text, date: Date(), image: imageView.image, temperature: temperature, humidity: humidity)
+            test = Test(id: testID!, title: testTitle.text, result: testResult.text, date: testDate, image: nil, temperature: temperature, humidity: humidity, state: crtState)
         }
 
         if let viewControllerB = segue.destination as? CameraViewController {
@@ -239,34 +273,44 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
     }
     
     @IBAction func beforeImg(_ sender: UIButton) {
-        beforeBtn.backgroundColor = UIColor.cyan
-        afterBtn.isEnabled = true
-        afterBtn.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
-        testResult.backgroundColor = UIColor.cyan
+        self.crtState = 1
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.beforeBtn.setImage(#imageLiteral(resourceName: "launchscreen"), for: .normal)
+            self.afterBtn.isEnabled = true
+            self.testResult.text = Date().toString(dateFormat: "HH:mm")
+            self.unitType.text = "REMAINING"
+            
+            let alert = UIAlertController(title: "Waiting for the next step?", message: "You can take the health survey now.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        }
     }
     
     @IBAction func afterImg(_ sender: UIButton) {
-        afterBtn.backgroundColor = UIColor.cyan
-        testResult.backgroundColor = UIColor.cyan
-        /*
+        self.crtState = 2
         let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
             // For beta test only, need data model to update
+            self.afterBtn.setImage(#imageLiteral(resourceName: "launchscreen"), for: .normal)
             let rppb = arc4random_uniform(10);
-            self.testResult.text = String(rppb) + " ppb"
-            self.testResult.backgroundColor = UIColor.cyan
-        } */
+            self.testResult.text = String(rppb)
+            self.unitType.text = "ppb"
+            
+            // If result < 20ppb, ask user to retake after image
+            if(rppb < 20) {
+                let alert = UIAlertController(title: "Your result is below the detection limit", message: "Your formaldehyde concentration is low (<20ppb). For a more accurate result you can optionally expose the badge for another four days and retake the photo.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
     }
-    
-    @IBAction func uploadData(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_5u9FnmAiYtRQtp3")! as URL)
-        uploadBtn.backgroundColor = UIColor.cyan
-    }
-    
-    @IBAction func aboutForm(_ sender: UIButton) {
-        aboutBtn.backgroundColor = UIColor.cyan
-    }
-    
+
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -274,7 +318,7 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         // Put that image on the screen in the image view
-        imageView.image = image
+        // imageView.image = image
         
         // Take image picker off the screen -
         // you must call this dismiss method
@@ -296,11 +340,30 @@ class TestViewController: UIViewController, ViewControllerBDelegate, UIPickerVie
         
         UIView.animate(withDuration: 1.0, delay: 9.0, options: .curveEaseOut, animations: {
             self.toastLabel.alpha = 0.0
-            self.state = 1
+            self.hintState = 1
         }, completion: {(isCompleted) in
             self.toastLabel.removeFromSuperview()
-            self.state = 0
+            self.hintState = 0
         })
     }
 
+}
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+}
+extension String
+{
+    func toDate( dateFormat format  : String) -> Date
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        return dateFormatter.date(from: self)!
+    }
 }

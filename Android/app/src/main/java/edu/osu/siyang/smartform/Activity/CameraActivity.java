@@ -70,6 +70,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private Uri imageUri;
     private TextView text_lightreading;
     private Toast toast;
+
     private OnClickListener mCaptureImageButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -84,7 +85,15 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         }
     };
 
-    private OnClickListener mDoneImageButtonClickListener = new OnClickListener() {
+    private OnClickListener mCancelImageButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+        }
+    };
+
+    private OnClickListener mSaveImageButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             File saveFile = openFileForImage();
@@ -168,9 +177,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCaptureImageButton = (Button) findViewById(edu.osu.siyang.smartform.R.id.capture_image_button);
         mCaptureImageButton.setOnClickListener(mCaptureImageButtonClickListener);
 
-        mDoneImageButton = (Button) findViewById(edu.osu.siyang.smartform.R.id.done_image_button);
-        mDoneImageButton.setOnClickListener(mDoneImageButtonClickListener);
-        mDoneImageButton.setEnabled(false);
+        mDoneImageButton = (Button) findViewById(R.id.done_image_button);
+        mDoneImageButton.setOnClickListener(mCancelImageButtonClickListener);
 
         mIsCapturing = true;
 
@@ -461,8 +469,10 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCameraLayer.setVisibility(View.INVISIBLE);
         mCameraPreview.setVisibility(View.INVISIBLE);
         mDoneImageButton.setEnabled(true);
-        mCaptureImageButton.setText(edu.osu.siyang.smartform.R.string.recapture_image);
+        mCaptureImageButton.setText(R.string.recapture_image);
         mCaptureImageButton.setOnClickListener(mRecaptureImageButtonClickListener);
+        mDoneImageButton.setText(R.string.save_camera);
+        mDoneImageButton.setOnClickListener(mSaveImageButtonClickListener);
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {

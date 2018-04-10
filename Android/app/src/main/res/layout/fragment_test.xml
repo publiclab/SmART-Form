@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,156 +15,159 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="16dp"
-            android:layout_marginTop="16dp"
-            android:baselineAligned="false">
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="4dp"
-                tools:ignore="RtlHardcoded">
-
-                <ImageView
-                    android:id="@+id/test_imageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerInside"
-                    android:background="@android:color/darker_gray"
-                    android:cropToPadding="true"
-                    android:contentDescription=""
-                    tools:ignore="ContentDescription" />
-
-                <ImageButton
-                    android:id="@+id/test_imageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:src="@android:drawable/ic_menu_camera"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/test_title_label"
-                    style="?android:listSeparatorTextViewStyle" />
+                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:focusable="false"
-                        android:id="@+id/test_title"
-                        android:layout_width="0dp"
-                        android:layout_weight="9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/test_title_hint" />
-                    <ImageButton
-                        android:id="@+id/title_edit"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/file_edit"
-                        tools:ignore="ContentDescription" />
+                        android:background="@color/Silver">
+
+                        <EditText
+                            android:id="@+id/test_title"
+                            android:cursorVisible="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:hint="@string/test_title_hint"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        style="?android:listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <TextView
+                        android:id="@+id/test_date"
+                        style="@style/TabelCell"
+                        android:background="@color/Silver"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+
                 </LinearLayout>
+            </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/result"
-                    style="?android:listSeparatorTextViewStyle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/test_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:listSeparatorTextViewStyle" />
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/before_bitmapBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        app:srcCompat="@drawable/crop" />
+
+                    <TextView
+                        android:id="@+id/before_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/before_bitmapBtn"
+                        android:layout_alignLeft="@+id/before_bitmapBtn"
+                        android:layout_alignRight="@+id/before_bitmapBtn"
+                        android:layout_alignTop="@+id/before_bitmapBtn"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:text="Tap to take BEFORE exposure"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/after_bitmapBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        app:srcCompat="@drawable/crop" />
+
+                    <TextView
+                        android:id="@+id/after_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/after_bitmapBtn"
+                        android:layout_alignLeft="@+id/after_bitmapBtn"
+                        android:layout_alignRight="@+id/after_bitmapBtn"
+                        android:layout_alignTop="@+id/after_bitmapBtn"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:text="Tap to take AFTER exposure"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
 
             </LinearLayout>
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/test_details_label"
-            style="?android:listSeparatorTextViewStyle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <TextView
-            style="@style/TabelCell"
-            android:id="@+id/test_date"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-        <TextView
-            style="@style/TabelCell"
-            android:id="@+id/test_time"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
+            <TextView
+                android:id="@+id/test_result"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:text="@string/result"
+                android:textAlignment="center"
+                android:textSize="36sp" />
 
-        <CheckBox
-            android:id="@+id/test_finished"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/test_finished_label" />
-
-
-        <Button
-            style="@style/Button"
-            android:id="@+id/before_bitmapBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/before_bitmapBtn" />
-
-        <Button
-            style="@style/Button"
-            android:id="@+id/after_bitmapBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/after_bitmapBtn" />
-
-        <Button
-            style="@style/Button"
-            android:id="@+id/test_uploadButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/test_report_text" />
-
-        <Button
-            style="@style/Button"
-            android:id="@+id/test_aboutButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/test_about_text" />
+            <Button
+                android:id="@+id/test_uploadButton"
+                style="@style/Button"
+                android:textSize="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/test_report_text" />
 
         </LinearLayout>
 

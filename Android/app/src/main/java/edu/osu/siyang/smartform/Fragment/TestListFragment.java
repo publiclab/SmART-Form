@@ -521,10 +521,6 @@ public class TestListFragment extends ListFragment {
 					c.getDate()).toString();
 			dateTextView.setText(formatDate);
 
-			CheckBox solvedCheckBox = (CheckBox) convertView
-					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_solvedCheckBox);
-			solvedCheckBox.setChecked(c.isFinished());
-
 			return convertView;
 		}
 

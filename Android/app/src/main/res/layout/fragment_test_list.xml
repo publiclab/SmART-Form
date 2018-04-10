@@ -22,6 +22,7 @@
 
     <Button
         android:id="@+id/health_survey_button"
+        android:visibility="invisible"
         android:text="@string/health_survey"
         android:textColor="@color/colorAccent"
         android:background="@drawable/start_test_btn"
@@ -32,6 +33,7 @@
 
     <Button
         android:id="@+id/user_survey_button"
+        android:visibility="invisible"
         android:text="@string/user_survey"
         android:textColor="@color/colorAccent"
         android:background="@drawable/start_test_btn"

@@ -22,7 +22,7 @@
     <string name="action_settings">Settings</string>
     <string name="hint_image_capture">Enter a title for Picture</string>
     <string name="capture_image">Snap</string>
-    <string name="save_image">Save</string>
+    <string name="save_camera">Save</string>
     <string name="recapture_image">Retake Picture</string>
     <string name="capturing_image">Image Preview</string>
     <string name="done">Done</string>
@@ -68,7 +68,7 @@
     <string name="add_image">Add image</string>
     <string name="image_of_test">Photographic evidence of test</string>
 
-    <string name="test_report_text">Upload Data</string>
+    <string name="test_report_text">Data Survey</string>
     
     <string name="test_report">%1$s:
         The test was created on %2$s. %3$s, and the result is %4$s.</string>
@@ -239,4 +239,16 @@
         respiratory diseases and allergies. Being around higher levels of formaldehyde for long periods of time has
         also been linked to some cancers.
         \n\nMore information can be found at www.epa.gov/formaldehyde</string>
+    <string name="cancel_camera">Cancel</string>
+
+    <string-array name="temp_array">
+        <item>&lt;65°F</item>
+        <item>65-80°F</item>
+        <item>&gt;80°F</item>
+    </string-array>
+
+    <string-array name="humd_array">
+        <item>0-80% RH</item>
+        <item>>80% RH</item>
+    </string-array>
 </resources>

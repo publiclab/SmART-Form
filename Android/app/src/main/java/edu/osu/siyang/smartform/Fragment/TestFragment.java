@@ -12,7 +12,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
@@ -36,6 +38,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -69,6 +72,7 @@ import edu.osu.siyang.smartform.Activity.TimerService;
 import edu.osu.siyang.smartform.Bean.Photo;
 import edu.osu.siyang.smartform.Bean.Test;
 import edu.osu.siyang.smartform.Bean.TestLab;
+import edu.osu.siyang.smartform.R;
 import edu.osu.siyang.smartform.Util.PictureUtils;
 import tourguide.tourguide.Overlay;
 import tourguide.tourguide.Pointer;
@@ -98,17 +102,16 @@ public class TestFragment extends DialogFragment {
 	private int mTimer = 0;
 	private Test mTest;
 	private EditText mTitleField;
-	private ImageButton mTitleEdit;
 	private TextView mResultField;
 	private TextView mDateButton;
 	private TextView mTimeButton;
-	private Button mBeforeButton;
-	private Button mAfterButton;
+	private TextView mBeforeText;
+	private TextView mAfterText;
+	private ImageView mBeforeButton;
+	private ImageView mAfterButton;
+	private Spinner mTempSpinner;
+	private Spinner mHumdSpinner;
 	private Button mUploadButton;
-	private Button mAboutButton;
-	private CheckBox mFinishedCheckBox;
-	private ImageButton mPhotoButton;
-	private ImageView mPhotoView;
 	private Callbacks mCallbacks;
 	private Bitmap before;
 	private Bitmap after;
@@ -209,6 +212,26 @@ public class TestFragment extends DialogFragment {
 			}
 		}
 
+		// Temp/Humd spinners
+		mTempSpinner = (Spinner) v.findViewById(R.id.spinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
+				R.array.temp_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		mTempSpinner.setAdapter(adapter);
+
+		mHumdSpinner = (Spinner) v.findViewById(R.id.spinner2);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this.getContext(),
+				R.array.humd_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		mTempSpinner.setAdapter(adapter2);
+
+
 		// Result
 		mResultField = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_result);
 
@@ -217,7 +240,7 @@ public class TestFragment extends DialogFragment {
 		mTitleField.setOnKeyListener(new View.OnKeyListener() {
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if (keyCode == 66) {
+				if (keyCode == KeyEvent.KEYCODE_ENTER) {
 					mTitleField.setFocusableInTouchMode(false);
 					mTitleField.setFocusable(false);
 					imm.hideSoftInputFromWindow(mTitleField.getWindowToken(), 0);
@@ -253,7 +276,7 @@ public class TestFragment extends DialogFragment {
 
 		imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		// Edit title
-		mTitleEdit = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.title_edit);
+		//mTitleEdit = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.title_edit);
 
 		//  Initialize SharedPreferences
 		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
@@ -277,7 +300,7 @@ public class TestFragment extends DialogFragment {
 					.setOverlay(new Overlay()
 							.setEnterAnimation(enterAnimation)
 							.setExitAnimation(exitAnimation))
-					.playOn(mTitleEdit);
+					.playOn(mTitleField);
 
 			try {
 				createFileOnDevice(true);
@@ -287,26 +310,14 @@ public class TestFragment extends DialogFragment {
 
 		}
 
-		mTitleEdit.setOnClickListener(new OnClickListener() {
+		mTitleField.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d(TAG, "mCounter = " + mCounter);
-				switch (mCounter) {
-					case 0:
+
 						mTitleField.setFocusableInTouchMode(true);
 						mTitleField.setFocusable(true);
 						imm.showSoftInput(mTitleField, 0);
 
-						mCounter=1;
-						break;
-					case 1:
-						mTitleField.setFocusableInTouchMode(false);
-						mTitleField.setFocusable(false);
-						imm.hideSoftInputFromWindow(mTitleField.getWindowToken(), 0);
-
-						mCounter=0;
-						break;
-				}
 
 				if(isFirstTour) {
 					mTutorialHandler.cleanUp();
@@ -337,11 +348,11 @@ public class TestFragment extends DialogFragment {
 
 
 		// Time Button
-		mTimeButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_time);
+		mTimeButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
 		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		mEditor = mPref.edit();
 		String str_value = mPref.getString("data", "");
-		mTimeButton.setText("Start countdown");
+		mTimeButton.setText(date_time);
 		mTimeButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -369,6 +380,7 @@ public class TestFragment extends DialogFragment {
 
 
 		// "finished" Check box
+		/*
 		mFinishedCheckBox = (CheckBox) v.findViewById(edu.osu.siyang.smartform.R.id.test_finished);
 		mFinishedCheckBox.setChecked(mTest.isFinished());
 		mFinishedCheckBox
@@ -380,7 +392,7 @@ public class TestFragment extends DialogFragment {
 						mCallbacks.onTestUpdated(mTest);
 					}
 				});
-
+		*/
 		// Photo Button
 		/*
 		mPhotoButton = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.test_imageButton);
@@ -394,8 +406,12 @@ public class TestFragment extends DialogFragment {
 		});
 		*/
 
+		// Before/After TextView
+		mBeforeText = (TextView) v.findViewById(R.id.before_textView);
+		mAfterText = (TextView) v.findViewById(R.id.after_textView);
+
 		// Before Button
-		mBeforeButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.before_bitmapBtn);
+		mBeforeButton = (ImageView) v.findViewById(R.id.before_bitmapBtn);
 		mBeforeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -413,7 +429,7 @@ public class TestFragment extends DialogFragment {
 		});
 
 		// After Button
-		mAfterButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.after_bitmapBtn);
+		mAfterButton = (ImageView) v.findViewById(edu.osu.siyang.smartform.R.id.after_bitmapBtn);
 		//mAfterButton.setEnabled(false);
 		mAfterButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -429,13 +445,14 @@ public class TestFragment extends DialogFragment {
 				}
 
 				// Write to log file
+				/*
 				writeToFile("Date: " + mTest.getDate());
 				writeToFile("ID: " + mTest.getId());
 				writeToFile("Title: " + mTest.getTitle());
 				writeToFile("Result: " + mTest.getResult());
 				writeToFile("Before: " + mTest.getBefore());
 				writeToFile("After: " + mTest.getAfter());
-
+				*/
 			}
 		});
 
@@ -448,7 +465,6 @@ public class TestFragment extends DialogFragment {
 						Camera.getNumberOfCameras() > 0 );
 
 		if (!hasACamera) {
-			mPhotoButton.setEnabled(false);
 			mBeforeButton.setEnabled(false);
 			mAfterButton.setEnabled(false);
 		}
@@ -491,7 +507,7 @@ public class TestFragment extends DialogFragment {
 				}
 
 				//new AppEULA(getActivity()).show();
-				mFinishedCheckBox.setChecked(true);
+				//mFinishedCheckBox.setChecked(true);
 				mTest.setFinished(true);
 				mTest.setState(3);
 				mCallbacks.onTestUpdated(mTest);
@@ -501,6 +517,7 @@ public class TestFragment extends DialogFragment {
 		});
 
 		// About formaldehyde
+		/*
 		mAboutButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.test_aboutButton);
 		mAboutButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -508,7 +525,7 @@ public class TestFragment extends DialogFragment {
 				getActivity().setContentView(edu.osu.siyang.smartform.R.layout.fragment_aboutformaldehyde);
 			}
 		});
-
+		*/
 		// Hide about button
 		//mAboutButton.setVisibility(View.INVISIBLE);
 
@@ -591,6 +608,22 @@ public class TestFragment extends DialogFragment {
 		//PictureUtils.cleanImageView(mPhotoView);
 	}
 
+	public boolean dispatchTouchEvent(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			View v = getActivity().getCurrentFocus();
+			if ( v instanceof EditText) {
+				Rect outRect = new Rect();
+				v.getGlobalVisibleRect(outRect);
+				if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+					v.clearFocus();
+					InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+				}
+			}
+		}
+		return super.getActivity().dispatchTouchEvent( event );
+	}
+
     /**
      * Define requests in activity
      * @param requestCode
@@ -633,6 +666,9 @@ public class TestFragment extends DialogFragment {
 
 		else if ( requestCode == REQUEST_BEFORE) {
 			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
+			Drawable d = new BitmapDrawable(getResources(), bitmap);
+			mBeforeText.setVisibility(View.INVISIBLE);
+			mBeforeButton.setImageDrawable(d);
 			Log.e(TAG, bitmap);
 			if ( bitmap != null ) {
 				Uri uri = Uri.parse(bitmap);
@@ -649,6 +685,9 @@ public class TestFragment extends DialogFragment {
 
 		else if ( requestCode == REQUEST_AFTER) {
 			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
+			Drawable d = new BitmapDrawable(getResources(), bitmap);
+			mAfterText.setVisibility(View.INVISIBLE);
+			mAfterButton.setImageDrawable(d);
 			Log.e(TAG, bitmap);
 			if ( bitmap != null ) {
 				Uri uri = Uri.parse(bitmap);
@@ -661,6 +700,10 @@ public class TestFragment extends DialogFragment {
 				}
 				int res = getResult(before,after);
 				if(res!=0) mTest.setResult(res);
+				if(res<20) {
+					AlertDialog diaBox = RetakeAfter();
+					diaBox.show();
+				}
 				mCallbacks.onTestUpdated(mTest);
 				showResult();
 			}
@@ -726,6 +769,25 @@ public class TestFragment extends DialogFragment {
 		return myQuittingDialogBox;
 	}
 
+	private AlertDialog RetakeAfter()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Your result is below the detection limit")
+				.setMessage("Your formaldehyde concentration is low (<20ppb). For a more accurate result you can optionally expose the badge for another four days and retake the photo.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+
 	private void showPhoto() {
 		// (Re)set the image button's image based on our photo
 		Photo p = mTest.getPhoto();
@@ -737,7 +799,7 @@ public class TestFragment extends DialogFragment {
 			String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
 			b = PictureUtils.getScaledDrawable(getActivity(), path);
 		}
-		mPhotoView.setImageDrawable(b);
+		//mPhotoView.setImageDrawable(b);
 	}
 
 	private void showResult() {

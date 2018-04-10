@@ -39,8 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Tap here to focus"
                     android:gravity="center"
+                    android:text="ALIGN TRIANGLE"
                     android:textAlignment="center"
                     android:textColor="@color/colorBtnTextNormal"
                     android:textSize="30sp"
@@ -85,9 +85,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:text="@string/capture_image"
-                android:textColor="@color/colorAccent"
-                android:background="?android:attr/selectableItemBackground" />
+                android:textColor="@color/colorAccent" />
 
             <View
                 android:id="@+id/vertical_divider"
@@ -101,10 +101,11 @@
                 android:id="@+id/done_image_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/save_image"
-                android:textColor="@color/colorAccent"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground" />
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/cancel_camera"
+                android:textColor="@color/colorAccent" />
+
         </LinearLayout>
 
     </FrameLayout>

@@ -14,6 +14,8 @@ class TestsTableViewController: UITableViewController {
     var tests = [Test]()
     let identifier = "testCell"
 
+    
+    @IBOutlet weak var newTestBtn: UIButton!
     @IBOutlet weak var noTest: UILabel!
     @IBOutlet weak var healthBtn: UIButton!
     @IBOutlet weak var userBtn: UIButton!
@@ -78,16 +80,18 @@ class TestsTableViewController: UITableViewController {
             print("There is an issue")
         }
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoDown(_:)), for: .touchDown)
         newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
         
+        /*
         healthSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.healthInfoDown(_:)), for: .touchDown)
         healthSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.healthInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
         
         userSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.userInfoDown(_:)), for: .touchDown)
         userSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.userInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
+        */
     }
     
     func newTestInfoDown(_ sender: UIButton) {
@@ -130,8 +134,10 @@ class TestsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
         if(tests.isEmpty) {
+            newTestBtn.isHidden = false
             noTest.isHidden = false
         } else {
+            newTestBtn.isHidden = true
             noTest.isHidden = true
         }
         print("In viewWillAppear")
