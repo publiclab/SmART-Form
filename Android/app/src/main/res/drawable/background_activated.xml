@@ -5,7 +5,7 @@
         android:drawable="@drawable/bubble_focused" />
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/bubble_enabled" />
+        android:drawable="@drawable/table_enabled" />
     <item
         android:state_pressed="true"
         android:drawable="@drawable/bubble_pressed" />

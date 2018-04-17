@@ -12,4 +12,11 @@
         android:text="Health Survey"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
+    <include
+        android:id="@+id/layout_bottom"
+        layout="@layout/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

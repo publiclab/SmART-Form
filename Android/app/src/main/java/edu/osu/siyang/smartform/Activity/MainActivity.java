@@ -1,73 +1,187 @@
 package edu.osu.siyang.smartform.Activity;
 
-/**
- * Created by siyangzhang on 4/10/18.
- */
+
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.osu.siyang.smartform.R;
+import edu.osu.siyang.smartform.Fragment.TestListFragment;
+import edu.osu.siyang.smartform.Fragment.HealthFragment;
+import edu.osu.siyang.smartform.Fragment.InfoFragment;
 
+/**
+ * Created by siyangzhang on 2/10/17.
+ */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private FragmentManager fm;
+
+    private LinearLayout mTabIndex, mTabHealth, mTabFind;
+
+    private ImageView mIndexImg, mHealthImg, mFindImg;
+
+    private Fragment tabindex, tabclass, tabfind;
+
+    private TextView title_text;
+
+    //public static ACache mCache;
+
+    public static final String TAG = "Main";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Activity onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //mCache= ACache.get(this);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        initView();
+        initEvent();
+        setSelect(0);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+    protected void onResume() {
+        Log.d(TAG, "Activity onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "Activity onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "Activity onPause");
+        super.onPause();
+    }
+
+    private void initView() {
+
+        mTabIndex = (LinearLayout) findViewById(R.id.id_index);
+        mTabHealth = (LinearLayout) findViewById(R.id.id_class);
+        mTabFind = (LinearLayout) findViewById(R.id.id_find);
+
+        mIndexImg = (ImageView) findViewById(R.id.id_indeximg);
+        mHealthImg = (ImageView) findViewById(R.id.id_classimg);
+        mFindImg = (ImageView) findViewById(R.id.id_findimg);
+    }
+
+    private void initEvent() {
+        mTabIndex.setOnClickListener(this);
+        mTabHealth.setOnClickListener(this);
+        mTabFind.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.id_index:
+                setSelect(0);
+                break;
+            case R.id.id_class:
+                setSelect(1);
+                break;
+            case R.id.id_find:
+                setSelect(2);
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
     }
-    */
 
+    private void setSelect(int i) {
+        switch (i) {
+            case 0:
+                if (tabindex == null) {
+                    tabindex = new TestListFragment();
+                }
+                changeFragment(tabindex);
+                break;
+            case 1:
+                if (tabclass == null) {
+                    tabclass = new HealthFragment();
+                }
+                changeFragment(tabclass);
+                break;
+            case 2:
+                if (tabfind == null) {
+                    tabfind = new InfoFragment();
+                }
+                changeFragment(tabfind);
+                break;
+        }
+        setTab(i);
+
+    }
+
+    private void setTab(int i) {
+        resetImgs();
+        switch (i) {
+            case 0:
+                mIndexImg.setImageResource(R.drawable.icon_list);
+                break;
+            case 1:
+                mHealthImg.setImageResource(R.drawable.icon_health);
+                break;
+            case 2:
+                mFindImg.setImageResource(R.drawable.icon_info);
+                break;
+        }
+    }
+    private void changeFragment(Fragment targetFragment){
+        fm = getSupportFragmentManager();
+        if(fm!=null) {
+            fm.beginTransaction()
+                    .replace(R.id.fmcontent, targetFragment, "Fragment")
+                    .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
+    }
+    private void resetImgs() {
+        mIndexImg.setImageResource(R.drawable.icon_list);
+        mHealthImg.setImageResource(R.drawable.icon_health);
+        mFindImg.setImageResource(R.drawable.icon_info);
+    }
+
+    Boolean ActionSheetFlag = false;
+    private static long firstTime;
+
+
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        if (ActionSheetFlag) {
+            super.onBackPressed();
+        } else {
+            if (firstTime + 2000 > System.currentTimeMillis()) {
+                super.onBackPressed();
+            } else {
+            }
+            firstTime = System.currentTimeMillis();
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Read values from the "savedInstanceState"-object and put them in your textview
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Save the values you need from your textview into "outState"-object
+        super.onSaveInstanceState(outState);
+    }
 }

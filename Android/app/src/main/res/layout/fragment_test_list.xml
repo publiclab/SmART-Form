@@ -13,12 +13,14 @@
     <Button
         android:id="@+id/add_test_button"
         android:text="@string/add_new_test"
-        android:textColor="@color/colorAccent"
-        android:background="@drawable/start_test_btn"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="120dp" />
+        style="@style/Button"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="75dp"
+        android:layout_gravity="bottom"/>
 
     <Button
         android:id="@+id/health_survey_button"
@@ -213,8 +215,17 @@
                     android:layout_height="match_parent" />
             </LinearLayout>
 
+
         </LinearLayout>
 
+
     </RelativeLayout>
+
+    <include
+        android:id="@+id/layout_bottom"
+        layout="@layout/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"/>
 
 </FrameLayout>

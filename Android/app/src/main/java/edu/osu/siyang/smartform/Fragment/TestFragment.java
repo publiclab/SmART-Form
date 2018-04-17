@@ -572,24 +572,18 @@ public class TestFragment extends DialogFragment {
 		switch (mTest.getState()) {
 			case 0:
 				mBeforeButton.setEnabled(true);
-				mAfterButton.setEnabled(true);
-				mUploadButton.setEnabled(true);
-				break;
-			case 1:
-				mBeforeButton.setEnabled(false);
-				mAfterButton.setEnabled(true);
-				mUploadButton.setEnabled(true);
-				break;
-			case 2:
-				mBeforeButton.setEnabled(false);
-				mAfterButton.setEnabled(false);
-				mUploadButton.setEnabled(true);
-				mResultField.setBackgroundColor(Color.CYAN);
-				break;
-			case 3:
-				mBeforeButton.setEnabled(false);
 				mAfterButton.setEnabled(false);
 				mUploadButton.setEnabled(false);
+				break;
+			case 1:
+				mBeforeButton.setEnabled(true);
+				mAfterButton.setEnabled(true);
+				mUploadButton.setEnabled(false);
+				break;
+			case 2:
+				mBeforeButton.setEnabled(true);
+				mAfterButton.setEnabled(true);
+				mUploadButton.setEnabled(true);
 				break;
 		}
 		getContext().registerReceiver(broadcastReceiver,new IntentFilter(TimerService.str_receiver));
@@ -872,8 +866,9 @@ public class TestFragment extends DialogFragment {
 		Bitmap ref, act;
 		double ratio = 0;
 		if(bitmap!=null) {
-			ref = Bitmap.createBitmap(bitmap, bitmap.getWidth() *2/3 -50, bitmap.getHeight() * 2 / 3, 50, 50);
-			act = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 3 - 50, bitmap.getHeight() * 2 / 3, 50, 50);
+			act = Bitmap.createBitmap(bitmap, 50, 150, 50, 50);
+			ref = Bitmap.createBitmap(bitmap, 150, 150, 50, 50);
+
 			ratio = getLightness(act) / getLightness(ref); // Chemical badge intensity / calibrating patch intensity
 		}
 		return ratio;

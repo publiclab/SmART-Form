@@ -42,10 +42,13 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import edu.osu.siyang.smartform.Activity.AppEULA;
+import edu.osu.siyang.smartform.Activity.HealthActivity;
+import edu.osu.siyang.smartform.Activity.InfoActivity;
 import edu.osu.siyang.smartform.Activity.IntroActivity;
 import edu.osu.siyang.smartform.Activity.TestPagerActivity;
 import edu.osu.siyang.smartform.Bean.Test;
 import edu.osu.siyang.smartform.Bean.TestLab;
+import edu.osu.siyang.smartform.R;
 import tourguide.tourguide.Overlay;
 import tourguide.tourguide.Pointer;
 import tourguide.tourguide.ToolTip;
@@ -62,6 +65,7 @@ public class TestListFragment extends ListFragment {
 	private boolean mAboutVisible;
 	private boolean mInfoVisible;
 	private Callbacks mCallbacks;
+	private LinearLayout mTabIndex, mTabHealth, mTabFind;
 
 	private Button mNewTestButton;
 	private Button mAddTestButton;
@@ -113,7 +117,7 @@ public class TestListFragment extends ListFragment {
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
-		// unchecked cast, so you must document this somehwere!
+		// unchecked cast, so you must document this somewhere!
 		mCallbacks = (Callbacks) activity;
 	}
 
@@ -190,6 +194,28 @@ public class TestListFragment extends ListFragment {
 		View empty = v.findViewById(edu.osu.siyang.smartform.R.id.custom_empty_view);
 		ListView displayList = (ListView) v.findViewById(android.R.id.list);
 		displayList.setEmptyView(empty);
+
+		// Test list
+		mTabIndex = (LinearLayout) v.findViewById(R.id.id_index);
+
+		// Health survey
+		mTabHealth = (LinearLayout) v.findViewById(R.id.id_class);
+		mTabHealth.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getActivity(), HealthActivity.class);
+				startActivityForResult(i, 0);
+			}
+		});
+		// User survey
+		mTabFind = (LinearLayout) v.findViewById(R.id.id_find);
+		mTabFind.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getActivity(), InfoActivity.class);
+				startActivityForResult(i, 0);
+			}
+		});
 
 		mHintView1 = (ScrollView) v.findViewById(edu.osu.siyang.smartform.R.id.hint_view1);
 		mHintView1.setVisibility(View.INVISIBLE);
