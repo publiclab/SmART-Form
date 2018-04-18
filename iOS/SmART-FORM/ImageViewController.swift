@@ -12,9 +12,22 @@ import Foundation
 class ImageViewController : UIViewController {
     @IBOutlet weak var browsingImage: UIImageView!
     var newImage: UIImage!
-
+    var newRequest: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         browsingImage.image = newImage
+    
+        print("image view controller")
+        print(newRequest)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "retakeImage" {
+            let dvc = segue.destination as! CameraViewController
+            dvc.newRequest = self.newRequest
+        }
+    }
+    
+
 }

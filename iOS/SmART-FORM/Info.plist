@@ -24,6 +24,8 @@
 	<string>This app uses the camera to capture badge images</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app uses the Photos library to set cell images</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Our application needs permission to write photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -15,11 +15,15 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var imgOverlay: UIImageView!
     @IBOutlet weak var hintOverlay: UILabel!
     @IBOutlet weak var btnCapture: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var bottomOverlay: UILabel!
     
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
-    var previewLayer : AVCaptureVideoPreviewLayer?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    var cropImage: UIImage?
+    var ratio: String? = nil
+    var newRequest: Int?
     
     // If we find a device we'll store it here for later use
     var captureDevice : AVCaptureDevice?
@@ -27,7 +31,7 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+                
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
         
         if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
@@ -35,6 +39,10 @@ class CameraViewController: UIViewController {
                 try device.lockForConfiguration()
                 try device.setTorchModeOnWithLevel(1.0)
                 device.torchMode = .off
+                device.autoFocusRangeRestriction = AVCaptureAutoFocusRangeRestriction.near
+                device.setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains(device.deviceWhiteBalanceGains(for: AVCaptureWhiteBalanceTemperatureAndTintValues.init(temperature: 5000, tint: 0)), completionHandler: { (time) in })
+                device.setExposureModeCustomWithDuration(CMTimeMake(1,125), iso: 200, completionHandler: { (time) in })
+                device.setExposureTargetBias(0, completionHandler: { (time) in })
                 device.unlockForConfiguration()
                 // Finally check the position and confirm we've got the back camera
                 if(device.position == AVCaptureDevicePosition.back) {
@@ -54,9 +62,9 @@ class CameraViewController: UIViewController {
         if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
             do {
                 try device.lockForConfiguration()
-                let torchOn = !device.isTorchActive
-                try device.setTorchModeOnWithLevel(1.0)
-                device.torchMode = torchOn ? .on : .off
+                //let torchOn = !device.isTorchActive
+                //try device.setTorchModeOnWithLevel(1.0)
+                device.torchMode = .off
                 device.unlockForConfiguration()
             } catch {
                 print("error")
@@ -65,15 +73,38 @@ class CameraViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CaptureBadge" {
-        }
+         if segue.identifier == "toImageView" {
+            let dvc = segue.destination as! ImageViewController
+            dvc.newImage = self.cropImage
+            dvc.newRequest = self.newRequest
+         }
+
     }
 
-    
-    @IBAction func actionCameraCapture(_ sender: AnyObject) {
+    @IBAction func captureImage(_ sender: Any) {
         
-        print("Camera button pressed")
-        saveToCamera()
+        if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+            
+            stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
+                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
+                    
+                    if let image = UIImage(data: imageData) {
+                        self.cropImage = image.cropToBounds(image: image, width: 500.0, height: 500.0)
+                        print("savetoCamera")
+                        //self.ratio = String(format:"%.5f", cropImage.getRatio(image: cropImage))
+                        //self.delegate?.ratioChanged(ratio: self.ratio)
+                        //print("saveToCamera", self.ratio!)
+                        //CustomPhotoAlbum.sharedInstance.save(image: self.cropImage!)
+                        //UIImageWriteToSavedPhotosAlbum(cropImage, nil, nil, nil)
+                    }
+                }
+            })
+        }
+        
+        let when = DispatchTime.now() + 1 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.performSegue(withIdentifier: "toImageView", sender: self)
+        }
     }
     
     func beginSession() {
@@ -101,26 +132,10 @@ class CameraViewController: UIViewController {
         captureSession.startRunning()
         
         self.view.addSubview(hintOverlay)
-        self.view.addSubview(navigationBar)
         self.view.addSubview(imgOverlay)
         self.view.addSubview(btnCapture)
+        self.view.addSubview(btnCancel)
         self.view.addSubview(bottomOverlay)
-    }
-    
-    func saveToCamera() {
-        
-        if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-            
-            stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
-                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
-                    
-                    if let cameraImage = UIImage(data: imageData) {
-                        
-                        UIImageWriteToSavedPhotosAlbum(cameraImage, nil, nil, nil)
-                    }
-                }
-            })
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -139,7 +154,7 @@ class CameraViewController: UIViewController {
                     device.focusMode = .autoFocus
                     //device.focusMode = .locked
                     device.exposurePointOfInterest = focusPoint
-                    device.exposureMode = AVCaptureExposureMode.continuousAutoExposure
+                    //device.exposureMode = AVCaptureExposureMode.continuousAutoExposure
                     device.unlockForConfiguration()
                 }
                 catch {
@@ -154,3 +169,4 @@ class CameraViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
+
