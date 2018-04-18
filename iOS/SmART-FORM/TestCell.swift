@@ -21,7 +21,12 @@ class TestCell: UITableViewCell {
         didSet {
             titleLabel.text = test.title
             timeLabel.text = test.date?.toString(dateFormat: "MMM dd, yyyy HH:mm")
-            resultLabel.text = test.result
+            if(test.state) == 1 {
+                resultLabel.text = "Time"
+            }
+            else if(test.state) == 2 {
+                resultLabel.text = test.result
+            }
             if test.state == 1{
                 imageLabel.backgroundColor = UIColor.yellow
                 progressLabel.text = "In-progress"

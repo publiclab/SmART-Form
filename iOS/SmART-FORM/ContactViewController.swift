@@ -10,18 +10,19 @@
 import UIKit
 
 class ContactViewController: UIViewController {
-  
-  @IBOutlet weak var scrollView: UIScrollView!
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    view.addSubview(scrollView)
-  }
-  
-  override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(scrollView)
+    }
     
-    //scrollView.contentSize = CGSize(width: 320, height: 600)
-  }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        //scrollView.contentSize = CGSize(width: 320, height: 600)
+    }
 }
+

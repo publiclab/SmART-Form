@@ -31,21 +31,21 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-                
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh
         
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+        captureSession.sessionPreset = AVCaptureSession.Preset.high
+        
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
-                try device.setTorchModeOnWithLevel(1.0)
+                try device.setTorchModeOn(level: 1.0)
                 device.torchMode = .off
-                device.autoFocusRangeRestriction = AVCaptureAutoFocusRangeRestriction.near
-                device.setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains(device.deviceWhiteBalanceGains(for: AVCaptureWhiteBalanceTemperatureAndTintValues.init(temperature: 5000, tint: 0)), completionHandler: { (time) in })
-                device.setExposureModeCustomWithDuration(CMTimeMake(1,125), iso: 200, completionHandler: { (time) in })
+                device.autoFocusRangeRestriction = AVCaptureDevice.AutoFocusRangeRestriction.near
+                device.setWhiteBalanceModeLocked(with: device.deviceWhiteBalanceGains(for: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 5000, tint: 0)), completionHandler: { (time) in })
+                device.setExposureModeCustom(duration: CMTimeMake(1,125), iso: 200, completionHandler: { (time) in })
                 device.setExposureTargetBias(0, completionHandler: { (time) in })
                 device.unlockForConfiguration()
                 // Finally check the position and confirm we've got the back camera
-                if(device.position == AVCaptureDevicePosition.back) {
+                if(device.position == AVCaptureDevice.Position.back) {
                     captureDevice = device
                     if captureDevice != nil {
                         print("Capture device found")
@@ -59,7 +59,7 @@ class CameraViewController: UIViewController {
     }
     
     func toggleFlash() {
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
                 //let torchOn = !device.isTorchActive
@@ -73,20 +73,20 @@ class CameraViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "toImageView" {
+        if segue.identifier == "toImageView" {
             let dvc = segue.destination as! ImageViewController
             dvc.newImage = self.cropImage
             dvc.newRequest = self.newRequest
-         }
-
+        }
+        
     }
-
+    
     @IBAction func captureImage(_ sender: Any) {
         
-        if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+        if let videoConnection = stillImageOutput.connection(with: AVMediaType.video) {
             
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
-                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
+                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer!) {
                     
                     if let image = UIImage(data: imageData) {
                         self.cropImage = image.cropToBounds(image: image, width: 500.0, height: 500.0)
@@ -110,7 +110,7 @@ class CameraViewController: UIViewController {
     func beginSession() {
         
         do {
-            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice))
+            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice!))
             stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
             
             if captureSession.canAddOutput(stillImageOutput) {
@@ -122,10 +122,7 @@ class CameraViewController: UIViewController {
             print("error: \(error.localizedDescription)")
         }
         
-        guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else {
-            print("no preview layer")
-            return
-        }
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         
         self.view.layer.addSublayer(previewLayer)
         previewLayer.frame = self.view.layer.frame
@@ -169,4 +166,5 @@ class CameraViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
+
 

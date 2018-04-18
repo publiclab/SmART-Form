@@ -50,15 +50,12 @@
     <string name="hints">
         Instructions:
 
-        \n1.You should have an electronic or paper copy of images of badges “before” and “after” exposures.  These are just images and there will be no color change during this beta test.  These images are provided so that you can give us feedback on use of the app.
-        \n2.Open the app and select “New test”
-        \n3.Name your test and take a picture of the test location
-        \n4.Select the “Before” button and take a picture of the “Before” image
-        \n5.Pretend to wait 72 hours (you can move forward right away)
-        \n6.Select the “After” button and take a picture of the “After” image
-        \n7.Select “Upload my data to database”
-        \n8.Complete the sampling survey as much as you would like (this data will not be used for research purposes, but this section is available so you can give us feedback on the survey)
-        \n9.Complete the follow-up beta testing survey</string>
+        \n1.You should have a chemical badge along with the app.
+        \n2.Open the app and select “New test”, name your test.
+        \n3.Select the “Before” button and take a picture of the badge before exposure.
+        \n4.Keep the badge still for 72hrs exposure.
+        \n5.Select the “After” button and take a picture of the badge after exposure.
+        \n6.Select “Data Survey” and complete the sampling survey. \n7.Complete the follow-up community testing surveys.</string>
     <string name="delete_test">Delete</string>
 
     <string name="no_tests">There are currently no tests to display.</string>
@@ -96,8 +93,7 @@
 
         \nPI: Karen Dannemiller
         \nCo-PI: Rongjun Qin
-        \nDeveloper: Siyang Zhang
-        \n\nThis app is currently under beta test, all measurements are not reliable and not related to your actual surroundings.</string>
+        \nDeveloper: Siyang Zhang</string>
     <string name="eula">
         This is a consent form for your participation in this research study.
 

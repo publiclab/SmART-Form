@@ -351,8 +351,6 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             Log.i(TAG, "White Balance setting = " + camParams.getWhiteBalance());
             Log.i(TAG, "Preview Size setting = " + camParams.getPreviewSize());
 
-
-            Toast.makeText(CameraActivity.this, "Camera active", Toast.LENGTH_SHORT).show();
             try {
                 mCamera.setPreviewDisplay(holder);
                 if (mIsCapturing) {

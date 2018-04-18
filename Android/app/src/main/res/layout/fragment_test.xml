@@ -89,7 +89,7 @@
                         android:layout_alignLeft="@+id/before_bitmapBtn"
                         android:layout_alignRight="@+id/before_bitmapBtn"
                         android:layout_alignTop="@+id/before_bitmapBtn"
-                        android:layout_margin="1dp"
+                        android:layout_margin="15dp"
                         android:gravity="center"
                         android:text="Tap to take BEFORE exposure"
                         android:textColor="#000000"
@@ -119,7 +119,7 @@
                         android:layout_alignLeft="@+id/after_bitmapBtn"
                         android:layout_alignRight="@+id/after_bitmapBtn"
                         android:layout_alignTop="@+id/after_bitmapBtn"
-                        android:layout_margin="1dp"
+                        android:layout_margin="15dp"
                         android:gravity="center"
                         android:text="Tap to take AFTER exposure"
                         android:textColor="#000000"
@@ -153,7 +153,7 @@
                 android:id="@+id/test_result"
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:text="@string/result"
                 android:textAlignment="center"
@@ -165,8 +165,7 @@
                 android:textSize="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="20dp"
                 android:text="@string/test_report_text" />
 
         </LinearLayout>

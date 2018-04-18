@@ -21,13 +21,6 @@ class TestsTableViewController: UITableViewController {
     @IBOutlet weak var userBtn: UIButton!
     @IBOutlet weak var infoBtn: UIBarButtonItem!
     @IBOutlet weak var hintBtn: UIBarButtonItem!
-    @IBOutlet weak var newTestInfo: UITextView!
-    @IBOutlet weak var healthSurveyInfo: UITextView!
-    @IBOutlet weak var userSurveyInfo: UITextView!
-    @IBOutlet weak var newTestInfoBtn: UIButton!
-    @IBOutlet weak var healthSurveyInfoBtn: UIButton!
-    @IBOutlet weak var userSurveyInfoBtn: UIButton!
-    
     var toastLabel: UILabel!
     var state = 0
     var deviceID: String = ""
@@ -82,8 +75,8 @@ class TestsTableViewController: UITableViewController {
         
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoDown(_:)), for: .touchDown)
-        newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
+        //newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoDown(_:)), for: .touchDown)
+        //newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
         
         /*
         healthSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.healthInfoDown(_:)), for: .touchDown)
@@ -94,11 +87,12 @@ class TestsTableViewController: UITableViewController {
         */
     }
     
-    func newTestInfoDown(_ sender: UIButton) {
+    /*
+    @objc func newTestInfoDown(_ sender: UIButton) {
         newTestInfo.isHidden = false
     }
   
-    func newTestInfoUp(_ sender: UIButton) {
+    @objc func newTestInfoUp(_ sender: UIButton) {
         newTestInfo.isHidden = true
     }
   
@@ -117,6 +111,7 @@ class TestsTableViewController: UITableViewController {
     func userInfoUp(_ sender: UIButton) {
         userSurveyInfo.isHidden = true
     }
+    */
     
     private func saveTests() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tests, toFile: Test.ArchiveURL.path)
@@ -164,7 +159,7 @@ class TestsTableViewController: UITableViewController {
         if(state == 1) {
             toastLabel.removeFromSuperview()
         }
-        showToast(message: "COPYRIGHT:\nCopyright 2017 SMARTFORM.\nThe Ohio State University.\nAll Rights Reserved.\n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)\nPI: Karen Dannemiller\nCo-PI: Rongjun Qin\nDeveloper: Siyang Zhang.\n\nUnique device ID: \(String(describing: deviceID))\nYour ID has been automatically copied to the clipboard, please paste it along with your survey.\n\nThis app is currently under beta test, all measurements are not reliable and not related to your actual surroundings.")
+        showToast(message: "COPYRIGHT:\nCopyright 2017 SMARTFORM.\nThe Ohio State University.\nAll Rights Reserved.\n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)\nPI: Karen Dannemiller\nCo-PI: Rongjun Qin\nDeveloper: Siyang Zhang.\n\nUnique device ID: \(String(describing: deviceID))\nYour ID has been automatically copied to the clipboard, please paste it along with your survey.")
 
     }
     
@@ -172,16 +167,9 @@ class TestsTableViewController: UITableViewController {
         if(state == 1) {    
             toastLabel.removeFromSuperview()
         }
-        showToast(message: "Instructions:\n1.You should have an electronic or paper copy of images of badges “before” and “after” exposures. These are just images to simulate an actual test and there will be no color change during this beta test. These images are provided so that you can give us feedback on use of the app. \n2.Open the app and select “New test” \n3.Name your test and tap the black block to take a picture of the test location \n4.Select the “Before” button and take a picture of the “Before” image \n5.Select the “After” button and take a picture of the “After” image \n6.Select “Upload” and complete the sampling survey as much as you like \n7.Complete the follow-up beta testing survey, available on the main screen.")
+        showToast(message: "Instructions:\n1.You should have a chemical badge along with the app. \n2.Open the app and select “New test”, name your test. \n3.Select the “Before” button and take a picture of the badge before exposure. \n4.Keep the badge still for 72hrs exposure. \n5.Select the “After” button and take a picture of the badge after exposure. \n6.Select “Data Survey” and complete the sampling survey. \n7.Complete the follow-up community testing surveys.")
     }
     
-    @IBAction func didTapUpload(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_eIPLorec5u70O3z")! as URL)
-    }
-
-    @IBAction func didTapUser(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_1YsK1f5dZVByyxL")! as URL)
-    }
     
     // Override to suppport editing the table view
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

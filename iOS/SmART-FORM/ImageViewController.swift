@@ -17,7 +17,7 @@ class ImageViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         browsingImage.image = newImage
-    
+        
         print("image view controller")
         print(newRequest)
     }
@@ -29,5 +29,6 @@ class ImageViewController : UIViewController {
         }
     }
     
-
+    
 }
+

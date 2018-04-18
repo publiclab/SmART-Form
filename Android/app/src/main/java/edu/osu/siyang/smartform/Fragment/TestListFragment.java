@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -274,7 +275,7 @@ public class TestListFragment extends ListFragment {
 		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
 		//  Create a new boolean and preference and set it to true
-		final boolean isFirstTour = mPref.getBoolean("firstTour", true);
+		//final boolean isFirstTour = mPref.getBoolean("firstTour", true);
 
 		/* setup enter and exit animation */
 		Animation enterAnimation = new AlphaAnimation(0f, 1f);
@@ -285,6 +286,7 @@ public class TestListFragment extends ListFragment {
 		exitAnimation.setDuration(600);
 		exitAnimation.setFillAfter(true);
 
+		/*
 		if(isFirstTour) {
 			mTutorialHandler = TourGuide.init(this.getActivity()).with(TourGuide.Technique.Click)
 					.setPointer(new Pointer())
@@ -294,13 +296,15 @@ public class TestListFragment extends ListFragment {
 							.setExitAnimation(exitAnimation))
 					.playOn(mNewTestButton);
 		}
+		*/
 
 		mNewTestButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				/*
 				if(isFirstTour) {
 					mTutorialHandler.cleanUp();
-				}
+				}*/
 				Test test = new Test();
 				TestLab.get(getActivity()).addTest(test);
 
@@ -310,6 +314,7 @@ public class TestListFragment extends ListFragment {
 			}
 		});
 
+		/*
 		// Link Button for survey
 		mHealthSurveyButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.health_survey_button);
 		mHealthSurveyButton.setOnClickListener(new OnClickListener() {
@@ -328,6 +333,8 @@ public class TestListFragment extends ListFragment {
 				startActivity(browserIntent);
 			}
 		});
+		*/
+
 
 		//Hide survey buttons
 		//mUserSurveyButton.setVisibility(View.INVISIBLE);
@@ -540,12 +547,38 @@ public class TestListFragment extends ListFragment {
 			TextView titleTextView = (TextView) convertView
 					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_titleTextView);
 			titleTextView.setText(c.getTitle());
+			Log.d(TAG,"title text: " + titleTextView.getText() );
 
 			TextView dateTextView = (TextView) convertView
 					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_dateTextView);
 			String formatDate = DateFormat.format("yyyy-MM-dd hh:mm:ss a",
 					c.getDate()).toString();
 			dateTextView.setText(formatDate);
+
+			TextView stateTextView = (TextView) convertView.findViewById(R.id.test_list_item_state);
+			TextView resultTextView = (TextView) convertView.findViewById(R.id.test_list_item_result);
+			TextView unitTextView = (TextView) convertView.findViewById(R.id.test_list_item_unittype);
+
+			switch (c.getState()) {
+				case 0:
+					stateTextView.setText("Ready");
+					stateTextView.setBackgroundColor(Color.GREEN);
+					resultTextView.setText("");
+					unitTextView.setText("");
+					break;
+				case 1:
+					stateTextView.setText("In-progress");
+					stateTextView.setBackgroundColor(Color.YELLOW);
+					resultTextView.setText("Time");
+					unitTextView.setText("remain");
+					break;
+				case 2:
+					stateTextView.setText("Completed");
+					stateTextView.setBackgroundColor(Color.rgb(255,165,0));
+					resultTextView.setText(""+c.getResult());
+					unitTextView.setText("ppb");
+					break;
+			}
 
 			return convertView;
 		}

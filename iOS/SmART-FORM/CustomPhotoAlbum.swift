@@ -85,3 +85,4 @@ class CustomPhotoAlbum: NSObject {
         }, completionHandler: nil)
     }
 }
+

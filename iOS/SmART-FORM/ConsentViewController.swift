@@ -24,6 +24,6 @@ class ConsentViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        scrollView.contentSize = CGSize(width: 320, height: 2000)
+        scrollView.contentSize = CGSize(width: 320, height: 1800)
     }
 }

@@ -27,7 +27,7 @@ class DataSurveyController: UIViewController {
     }
     
     @IBAction func uploadData(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_57M6Fe78VhQAMn3")! as URL)
+        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_4N4PKKzNbBdg6DH")! as URL)
     }
     
 }

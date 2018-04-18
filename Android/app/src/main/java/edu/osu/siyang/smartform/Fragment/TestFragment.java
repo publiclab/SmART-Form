@@ -229,7 +229,7 @@ public class TestFragment extends DialogFragment {
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		mTempSpinner.setAdapter(adapter2);
+		mHumdSpinner.setAdapter(adapter2);
 
 
 		// Result
@@ -282,7 +282,7 @@ public class TestFragment extends DialogFragment {
 		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
 		//  Create a new boolean and preference and set it to true
-		final boolean isFirstTour = mPref.getBoolean("firstTour", true);
+		//final boolean isFirstTour = mPref.getBoolean("firstTour", true);
 
 		/* setup enter and exit animation */
 		Animation enterAnimation = new AlphaAnimation(0f, 1f);
@@ -293,7 +293,7 @@ public class TestFragment extends DialogFragment {
 		exitAnimation.setDuration(600);
 		exitAnimation.setFillAfter(true);
 
-		if(isFirstTour) {
+		if(false) {
 			mTutorialHandler = TourGuide.init(this.getActivity()).with(TourGuide.Technique.Click)
 					.setPointer(new Pointer())
 					.setToolTip(new ToolTip().setTitle("Test detail").setDescription("Click to edit parameters"))
@@ -318,18 +318,20 @@ public class TestFragment extends DialogFragment {
 						mTitleField.setFocusable(true);
 						imm.showSoftInput(mTitleField, 0);
 
-
+				/*
 				if(isFirstTour) {
 					mTutorialHandler.cleanUp();
 					mTutorialHandler.setToolTip(new ToolTip().setTitle("Before button").setDescription("Click to take the before exposure image").setGravity(Gravity.TOP)).playOn(mBeforeButton);
-				}
+				}*/
 			}
 		});
 
 		// Date Button
 		mDateButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
 		if (mTest.getDate() == null) mTest.setDate(new Date());
-		updateDate();
+		mDateButton.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.US).format(new Date()));
+
+		//updateDate();
 
 		/*
 		mDateButton.setOnClickListener(new View.OnClickListener() {
@@ -349,6 +351,8 @@ public class TestFragment extends DialogFragment {
 
 		// Time Button
 		mTimeButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
+
+		/*
 		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		mEditor = mPref.edit();
 		String str_value = mPref.getString("data", "");
@@ -377,6 +381,7 @@ public class TestFragment extends DialogFragment {
 				dialog.show(fm, DIALOG_TIME);
 			}
 		});
+		*/
 
 
 		// "finished" Check box
@@ -415,16 +420,19 @@ public class TestFragment extends DialogFragment {
 		mBeforeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				/*
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					mTutorialHandler.setToolTip(new ToolTip().setTitle("After button").setDescription("Click to take the after exposure image").setGravity(Gravity.TOP)).playOn(mAfterButton);
+				}*/
+
 				//mTimeButton.performClick();
 				Intent i = new Intent(getActivity(), CameraActivity.class);
 				i.putExtra("TEST_PARAM", mTest.getTitle());
 				i.putExtra("TEST_TAG", "before");
 				startActivityForResult(i, REQUEST_BEFORE);
 
-				if(isFirstTour) {
-					mTutorialHandler.cleanUp();
-					mTutorialHandler.setToolTip(new ToolTip().setTitle("After button").setDescription("Click to take the after exposure image").setGravity(Gravity.TOP)).playOn(mAfterButton);
-				}
+
 			}
 		});
 
@@ -434,15 +442,18 @@ public class TestFragment extends DialogFragment {
 		mAfterButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				/*
+				if(isFirstTour) {
+					mTutorialHandler.cleanUp();
+					mTutorialHandler.setToolTip(new ToolTip().setTitle("Upload button").setDescription("Click to upload data and finish").setGravity(Gravity.TOP)).playOn(mUploadButton);
+				}*/
+
 				Intent i = new Intent(getActivity(), CameraActivity.class);
 				i.putExtra("TEST_PARAM", mTest.getTitle());
 				i.putExtra("TEST_TAG", "after");
 				startActivityForResult(i, REQUEST_AFTER);
 
-				if(isFirstTour) {
-					mTutorialHandler.cleanUp();
-					mTutorialHandler.setToolTip(new ToolTip().setTitle("Upload button").setDescription("Click to upload data and finish").setGravity(Gravity.TOP)).playOn(mUploadButton);
-				}
+
 
 				// Write to log file
 				/*
@@ -494,6 +505,11 @@ public class TestFragment extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
+				mTest.setState(3);
+				mCallbacks.onTestUpdated(mTest);
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_5u9FnmAiYtRQtp3"));
+				startActivity(browserIntent);
+				/*
 				if(isFirstTour) {
 					mTutorialHandler.cleanUp();
 					//  Make a new preferences editor
@@ -504,15 +520,12 @@ public class TestFragment extends DialogFragment {
 
 					//  Apply changes
 					mEditor.apply();
-				}
+				}*/
 
 				//new AppEULA(getActivity()).show();
 				//mFinishedCheckBox.setChecked(true);
-				mTest.setFinished(true);
-				mTest.setState(3);
-				mCallbacks.onTestUpdated(mTest);
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_5u9FnmAiYtRQtp3"));
-				startActivity(browserIntent);
+				//mTest.setFinished(true);
+
 			}
 		});
 
@@ -631,33 +644,6 @@ public class TestFragment extends DialogFragment {
 			return;
 		}
 
-		else if (requestCode == REQUEST_DATE) {
-			Date date = (Date) data
-					.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-			mTest.setDate(date);
-			mCallbacks.onTestUpdated(mTest);
-			updateDate();
-		}
-
-		else if (requestCode == REQUEST_TIME) {
-			Date date = (Date) data
-					.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
-			mTest.setDate(date);
-			updateTime();
-		}
-
-		else if ( requestCode == REQUEST_PHOTO) {
-			// Create a new Photo object and attach it to the test
-			String filename = data.getStringExtra(TestCameraFragment.EXTRA_PHOTO_FILENAME);
-
-			if ( filename != null ){
-				Photo p = new Photo(filename);
-				mTest.setPhoto(p);
-				mCallbacks.onTestUpdated(mTest);
-				showPhoto();
-			}
-		}
-
 		else if ( requestCode == REQUEST_BEFORE) {
 			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
 			Drawable d = new BitmapDrawable(getResources(), bitmap);
@@ -693,7 +679,7 @@ public class TestFragment extends DialogFragment {
 					e.printStackTrace();
 				}
 				int res = getResult(before,after);
-				if(res!=0) mTest.setResult(res);
+				if(res!=0) mTest.setResult(Integer.toString(res));
 				if(res<20) {
 					AlertDialog diaBox = RetakeAfter();
 					diaBox.show();
@@ -782,28 +768,20 @@ public class TestFragment extends DialogFragment {
 		return myQuittingDialogBox;
 	}
 
-	private void showPhoto() {
-		// (Re)set the image button's image based on our photo
-		Photo p = mTest.getPhoto();
-		BitmapDrawable b = null;
-
-		Log.d(TAG, "Inside showPhoto");
-
-		if ( p != null ){
-			String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
-			b = PictureUtils.getScaledDrawable(getActivity(), path);
-		}
-		//mPhotoView.setImageDrawable(b);
-	}
 
 	private void showResult() {
 		// TO DO: finish linear regression here
 		Log.d(TAG, "Inside showResult");
-		int res = mTest.getResult();
-		if(res == -1)
-			mResultField.setText(("0 pbb"));
-		else if(res != 0)
-			mResultField.setText(Integer.toString(res) + " ppb");
+		String res = mTest.getResult();
+		String output = "";
+		if(mTest.getState()==0) {
+			output = res + " remain";
+			mResultField.setText(output);
+		}
+		if(mTest.getState()==1)
+			output = res + " ppb";
+			mResultField.setText(output);
+
 	}
 
 

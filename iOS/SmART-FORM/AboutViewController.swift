@@ -22,6 +22,6 @@ class AboutViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        scrollView.contentSize = CGSize(width: 320, height: 1200)
+        scrollView.contentSize = CGSize(width: 320, height: 1800)
     }
 }

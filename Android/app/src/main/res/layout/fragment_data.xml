@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/layout_bottom"
+        layout="@layout/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="Health Survey"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:text="This survey asks about your formaldehyde measurement, and then has three parts: sampling information, home characteristics, and potential formaldehyde sources. Your SmART-Form ID can link this information to your responses to the health survey. The survey is completed in an external browser through Qualtrics."
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="10dp"
+        android:text="Contributing your data will help us!" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_above="@+id/data_survey_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/text_id1_h"
+            android:background="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/copy_id1_h"
+            android:textColor="@color/White"
+            android:text="COPY"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/data_survey_btn"
+        style="@style/Button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_above="@+id/layout_bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="GO TO SURVEY"
+        android:textSize="30sp" />
+
+
+</RelativeLayout>

@@ -19,18 +19,16 @@
 		68484B5A205128AA00797993 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B54205128A900797993 /* TabBarController.swift */; };
 		68484B5B205128AB00797993 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B55205128AA00797993 /* Test.swift */; };
 		68484B5C205128AB00797993 /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B56205128AA00797993 /* TestStore.swift */; };
-		68484B66205128EB00797993 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B5D205128E800797993 /* ContactViewController.swift */; };
-		68484B67205128EB00797993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B5E205128E800797993 /* AppDelegate.swift */; };
-		68484B68205128EB00797993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68484B5F205128E900797993 /* Assets.xcassets */; };
-		68484B69205128EB00797993 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68484B60205128EA00797993 /* Info.plist */; };
-		68484B6A205128EB00797993 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B61205128EA00797993 /* AboutViewController.swift */; };
-		68484B6B205128EB00797993 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B62205128EB00797993 /* ImageViewController.swift */; };
-		68484B6C205128EB00797993 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 68484B63205128EB00797993 /* Base.lproj */; };
-		68484B6D205128EB00797993 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B64205128EB00797993 /* CustomPhotoAlbum.swift */; };
-		68484B6E205128EB00797993 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68484B65205128EB00797993 /* CameraViewController.swift */; };
 		6860FF41206A10D90062F774 /* DataSurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860FF40206A10D90062F774 /* DataSurveyController.swift */; };
 		689006671ED4B55400E81328 /* SmART_FORMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006661ED4B55400E81328 /* SmART_FORMTests.swift */; };
 		689006721ED4B55400E81328 /* SmART_FORMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689006711ED4B55400E81328 /* SmART_FORMUITests.swift */; };
+		68D14D23208782C300C2EEE1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D22208782C300C2EEE1 /* AboutViewController.swift */; };
+		68D14D252087832500C2EEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D242087832500C2EEE1 /* AppDelegate.swift */; };
+		68D14D2B2087848300C2EEE1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D2A2087848300C2EEE1 /* CameraViewController.swift */; };
+		68D14D2D208784AC00C2EEE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68D14D2C208784AB00C2EEE1 /* Assets.xcassets */; };
+		68D14D2F208784D800C2EEE1 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D2E208784D800C2EEE1 /* ContactViewController.swift */; };
+		68D14D31208785B600C2EEE1 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D30208785B600C2EEE1 /* CustomPhotoAlbum.swift */; };
+		68D14D33208785E000C2EEE1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D14D32208785DF00C2EEE1 /* ImageViewController.swift */; };
 		7E556C2DE5992B0597E38DDF /* Pods_SmART_FORMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92A433D0E6606D2DEEEB0D3 /* Pods_SmART_FORMTests.framework */; };
 		F5F429ACCDFB62DD494BC749 /* Pods_SmART_FORMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21979BD990B09668C259C0C9 /* Pods_SmART_FORMUITests.framework */; };
 /* End PBXBuildFile section */
@@ -68,15 +66,6 @@
 		68484B54205128A900797993 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		68484B55205128AA00797993 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		68484B56205128AA00797993 /* TestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
-		68484B5D205128E800797993 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/ContactViewController.swift"; sourceTree = "<group>"; };
-		68484B5E205128E800797993 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/AppDelegate.swift"; sourceTree = "<group>"; };
-		68484B5F205128E900797993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/Assets.xcassets"; sourceTree = "<group>"; };
-		68484B60205128EA00797993 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/Info.plist"; sourceTree = "<group>"; };
-		68484B61205128EA00797993 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/AboutViewController.swift"; sourceTree = "<group>"; };
-		68484B62205128EB00797993 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewController.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/ImageViewController.swift"; sourceTree = "<group>"; };
-		68484B63205128EB00797993 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/Base.lproj"; sourceTree = "<group>"; };
-		68484B64205128EB00797993 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomPhotoAlbum.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/CustomPhotoAlbum.swift"; sourceTree = "<group>"; };
-		68484B65205128EB00797993 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "../../../../../Downloads/SmartForm/iOS/SmART-FORM/CameraViewController.swift"; sourceTree = "<group>"; };
 		6860FF40206A10D90062F774 /* DataSurveyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSurveyController.swift; sourceTree = "<group>"; };
 		6890064E1ED4B55300E81328 /* SmART-FORM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SmART-FORM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		689006621ED4B55400E81328 /* SmART-FORMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmART-FORMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +74,14 @@
 		6890066D1ED4B55400E81328 /* SmART-FORMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmART-FORMUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		689006711ED4B55400E81328 /* SmART_FORMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmART_FORMUITests.swift; sourceTree = "<group>"; };
 		689006731ED4B55400E81328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68D14D22208782C300C2EEE1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		68D14D242087832500C2EEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		68D14D2A2087848300C2EEE1 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "SmART-FORM/CameraViewController.swift"; sourceTree = SOURCE_ROOT; };
+		68D14D2C208784AB00C2EEE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		68D14D2E208784D800C2EEE1 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		68D14D30208785B600C2EEE1 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
+		68D14D32208785DF00C2EEE1 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		68D14D342087861200C2EEE1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		772657D79D1ABD0F77B4BA6B /* Pods-SmART-FORM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORM/Pods-SmART-FORM.debug.xcconfig"; sourceTree = "<group>"; };
 		83584B784AF8CF07B95FA223 /* Pods-SmART-FORMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmART-FORMUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmART-FORMUITests/Pods-SmART-FORMUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E92A433D0E6606D2DEEEB0D3 /* Pods_SmART_FORMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmART_FORMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,18 +155,17 @@
 		689006501ED4B55300E81328 /* SmART-FORM */ = {
 			isa = PBXGroup;
 			children = (
-				68484B61205128EA00797993 /* AboutViewController.swift */,
+				68D14D22208782C300C2EEE1 /* AboutViewController.swift */,
+				68D14D242087832500C2EEE1 /* AppDelegate.swift */,
 				6812B7C620614E4600BE8BF4 /* HealthSurveyController.swift */,
 				6812B7C820614ED300BE8BF4 /* UserSurveyController.swift */,
 				6860FF40206A10D90062F774 /* DataSurveyController.swift */,
-				68484B5E205128E800797993 /* AppDelegate.swift */,
-				68484B5F205128E900797993 /* Assets.xcassets */,
-				68484B63205128EB00797993 /* Base.lproj */,
-				68484B65205128EB00797993 /* CameraViewController.swift */,
-				68484B5D205128E800797993 /* ContactViewController.swift */,
-				68484B64205128EB00797993 /* CustomPhotoAlbum.swift */,
-				68484B62205128EB00797993 /* ImageViewController.swift */,
-				68484B60205128EA00797993 /* Info.plist */,
+				68D14D2A2087848300C2EEE1 /* CameraViewController.swift */,
+				68D14D2C208784AB00C2EEE1 /* Assets.xcassets */,
+				68D14D2E208784D800C2EEE1 /* ContactViewController.swift */,
+				68D14D30208785B600C2EEE1 /* CustomPhotoAlbum.swift */,
+				68D14D32208785DF00C2EEE1 /* ImageViewController.swift */,
+				68D14D342087861200C2EEE1 /* Info.plist */,
 				68484B352051231300797993 /* ConsentViewController.swift */,
 				68484B312051231200797993 /* LaunchScreen.storyboard */,
 				68484B362051231300797993 /* Main.storyboard */,
@@ -283,7 +279,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Siyang Zhang";
 				TargetAttributes = {
 					6890064D1ED4B55300E81328 = {
@@ -295,12 +291,14 @@
 					689006611ED4B55400E81328 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = LTYWXUY99M;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 6890064D1ED4B55300E81328;
 					};
 					6890066C1ED4B55400E81328 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = LTYWXUY99M;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 6890064D1ED4B55300E81328;
 					};
@@ -331,11 +329,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68484B69205128EB00797993 /* Info.plist in Resources */,
 				68484B442051231400797993 /* LaunchScreen.storyboard in Resources */,
-				68484B6C205128EB00797993 /* Base.lproj in Resources */,
-				68484B68205128EB00797993 /* Assets.xcassets in Resources */,
 				68484B492051231400797993 /* Main.storyboard in Resources */,
+				68D14D2D208784AC00C2EEE1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,19 +496,19 @@
 			files = (
 				68484B5C205128AB00797993 /* TestStore.swift in Sources */,
 				6860FF41206A10D90062F774 /* DataSurveyController.swift in Sources */,
-				68484B66205128EB00797993 /* ContactViewController.swift in Sources */,
+				68D14D2F208784D800C2EEE1 /* ContactViewController.swift in Sources */,
+				68D14D33208785E000C2EEE1 /* ImageViewController.swift in Sources */,
+				68D14D2B2087848300C2EEE1 /* CameraViewController.swift in Sources */,
 				68484B5B205128AB00797993 /* Test.swift in Sources */,
-				68484B6D205128EB00797993 /* CustomPhotoAlbum.swift in Sources */,
-				68484B6E205128EB00797993 /* CameraViewController.swift in Sources */,
-				68484B67205128EB00797993 /* AppDelegate.swift in Sources */,
 				6812B7C920614ED300BE8BF4 /* UserSurveyController.swift in Sources */,
 				68484B59205128AA00797993 /* TestsTableViewController.swift in Sources */,
+				68D14D31208785B600C2EEE1 /* CustomPhotoAlbum.swift in Sources */,
+				68D14D23208782C300C2EEE1 /* AboutViewController.swift in Sources */,
 				68484B58205128AA00797993 /* TestCell.swift in Sources */,
 				68484B5A205128AA00797993 /* TabBarController.swift in Sources */,
 				6812B7C720614E4600BE8BF4 /* HealthSurveyController.swift in Sources */,
 				68484B57205128AA00797993 /* TestViewController.swift in Sources */,
-				68484B6A205128EB00797993 /* AboutViewController.swift in Sources */,
-				68484B6B205128EB00797993 /* ImageViewController.swift in Sources */,
+				68D14D252087832500C2EEE1 /* AppDelegate.swift in Sources */,
 				68484B482051231400797993 /* ConsentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,7 +555,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -567,7 +565,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -609,7 +611,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -617,7 +621,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -655,9 +663,9 @@
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SmART-FORM/SmART-FORM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -674,8 +682,8 @@
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SmART-FORM/SmART-FORM-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -690,7 +698,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmART-FORM.app/SmART-FORM";
 			};
 			name = Debug;
@@ -706,7 +715,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmART-FORM.app/SmART-FORM";
 			};
 			name = Release;
@@ -721,7 +731,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "SmART-FORM";
 			};
 			name = Debug;
@@ -736,7 +747,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Shane.SmART-FORMUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "SmART-FORM";
 			};
 			name = Release;
