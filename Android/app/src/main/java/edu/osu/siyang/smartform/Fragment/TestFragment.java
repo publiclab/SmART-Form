@@ -3,6 +3,10 @@ package edu.osu.siyang.smartform.Fragment;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.IntentService;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +15,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,13 +24,16 @@ import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
@@ -67,12 +75,18 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
+import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
+import edu.osu.siyang.smartform.Activity.DataActivity;
 import edu.osu.siyang.smartform.Activity.CameraActivity;
+import edu.osu.siyang.smartform.Activity.DataActivity;
+import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.Activity.TimerService;
 import edu.osu.siyang.smartform.Bean.Photo;
 import edu.osu.siyang.smartform.Bean.Test;
 import edu.osu.siyang.smartform.Bean.TestLab;
 import edu.osu.siyang.smartform.R;
+import edu.osu.siyang.smartform.Util.MyReceiver;
+import edu.osu.siyang.smartform.Util.NotificationPublisher;
 import edu.osu.siyang.smartform.Util.PictureUtils;
 import tourguide.tourguide.Overlay;
 import tourguide.tourguide.Pointer;
@@ -112,6 +126,7 @@ public class TestFragment extends DialogFragment {
 	private Spinner mTempSpinner;
 	private Spinner mHumdSpinner;
 	private Button mUploadButton;
+	private Button mAboutButton;
 	private Callbacks mCallbacks;
 	private Bitmap before;
 	private Bitmap after;
@@ -122,6 +137,7 @@ public class TestFragment extends DialogFragment {
 	private SharedPreferences mPref;
 	private SharedPreferences.Editor mEditor;
 	private InputMethodManager imm;
+	private MyCount counter;
 
 	/**
 	 * Required interface for hosting activities
@@ -184,7 +200,6 @@ public class TestFragment extends DialogFragment {
 	public void onStart() {
 		super.onStart();
 		//showPhoto();
-		showResult();
 	}
 
 	@Override
@@ -219,8 +234,10 @@ public class TestFragment extends DialogFragment {
 				R.array.temp_array, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 		// Apply the adapter to the spinner
 		mTempSpinner.setAdapter(adapter);
+		mTempSpinner.setSelection(1);
 
 		mHumdSpinner = (Spinner) v.findViewById(R.id.spinner2);
 		// Create an ArrayAdapter using the string array and a default spinner layout
@@ -230,6 +247,22 @@ public class TestFragment extends DialogFragment {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
 		mHumdSpinner.setAdapter(adapter2);
+		mHumdSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			{
+				String selectedItem = parent.getItemAtPosition(position).toString();
+				if(selectedItem.equals(">80% RH"))
+				{
+					// do your stuff
+					AlertDialog diaBox = HighHumidity();
+					diaBox.show();				}
+			} // to close the onItemSelected
+			public void onNothingSelected(AdapterView<?> parent)
+			{
+
+			}
+		});
 
 
 		// Result
@@ -329,87 +362,12 @@ public class TestFragment extends DialogFragment {
 		// Date Button
 		mDateButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
 		if (mTest.getDate() == null) mTest.setDate(new Date());
-		mDateButton.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.US).format(new Date()));
-
-		//updateDate();
-
-		/*
-		mDateButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				FragmentManager fm = getActivity().getSupportFragmentManager();
-				DatePickerFragment dialog = DatePickerFragment
-						.newInstance(mTest.getDate());
-				dialog.setTargetFragment(TestFragment.this, REQUEST_DATE);
-				dialog.show(fm, DIALOG_DATE);
-			}
-		});
-		Log.d("KIO", "Date is: " + mDateButton);
-		*/
+		mDateButton.setText(new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.US).format(mTest.getDate()));
 
 
 		// Time Button
 		mTimeButton = (TextView) v.findViewById(edu.osu.siyang.smartform.R.id.test_date);
 
-		/*
-		mPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-		mEditor = mPref.edit();
-		String str_value = mPref.getString("data", "");
-		mTimeButton.setText(date_time);
-		mTimeButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Log.d(TAG, "click on timer");
-				calendar = Calendar.getInstance();
-				simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-				date_time = simpleDateFormat.format(calendar.getTime());
-
-				mEditor.putString("data", date_time).commit();
-				mEditor.putString("hours", "24").commit();
-
-				Intent intent_service = new Intent(getActivity().getApplicationContext(), TimerService.class);
-				getActivity().startService(intent_service);
-				// mTimer = 1;
-				// getActivity().startService(new Intent(getActivity(), TimerService.class));
-				FragmentManager fm = getActivity().getSupportFragmentManager();
-				TimePickerFragment dialog = TimePickerFragment
-						.newInstance(mTest.getDate());
-				dialog.setTargetFragment(TestFragment.this, REQUEST_TIME);
-				dialog.show(fm, DIALOG_TIME);
-			}
-		});
-		*/
-
-
-		// "finished" Check box
-		/*
-		mFinishedCheckBox = (CheckBox) v.findViewById(edu.osu.siyang.smartform.R.id.test_finished);
-		mFinishedCheckBox.setChecked(mTest.isFinished());
-		mFinishedCheckBox
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-					public void onCheckedChanged(CompoundButton buttonView,
-												 boolean isChecked) {
-						// Set the test's finished property
-						mTest.setFinished(isChecked);
-						mCallbacks.onTestUpdated(mTest);
-					}
-				});
-		*/
-		// Photo Button
-		/*
-		mPhotoButton = (ImageButton) v.findViewById(edu.osu.siyang.smartform.R.id.test_imageButton);
-		mPhotoButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getActivity(), TestCameraActivity.class);
-				startActivityForResult(i, REQUEST_PHOTO);
-			}
-		});
-		*/
 
 		// Before/After TextView
 		mBeforeText = (TextView) v.findViewById(R.id.before_textView);
@@ -417,6 +375,17 @@ public class TestFragment extends DialogFragment {
 
 		// Before Button
 		mBeforeButton = (ImageView) v.findViewById(R.id.before_bitmapBtn);
+		if(mTest.getBefore() != null) {
+			Bitmap bmp = null;
+			try {
+				bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mTest.getBefore());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d = new BitmapDrawable(getResources(), bmp);
+			mBeforeText.setVisibility(View.INVISIBLE);
+			mBeforeButton.setImageDrawable(d);
+		}
 		mBeforeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -438,7 +407,17 @@ public class TestFragment extends DialogFragment {
 
 		// After Button
 		mAfterButton = (ImageView) v.findViewById(edu.osu.siyang.smartform.R.id.after_bitmapBtn);
-		//mAfterButton.setEnabled(false);
+		if(mTest.getAfter() != null) {
+			Bitmap bmp = null;
+			try {
+				bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mTest.getAfter());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d = new BitmapDrawable(getResources(), bmp);
+			mAfterText.setVisibility(View.INVISIBLE);
+			mAfterButton.setImageDrawable(d);
+		}
 		mAfterButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -454,16 +433,6 @@ public class TestFragment extends DialogFragment {
 				startActivityForResult(i, REQUEST_AFTER);
 
 
-
-				// Write to log file
-				/*
-				writeToFile("Date: " + mTest.getDate());
-				writeToFile("ID: " + mTest.getId());
-				writeToFile("Title: " + mTest.getTitle());
-				writeToFile("Result: " + mTest.getResult());
-				writeToFile("Before: " + mTest.getBefore());
-				writeToFile("After: " + mTest.getAfter());
-				*/
 			}
 		});
 
@@ -480,67 +449,32 @@ public class TestFragment extends DialogFragment {
 			mAfterButton.setEnabled(false);
 		}
 
-		// Photographic Evidence
-		/*
-		mPhotoView = (ImageView) v.findViewById(edu.osu.siyang.smartform.R.id.test_imageView);
-		mPhotoView.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Photo p = mTest.getPhoto();
-				if ( p == null ){
-					return;
-				}
-
-				FragmentManager fm = getActivity().getSupportFragmentManager();
-				String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
-				ImageFragment.newInstance(path).show(fm, DIALOG_IMAGE);
-			}
-		});
-		*/
-
 		// Test Report
 		mUploadButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.test_uploadButton);
 		mUploadButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				mTest.setState(3);
+				//mTest.setState(3);
 				mCallbacks.onTestUpdated(mTest);
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_5u9FnmAiYtRQtp3"));
+				Intent browserIntent = new Intent(getActivity(), DataActivity.class);
 				startActivity(browserIntent);
-				/*
-				if(isFirstTour) {
-					mTutorialHandler.cleanUp();
-					//  Make a new preferences editor
-					mEditor = mPref.edit();
-
-					//  Edit preference to make it false because we don't want this to run again
-					mEditor.putBoolean("firstTour", false);
-
-					//  Apply changes
-					mEditor.apply();
-				}*/
-
-				//new AppEULA(getActivity()).show();
-				//mFinishedCheckBox.setChecked(true);
-				//mTest.setFinished(true);
 
 			}
 		});
 
-		// About formaldehyde
-		/*
-		mAboutButton = (Button) v.findViewById(edu.osu.siyang.smartform.R.id.test_aboutButton);
+		mAboutButton = (Button) v.findViewById(R.id.test_aboutFormal);
 		mAboutButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				getActivity().setContentView(edu.osu.siyang.smartform.R.layout.fragment_aboutformaldehyde);
-			}
+				mCallbacks.onTestUpdated(mTest);
+				Intent browserIntent = new Intent(getActivity(), AboutFormalActivity.class);
+				startActivity(browserIntent);			}
 		});
-		*/
+
 		// Hide about button
 		//mAboutButton.setVisibility(View.INVISIBLE);
+		showResult();
 
 		return v;
 	}
@@ -586,17 +520,14 @@ public class TestFragment extends DialogFragment {
 			case 0:
 				mBeforeButton.setEnabled(true);
 				mAfterButton.setEnabled(false);
-				mUploadButton.setEnabled(false);
 				break;
 			case 1:
 				mBeforeButton.setEnabled(true);
 				mAfterButton.setEnabled(true);
-				mUploadButton.setEnabled(false);
 				break;
 			case 2:
 				mBeforeButton.setEnabled(true);
 				mAfterButton.setEnabled(true);
-				mUploadButton.setEnabled(true);
 				break;
 		}
 		getContext().registerReceiver(broadcastReceiver,new IntentFilter(TimerService.str_receiver));
@@ -605,6 +536,7 @@ public class TestFragment extends DialogFragment {
 	@Override
 	public void onPause() {
 		super.onPause();
+
 		TestLab.get(getActivity()).saveTests();
 		getContext().unregisterReceiver(broadcastReceiver);
 	}
@@ -612,6 +544,9 @@ public class TestFragment extends DialogFragment {
 	@Override
 	public void onStop() {
 		super.onStop();
+		if(counter != null) {
+			counter.cancel();
+		}
 		//PictureUtils.cleanImageView(mPhotoView);
 	}
 
@@ -646,28 +581,40 @@ public class TestFragment extends DialogFragment {
 
 		else if ( requestCode == REQUEST_BEFORE) {
 			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
-			Drawable d = new BitmapDrawable(getResources(), bitmap);
-			mBeforeText.setVisibility(View.INVISIBLE);
-			mBeforeButton.setImageDrawable(d);
 			Log.e(TAG, bitmap);
 			if ( bitmap != null ) {
 				Uri uri = Uri.parse(bitmap);
 				mTest.setBefore(uri);
 				mTest.setState(1);
+				long dtMili = System.currentTimeMillis();
+				mTest.setStart(new Date(dtMili));
+				mTest.setEnd(new Date(dtMili+3*24*60*60*1000l)); //72hours
 				try {
 					before = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+					Drawable d = new BitmapDrawable(getResources(), before);
+					mBeforeText.setVisibility(View.INVISIBLE);
+					mBeforeButton.setImageDrawable(d);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				Double ratio = getRatio(before);
+				if(ratio>1) {
+					AlertDialog diaBox = Contaminated();
+					diaBox.show();
+				} else {
+					AlertDialog diaBox = NextStep();
+					diaBox.show();
+				}
 				mCallbacks.onTestUpdated(mTest);
+				scheduleNotification(getNotification("It's time to take the photo after 72 hours exposure!"),15*1000);
+				showResult();
+
 			}
 		}
 
 		else if ( requestCode == REQUEST_AFTER) {
 			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
-			Drawable d = new BitmapDrawable(getResources(), bitmap);
-			mAfterText.setVisibility(View.INVISIBLE);
-			mAfterButton.setImageDrawable(d);
+
 			Log.e(TAG, bitmap);
 			if ( bitmap != null ) {
 				Uri uri = Uri.parse(bitmap);
@@ -675,21 +622,59 @@ public class TestFragment extends DialogFragment {
 				mTest.setState(2);
 				try {
 					after = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+					Drawable d = new BitmapDrawable(getResources(), after);
+					mAfterText.setVisibility(View.INVISIBLE);
+					mAfterButton.setImageDrawable(d);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				int res = getResult(before,after);
-				if(res!=0) mTest.setResult(Integer.toString(res));
-				if(res<20) {
-					AlertDialog diaBox = RetakeAfter();
-					diaBox.show();
+				Double rppb = getReading(after);
+				Double hour = getHour();
+
+				if(rppb>999) {
+					mTest.setResult(Integer.toString(999));
+				} else if(rppb<0) {
+					mTest.setResult(Integer.toString(0));
+				} else {
+					mTest.setResult(Integer.toString(rppb.intValue()));
 				}
 				mCallbacks.onTestUpdated(mTest);
 				showResult();
+
+				if(hour < 24) {
+					AlertDialog diaBox = ShortExposure();
+					diaBox.show();
+				} else if(rppb*hour < 1440) {
+					AlertDialog diaBox = LowReading();
+					diaBox.show();
+				} else if(rppb*hour > 6480) {
+					AlertDialog diaBox = HighReading();
+					diaBox.show();
+				}
 			}
 		}
 	}
 
+
+	private void scheduleNotification(Notification notification, int delay) {
+
+		Intent notificationIntent = new Intent(getActivity(), NotificationPublisher.class);
+		notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+		notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+		long futureInMillis = SystemClock.elapsedRealtime() + delay;
+		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
+		alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+	}
+
+	private Notification getNotification(String content) {
+		Notification.Builder builder = new Notification.Builder(getActivity());
+		builder.setContentTitle("Scheduled Notification");
+		builder.setContentText(content);
+		builder.setSmallIcon(R.drawable.ic_launcher);
+		return builder.build();
+	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -749,7 +734,7 @@ public class TestFragment extends DialogFragment {
 		return myQuittingDialogBox;
 	}
 
-	private AlertDialog RetakeAfter()
+	private AlertDialog LowReading()
 	{
 		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
 				//set message, title, and icon
@@ -768,41 +753,199 @@ public class TestFragment extends DialogFragment {
 		return myQuittingDialogBox;
 	}
 
+	private AlertDialog HighReading()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Your result is above the detection limit")
+				.setMessage("Your formaldehyde concentration is elevated and has saturated the badge. You can retest with a new badge and take an image after 24 hours for more accurate results.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+	private AlertDialog HighHumidity()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Is the relative humidity high?")
+				.setMessage("The badge is unstable under high humidity (>80%). It's recommended you retake the photo with lower humidity for a better result.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+
+	private AlertDialog ShortExposure()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Your exposure time is below the detection limit")
+				.setMessage("Your badge exposure time is less than 24 hours. For a more accurate result you can optionally expose the badge for another two days and retake the photo.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+
+	private AlertDialog NextStep()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Waiting for the next step?")
+				.setMessage("You can take the health survey now.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+
+	private AlertDialog Contaminated()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Is your badge contaminated?")
+				.setMessage("Check you badge to see if it is already exposed. If so, use another badge.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
+
+	private AlertDialog Bluish()
+	{
+		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
+				//set message, title, and icon
+				.setTitle("Is your badge bluish?")
+				.setMessage("Relative humidity above 80% can cause incorrect results. Use a new badge in an area of low relative humidity.")
+				//.setIcon(R.drawable.delete)
+
+				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+						dialog.dismiss();
+
+					}
+				})
+				.create();
+		return myQuittingDialogBox;
+	}
 
 	private void showResult() {
 		// TO DO: finish linear regression here
-		Log.d(TAG, "Inside showResult");
+		Log.d(TAG, "Inside showResult: " + mTest.getState());
+		mResultField.setText("");
 		String res = mTest.getResult();
 		String output = "";
-		if(mTest.getState()==0) {
-			output = res + " remain";
-			mResultField.setText(output);
+		if(mTest.getState()==1) {
+			long endTime = mTest.getEnd().getTime();
+			long nowTime = System.currentTimeMillis();
+			counter = new MyCount(endTime-nowTime,1000);
+			counter.start();
+			Log.d(TAG, "timer start");
 		}
-		if(mTest.getState()==1)
+		if(mTest.getState()==2) {
+			if(counter!=null) {
+				counter.cancel();
+				Log.d(TAG, "timer canceled");
+			}
 			output = res + " ppb";
 			mResultField.setText(output);
-
+		}
 	}
 
+	public class MyCount extends CountDownTimer {
+		public MyCount(long millisInFuture, long countDownInterval) {
+			super(millisInFuture, countDownInterval);
+		}
+
+		@Override
+		public void onFinish() {
+			// TODO Auto-generated method stub
+
+			mResultField.setText("Time up!");
+		}
+
+		@Override
+		public void onTick(long millisUntilFinished) {
+			mResultField.setText(timeCalculate(millisUntilFinished/1000));
+
+		}
+	}
+
+	public String timeCalculate(long ttime)
+	{
+		long  daysuuu,hoursuuu, minutesuuu, secondsuuu;
+		String timeT = "";
+
+
+
+		daysuuu = (Math.round(ttime) / 86400);
+		hoursuuu = (Math.round(ttime) / 3600) - (daysuuu * 24);
+		minutesuuu = (Math.round(ttime) / 60) - (daysuuu * 1440) - (hoursuuu * 60);
+		secondsuuu = Math.round(ttime) % 60;
+
+		timeT = daysuuu + "d " + hoursuuu + "h " + minutesuuu + "m " + secondsuuu + "s ";
+
+		return timeT;
+	}
 
 	/**
 	 * Linear regression model
-	 * @param before
 	 * @param after
 	 * @return
 	 */
-	private int getResult(Bitmap before, Bitmap after) {
-		double b = 0;
-		double a = 0;
-		int result = 0;
-		b = getRatio(before);
-		a = getRatio(after);
-		if(b > a) {
-			result = (int) ((b - a) * 40 / 0.2433);
-		} else {
-			result = -1;
-		}
+	private double getReading(Bitmap after) {
+		double ratio = getRatio(after);
+		double result = (-36301*ratio + 36671)/getHour();
 		return result;
+	}
+
+	/**
+	 * Calculate past hours
+	 * @return
+	 */
+	private double getHour() {
+		long timeNow = System.currentTimeMillis();
+		long timeStart = mTest.getStart().getTime();
+		double hour = (timeNow - timeStart)/(1000*60*60);
+		Log.d(TAG, Double.toString((timeNow - timeStart)/1000));
+		return hour;
 	}
 
 	/**
@@ -852,4 +995,14 @@ public class TestFragment extends DialogFragment {
 		return ratio;
 	}
 
+	/**
+	 * Resize drawable image
+	 * @param image
+	 * @return
+	 */
+	private Drawable resize(Drawable image) {
+		Bitmap b = ((BitmapDrawable)image).getBitmap();
+		Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 50, 50, false);
+		return new BitmapDrawable(getResources(), bitmapResized);
+	}
 }

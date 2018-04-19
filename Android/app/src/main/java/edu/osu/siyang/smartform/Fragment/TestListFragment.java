@@ -551,7 +551,7 @@ public class TestListFragment extends ListFragment {
 
 			TextView dateTextView = (TextView) convertView
 					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_dateTextView);
-			String formatDate = DateFormat.format("yyyy-MM-dd hh:mm:ss a",
+			String formatDate = DateFormat.format("MMM dd, yyyy HH:mm",
 					c.getDate()).toString();
 			dateTextView.setText(formatDate);
 
@@ -570,7 +570,7 @@ public class TestListFragment extends ListFragment {
 					stateTextView.setText("In-progress");
 					stateTextView.setBackgroundColor(Color.YELLOW);
 					resultTextView.setText("Time");
-					unitTextView.setText("remain");
+					unitTextView.setText("remaining");
 					break;
 				case 2:
 					stateTextView.setText("Completed");

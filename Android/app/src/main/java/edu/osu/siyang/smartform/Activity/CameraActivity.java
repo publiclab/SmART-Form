@@ -382,12 +382,13 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCameraImage.setVisibility(View.INVISIBLE);
         mCameraLayer.setVisibility(View.VISIBLE);
         mCameraPreview.setVisibility(View.VISIBLE);
-        mDoneImageButton.setEnabled(false);
 
         mCamera.setDisplayOrientation(90);
         mCamera.startPreview();
         mCaptureImageButton.setText(edu.osu.siyang.smartform.R.string.capture_image);
         mCaptureImageButton.setOnClickListener(mCaptureImageButtonClickListener);
+        mDoneImageButton.setText(R.string.cancel_camera);
+        mDoneImageButton.setOnClickListener(mCancelImageButtonClickListener);
     }
 
     /**

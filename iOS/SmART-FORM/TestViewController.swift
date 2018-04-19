@@ -281,7 +281,7 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 testResult.text = dayText + hourText + String(describing: components.minute!) + "m " + String(describing: components.second!) + "s"
                 
             } else {
-                testResult.text = "Times UP"
+                testResult.text = "Time Up!"
             }
         }
     }

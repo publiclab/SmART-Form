@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:text="Health Survey"
+        android:text="Data Survey"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -55,14 +55,14 @@
         android:id="@+id/linearLayout2">
 
         <TextView
-            android:id="@+id/text_id1_h"
+            android:id="@+id/text_id1_d"
             android:background="@color/colorAccent"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent" />
 
         <Button
-            android:id="@+id/copy_id1_h"
+            android:id="@+id/copy_id1_d"
             android:textColor="@color/White"
             android:text="COPY"
             android:layout_width="0dp"

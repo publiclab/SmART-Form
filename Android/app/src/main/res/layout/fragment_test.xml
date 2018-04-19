@@ -18,8 +18,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_margin="10dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
@@ -72,6 +71,20 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
+                    <TextView
+                        android:id="@+id/before_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignBottom="@+id/before_bitmapBtn"
+                        android:layout_alignLeft="@+id/before_bitmapBtn"
+                        android:layout_alignRight="@+id/before_bitmapBtn"
+                        android:layout_alignTop="@+id/before_bitmapBtn"
+                        android:background="@drawable/crop"
+                        android:gravity="center"
+                        android:text="Tap to take BEFORE exposure"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
                     <ImageView
                         android:id="@+id/before_bitmapBtn"
                         android:layout_width="match_parent"
@@ -79,28 +92,29 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
-                        app:srcCompat="@drawable/crop" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
 
-                    <TextView
-                        android:id="@+id/before_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/before_bitmapBtn"
-                        android:layout_alignLeft="@+id/before_bitmapBtn"
-                        android:layout_alignRight="@+id/before_bitmapBtn"
-                        android:layout_alignTop="@+id/before_bitmapBtn"
-                        android:layout_margin="15dp"
-                        android:gravity="center"
-                        android:text="Tap to take BEFORE exposure"
-                        android:textColor="#000000"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/after_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignBottom="@+id/after_bitmapBtn"
+                        android:layout_alignLeft="@+id/after_bitmapBtn"
+                        android:layout_alignRight="@+id/after_bitmapBtn"
+                        android:layout_alignTop="@+id/after_bitmapBtn"
+                        android:background="@drawable/crop"
+                        android:gravity="center"
+                        android:text="Tap to take AFTER exposure"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/after_bitmapBtn"
@@ -109,22 +123,8 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
-                        app:srcCompat="@drawable/crop" />
-
-                    <TextView
-                        android:id="@+id/after_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/after_bitmapBtn"
-                        android:layout_alignLeft="@+id/after_bitmapBtn"
-                        android:layout_alignRight="@+id/after_bitmapBtn"
-                        android:layout_alignTop="@+id/after_bitmapBtn"
-                        android:layout_margin="15dp"
-                        android:gravity="center"
-                        android:text="Tap to take AFTER exposure"
-                        android:textColor="#000000"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
 
                 </RelativeLayout>
 
@@ -151,11 +151,12 @@
 
             <TextView
                 android:id="@+id/test_result"
-                style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:text="@string/result"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="36sp" />
 
@@ -167,6 +168,16 @@
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:text="@string/test_report_text" />
+
+            <Button
+                android:id="@+id/test_aboutFormal"
+                style="@style/Button"
+                android:textSize="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="About Formaldehyde" />
 
         </LinearLayout>
 

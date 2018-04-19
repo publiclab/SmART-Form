@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import edu.osu.siyang.smartform.Activity.HealthActivity;
 import edu.osu.siyang.smartform.Activity.InfoActivity;
-import edu.osu.siyang.smartform.Activity.IntroActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.R;
 
@@ -74,7 +73,7 @@ public class HealthFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), TestListActivity.class);
-                startActivityForResult(i, 0);
+                startActivity(i);
             }
         });
 
@@ -87,7 +86,7 @@ public class HealthFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), InfoActivity.class);
-                startActivityForResult(i, 0);
+                startActivity(i);
             }
         });
 

@@ -48,6 +48,7 @@
         android:layout_alignParentTop="true"
         android:background="@color/Green"
         android:gravity="center_horizontal"
+        android:textSize="10sp"
         android:text="Ready" />
 
     <TextView

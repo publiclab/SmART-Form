@@ -89,6 +89,7 @@ public class IntroActivity extends AppIntro2 {
         // Just set a title, description, background and image. AppIntro will do the rest
         addSlide(AppIntroFragment.newInstance("Manage multiple tests", "List View", R.drawable.app_intro1, getResources().getColor(R.color.colorBtnPressed)));
         addSlide(AppIntroFragment.newInstance("Complete your test", "Test Detail", R.drawable.app_intro2, getResources().getColor(R.color.colorBtnPressed)));
+        addSlide(AppIntroFragment.newInstance("Contribute your data", "Data Survey", R.drawable.app_intro3, getResources().getColor(R.color.colorBtnPressed)));
 
         // OPTIONAL METHODS
 

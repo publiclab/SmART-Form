@@ -21,29 +21,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.osu.siyang.smartform.Activity.HealthActivity;
-import edu.osu.siyang.smartform.Activity.IntroActivity;
+import edu.osu.siyang.smartform.Activity.InfoActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.R;
 
-public class InfoFragment extends Fragment {
+public class DataFragment extends Fragment {
     private LinearLayout mTabIndex, mTabHealth, mTabFind;
     private TextView mText;
-    private Button mBtn, userBtn;
+    private Button mBtn, dataBtn;
     private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
     private static String uniqueID = null;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_info, container, false);
+        View v  = inflater.inflate(R.layout.fragment_data, container, false);
 
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences(
                 PREF_UNIQUE_ID, Context.MODE_PRIVATE);
         uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
 
-        mText = (TextView) v.findViewById(R.id.text_id1_i);
+        mText = (TextView) v.findViewById(R.id.text_id1_d);
         mText.setText(uniqueID);
 
-        mBtn = (Button) v.findViewById(R.id.copy_id1_i);
+        mBtn = (Button) v.findViewById(R.id.copy_id1_d);
         View.OnClickListener copy = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,16 +56,14 @@ public class InfoFragment extends Fragment {
         };
         mBtn.setOnClickListener(copy);
 
-
-        userBtn = (Button) v.findViewById(R.id.info_survey_btn);
-        userBtn.setOnClickListener(new View.OnClickListener() {
+        dataBtn = (Button) v.findViewById(R.id.data_survey_btn);
+        dataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_1YsK1f5dZVByyxL"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_4N4PKKzNbBdg6DH"));
                 startActivity(browserIntent);
             }
         });
-
 
         /******************************************************/
         // Test list
@@ -89,7 +88,13 @@ public class InfoFragment extends Fragment {
 
         // User survey
         mTabFind = (LinearLayout) v.findViewById(R.id.id_find);
-
+        mTabFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), InfoActivity.class);
+                startActivity(i);
+            }
+        });
 
         return v;
     }
