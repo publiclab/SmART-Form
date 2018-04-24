@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
 import edu.osu.siyang.smartform.Activity.InfoActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
@@ -78,7 +79,14 @@ public class HealthFragment extends Fragment {
         });
 
         // Health survey
-        mTabHealth = (LinearLayout) v.findViewById(R.id.id_class);
+        mTabHealth = (LinearLayout) v.findViewById(R.id.id_health);
+        mTabHealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), AboutFormalActivity.class);
+                startActivity(i);
+            }
+        });
 
         // User survey
         mTabFind = (LinearLayout) v.findViewById(R.id.id_find);

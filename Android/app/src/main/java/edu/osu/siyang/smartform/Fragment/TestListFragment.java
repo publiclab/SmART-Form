@@ -33,6 +33,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -42,6 +43,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.AppEULA;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
 import edu.osu.siyang.smartform.Activity.InfoActivity;
@@ -67,7 +69,7 @@ public class TestListFragment extends ListFragment {
 	private boolean mInfoVisible;
 	private Callbacks mCallbacks;
 	private LinearLayout mTabIndex, mTabHealth, mTabFind;
-
+	private ImageView mImgIndex, mImgHealth, mImgFind;
 	private Button mNewTestButton;
 	private Button mAddTestButton;
 	private Button mHealthSurveyButton;
@@ -198,18 +200,27 @@ public class TestListFragment extends ListFragment {
 
 		// Test list
 		mTabIndex = (LinearLayout) v.findViewById(R.id.id_index);
+		mImgIndex = (ImageView) v.findViewById(R.id.id_indeximg);
+		mImgIndex.setImageResource(R.drawable.list_pressed);
 
 		// Health survey
-		mTabHealth = (LinearLayout) v.findViewById(R.id.id_class);
+		mTabHealth = (LinearLayout) v.findViewById(R.id.id_health);
+		mImgHealth = (ImageView) v.findViewById(R.id.id_healthimg);
+		mImgHealth.setImageResource(R.drawable.icon_health);
+
 		mTabHealth.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getActivity(), HealthActivity.class);
+				Intent i = new Intent(getActivity(), AboutFormalActivity.class);
 				startActivityForResult(i, 0);
 			}
 		});
+
 		// User survey
 		mTabFind = (LinearLayout) v.findViewById(R.id.id_find);
+		mImgFind = (ImageView) v.findViewById(R.id.id_findimg);
+		mImgFind.setImageResource(R.drawable.icon_info);
+
 		mTabFind.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -217,6 +228,7 @@ public class TestListFragment extends ListFragment {
 				startActivityForResult(i, 0);
 			}
 		});
+
 
 		mHintView1 = (ScrollView) v.findViewById(edu.osu.siyang.smartform.R.id.hint_view1);
 		mHintView1.setVisibility(View.INVISIBLE);
@@ -551,7 +563,7 @@ public class TestListFragment extends ListFragment {
 
 			TextView dateTextView = (TextView) convertView
 					.findViewById(edu.osu.siyang.smartform.R.id.test_list_item_dateTextView);
-			String formatDate = DateFormat.format("MMM dd, yyyy HH:mm",
+			String formatDate = DateFormat.format("MMMdd,HH:mm",
 					c.getDate()).toString();
 			dateTextView.setText(formatDate);
 
@@ -567,10 +579,13 @@ public class TestListFragment extends ListFragment {
 					unitTextView.setText("");
 					break;
 				case 1:
+					String formatEnd = DateFormat.format("MMMdd,HH:mm",
+							c.getEnd()).toString();
+
 					stateTextView.setText("In-progress");
 					stateTextView.setBackgroundColor(Color.YELLOW);
-					resultTextView.setText("Time");
-					unitTextView.setText("remaining");
+					resultTextView.setText(formatEnd);
+					unitTextView.setText("end time");
 					break;
 				case 2:
 					stateTextView.setText("Completed");

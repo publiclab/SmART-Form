@@ -2,8 +2,90 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/theohiostateuniversity_logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal"
+                android:text="Contact"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@drawable/icon_email"
+                android:drawablePadding="10dp"
+                android:paddingLeft="50dp"
+                android:gravity="center_vertical"
+                android:text="dannemiller.70@osu.edu"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="10dp"
+                android:paddingLeft="50dp"
+                android:text="504-233-0539"
+                android:gravity="center_vertical"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@drawable/icon_email"
+                android:drawablePadding="10dp"
+                android:paddingLeft="50dp"
+                android:text="dannemiller.70@osu.edu"
+                android:gravity="center_vertical"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal"
+                android:text="Contributors"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="100dp"
+                android:text="@string/contributors"
+                android:textSize="16sp"
+                android:textStyle="italic   "/>
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <include
         android:id="@+id/layout_bottom"
@@ -11,76 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:text="User Survey"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="The purpose of this research project is to design a smartphone app to allow community scientists to determine the atmospheric formaldehyde concentrations in their homes or in outdoor air. We would like to receive feedback from you about your experience using the app in this beta test. Your participation is voluntary and all questions are voluntary. Contributing your data will help us make sure that this app meets your needs and is as easy to use as possible."
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="10dp"
-        android:text="Contributing your data will help us!" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_above="@+id/info_survey_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:id="@+id/linearLayout2">
-
-        <TextView
-            android:id="@+id/text_id1_i"
-            android:background="@color/colorAccent"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/copy_id1_i"
-            android:textColor="@color/White"
-            android:text="COPY"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/info_survey_btn"
-        style="@style/Button"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_above="@+id/layout_bottom"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="GO TO SURVEY"
-        android:textSize="30sp" />
 
 
 </RelativeLayout>

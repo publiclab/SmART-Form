@@ -14,9 +14,9 @@
         android:layout_toLeftOf="@+id/test_list_item_result"
         android:layout_toRightOf="@+id/test_list_item_state"
         android:layout_toStartOf="@+id/test_list_item_result"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:paddingTop="4dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="Test title"
         android:textColor="@color/Black"
         android:textSize="30sp"
@@ -32,9 +32,9 @@
         android:layout_toLeftOf="@+id/test_list_item_result"
         android:layout_toStartOf="@+id/test_list_item_result"
         android:gravity="bottom"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:paddingTop="4dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="test date"
         android:textColor="@color/Gray"
         android:textSize="15sp" />
@@ -48,29 +48,37 @@
         android:layout_alignParentTop="true"
         android:background="@color/Green"
         android:gravity="center_horizontal"
-        android:textSize="10sp"
+        android:textColor="@color/LightGrey"
+        android:textSize="9sp"
         android:text="Ready" />
 
     <TextView
         android:id="@+id/test_list_item_result"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
         android:text="5"
+        android:textAlignment="center"
         android:textColor="@color/Black"
-        android:textSize="30sp" />
+        android:textSize="17sp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/test_list_item_unittype"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/test_list_item_dateTextView"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="ppb"
+        android:textAlignment="center"
         android:textColor="@color/Gray"
         android:textSize="15sp" />
 

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView mIndexImg, mHealthImg, mFindImg;
 
-    private Fragment tabindex, tabclass, tabfind;
+    private Fragment tabindex, tabhealth, tabfind;
 
     private TextView title_text;
 
@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
 
         mTabIndex = (LinearLayout) findViewById(R.id.id_index);
-        mTabHealth = (LinearLayout) findViewById(R.id.id_class);
+        mTabHealth = (LinearLayout) findViewById(R.id.id_health);
         mTabFind = (LinearLayout) findViewById(R.id.id_find);
 
         mIndexImg = (ImageView) findViewById(R.id.id_indeximg);
-        mHealthImg = (ImageView) findViewById(R.id.id_classimg);
+        mHealthImg = (ImageView) findViewById(R.id.id_healthimg);
         mFindImg = (ImageView) findViewById(R.id.id_findimg);
     }
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.id_index:
                 setSelect(0);
                 break;
-            case R.id.id_class:
+            case R.id.id_health:
                 setSelect(1);
                 break;
             case R.id.id_find:
@@ -110,10 +110,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changeFragment(tabindex);
                 break;
             case 1:
-                if (tabclass == null) {
-                    tabclass = new HealthFragment();
+                if (tabhealth == null) {
+                    tabhealth = new HealthFragment();
                 }
-                changeFragment(tabclass);
+                changeFragment(tabhealth);
                 break;
             case 2:
                 if (tabfind == null) {

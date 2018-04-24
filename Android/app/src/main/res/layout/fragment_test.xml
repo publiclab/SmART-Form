@@ -170,14 +170,14 @@
                 android:text="@string/test_report_text" />
 
             <Button
-                android:id="@+id/test_aboutFormal"
+                android:id="@+id/test_healthButton"
                 style="@style/Button"
                 android:textSize="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:text="About Formaldehyde" />
+                android:text="Health Survey" />
 
         </LinearLayout>
 

@@ -53,9 +53,11 @@
         \n1.You should have a chemical badge along with the app.
         \n2.Open the app and select “New test”, name your test.
         \n3.Select the “Before” button and take a picture of the badge before exposure.
-        \n4.Keep the badge still for 72hrs exposure.
+        \n4.Save your test and keep the badge still for 72hrs exposure.
         \n5.Select the “After” button and take a picture of the badge after exposure.
-        \n6.Select “Data Survey” and complete the sampling survey. \n7.Complete the follow-up community testing surveys.</string>
+        \n6.Save your test and select “Data Survey”, complete the sampling survey.
+        \n7.Complete the follow-up community testing surveys."
+    </string>
     <string name="delete_test">Delete</string>
 
     <string name="no_tests">There are currently no tests to display.</string>
@@ -181,61 +183,97 @@
         \n\n The purpose of this research project is to design a smartphone app to allow community scientists
         to determine the formaldehyde concentrations in their homes or in outdoor air.
 
-        \n\n We would like to receive feedback from you about your experience using the app in this beta test.
+        \n\n We would like to receive feedback from you about your experience using the app.
         Your participation is voluntary and all questions are voluntary.
 
         \n\n Contributing your data will help us!
 
         \n\n Email: dannemiller.70@osu.edu
 
-        \n\n Phone: 614-292-4031
+        \n\n Phone: 504-233-0539
+
+        \n\n Website: u.osu.edu/smartform
     </string>
     <string name="TestList">TestList</string>
     <string name="about_title">What does my formaldehyde level mean?</string>
-    <string name="about_detail">The exact healthy levels for indoor formaldehyde isn’t set. Here are some current recommendations:
-        \n\n8 ppb for indoor at home
+    <string name="about_detail">The exact healthy levels for indoor formaldehyde isn’t set. <b>Here are some current recommendations:</b>
+        \n\n• 8 ppb for indoor at home
         \n(Agency for Toxic Substances and Disease Registry (ATSDR) chronic minimum risk level)
-        \n40 ppb for indoor at home over 8 hours
+        \n• 40 ppb for indoor at home over 8 hours
         \n(Health Canada\'s Residential Indoor Air Quality Guideline for 8 hours)
-        \n16 ppb for workplace over 8 hours
+        \n• 16 ppb for workplace over 8 hours
         \n(NIOSH Recommended Exposure Limit (REL) for 8 hours)
-        \n750 ppb (500 ppb action level) for workplace danger limit:   \t(OSHA workplace limit)
-        \n\nHere are two ways to cut down indoor formaldehyde levels:
-        \n\nSTEP 1 Remove or stop the source. Common sources include:
-        \nSmoking
-        \nPressed wood products (plywood/particleboard)
-        \nAdhesives used in new carpet
-        \nCertain types of new hardwood flooring
-        \nGas stove
-        \nOther gas appliances
-        \nUse of nail polish
-        \nUse of adhesives/glues
-        \nUse of paints
-        \nNew indoor paint
-        \nAll-purpose cleaner (certain types)
-        \nWindow cleaner (certain types)
-        \n\nOther steps might include:
-        \n\nNot smoking indoors
-        \nRemoving pressed wood products (plywood/particleboard)
-        \nWhen possible, go outdoors if you must use paints/adhesives/glues\nail polish
-        \nUsing a vent fan with gas appliances
-        \nUsing no-VOC or low-VOC indoor paint
-        \nChanging to natural cleaning products or soap and water
-        \n\nSTEP 2: Increase ventilation.
+        \n• 750 ppb (500 ppb action level) for workplace danger limit:   \t(OSHA workplace limit)
+        \n\n<b>Here are two ways to cut down indoor formaldehyde levels:</b>
+        \n\n<b>STEP 1 Remove or stop the source. Common sources include:</b>
+        \n• Smoking
+        \n• Pressed wood products (plywood/particleboard)
+        \n• Adhesives used in new carpet
+        \n• Certain types of new hardwood flooring
+        \n• Gas stove
+        \n• Other gas appliances
+        \n• Use of nail polish
+        \n• Use of adhesives/glues
+        \n• Use of paints
+        \n• New indoor paint
+        \n• All-purpose cleaner (certain types)
+        \n• Window cleaner (certain types)
+        \n\n<b>Other steps might include:</b>
+        \n\n• Not smoking indoors
+        \n• Removing pressed wood products (plywood/particleboard)
+        \n• When possible, go outdoors if you must use paints/adhesives/glues\nail polish
+        \n• Using a vent fan with gas appliances
+        \n• Using no-VOC or low-VOC indoor paint
+        \n• Changing to natural cleaning products or soap and water
+        \n\n<b>STEP 2: Increase ventilation.</b>
         \n\nThis only applies if the outdoor air has low formaldehyde concentrations, which it does in most cases.
-        \nOpen windows (this works best by opening windows on two sides of the house for a cross-breeze)
-        \nWindow fans (drawing outdoor air into the house)
-        \n\nOther steps might include:
-        \nHome air filters and purifiers - Activated carbon filters are the best for removing formaldehyde,
+        \n• Open windows (this works best by opening windows on two sides of the house for a cross-breeze)
+        \n• Window fans (drawing outdoor air into the house)
+        \n\n<b>Other steps might include:</b>
+        \n\n• Home air filters and purifiers - Activated carbon filters are the best for removing formaldehyde,
         but they may not work for long because they get saturated quickly. Otherwise, home air filters and
         purifiers don’t usually work well on changing indoor formaldehyde levels. Household plants can also
         improve overall indoor air quality, but their ability to reduce formaldehyde is likely very small.
-        \n\nIndoor Formaldehyde and Health  Formaldehyde can cause irritation to the skin and lining of the eyes,
+        \n\n<b>Indoor Formaldehyde and Health</b>
+        \n\nFormaldehyde can cause irritation to the skin and lining of the eyes,
         nose, mouth, throat, and airways. This irritation might worsen the symptoms for people with conditions like
         respiratory diseases and allergies. Being around higher levels of formaldehyde for long periods of time has
         also been linked to some cancers.
-        \n\nMore information can be found at www.epa.gov/formaldehyde \n\n\n\n\n\n\n\n\n\n</string>
+        \n\n<i>More information can be found at www.epa.gov/formaldehyde</i>
+        \n\n\n\n\n\n\n\n\n\n
+    </string>
     <string name="cancel_camera">Cancel</string>
+    <string name="contributors">
+
+        \nOhio State Team:
+        \nKaren C. Dannemiller
+        \nSiyang Zhang
+        \nRongjun Qin
+        \nSarah Haines
+        \nDavid Kormos
+        \nPaige Frey
+        \n
+        \nPublic Lab Team:
+        \nNicholas Shapiro
+        \nGretchen Gehrke
+        \n
+        \nConsultant:
+        \nJessica Castner
+        \n
+        \nSyracuse Team:
+        \nZhenlei Liu
+        \nBeverly Guo
+        \nJianshun Zhang
+        \n
+        \nCommunity Member:
+        \nJoan Tibor
+        \n
+        \nIndustry Partner:
+        \nMorphix Technologies
+        \n
+        \nFunding: National Science Foundation
+        \n\n\n\n\n\n\n\n\n\n
+    </string>
 
     <string-array name="temp_array">
         <item>&lt;65°F</item>

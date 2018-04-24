@@ -16,10 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
 import edu.osu.siyang.smartform.Activity.IntroActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
@@ -27,6 +29,8 @@ import edu.osu.siyang.smartform.R;
 
 public class InfoFragment extends Fragment {
     private LinearLayout mTabIndex, mTabHealth, mTabFind;
+    private ImageView mImgIndex, mImgHealth, mImgFind;
+
     private TextView mText;
     private Button mBtn, userBtn;
     private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
@@ -36,39 +40,14 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_info, container, false);
 
-        SharedPreferences sharedPrefs = getActivity().getSharedPreferences(
-                PREF_UNIQUE_ID, Context.MODE_PRIVATE);
-        uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
-
-        mText = (TextView) v.findViewById(R.id.text_id1_i);
-        mText.setText(uniqueID);
-
-        mBtn = (Button) v.findViewById(R.id.copy_id1_i);
-        View.OnClickListener copy = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText(null, uniqueID);
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getContext(), "User ID is copyed to clipboard!", Toast.LENGTH_SHORT).show();
-            }
-        };
-        mBtn.setOnClickListener(copy);
-
-
-        userBtn = (Button) v.findViewById(R.id.info_survey_btn);
-        userBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_1YsK1f5dZVByyxL"));
-                startActivity(browserIntent);
-            }
-        });
 
 
         /******************************************************/
         // Test list
         mTabIndex = (LinearLayout) v.findViewById(R.id.id_index);
+        mImgIndex = (ImageView) v.findViewById(R.id.id_indeximg);
+        mImgIndex.setImageResource(R.drawable.icon_list);
+
         mTabIndex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,17 +57,22 @@ public class InfoFragment extends Fragment {
         });
 
         // Health survey
-        mTabHealth = (LinearLayout) v.findViewById(R.id.id_class);
+        mTabHealth = (LinearLayout) v.findViewById(R.id.id_health);
+        mImgHealth = (ImageView) v.findViewById(R.id.id_healthimg);
+        mImgHealth.setImageResource(R.drawable.icon_health);
+
         mTabHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), HealthActivity.class);
+                Intent i = new Intent(getActivity(), AboutFormalActivity.class);
                 startActivity(i);
             }
         });
 
         // User survey
         mTabFind = (LinearLayout) v.findViewById(R.id.id_find);
+        mImgFind = (ImageView) v.findViewById(R.id.id_findimg);
+        mImgFind.setImageResource(R.drawable.info_pressed);
 
 
         return v;

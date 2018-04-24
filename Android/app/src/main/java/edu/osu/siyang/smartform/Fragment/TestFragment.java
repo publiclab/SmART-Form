@@ -79,6 +79,7 @@ import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.DataActivity;
 import edu.osu.siyang.smartform.Activity.CameraActivity;
 import edu.osu.siyang.smartform.Activity.DataActivity;
+import edu.osu.siyang.smartform.Activity.HealthActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.Activity.TimerService;
 import edu.osu.siyang.smartform.Bean.Photo;
@@ -126,7 +127,7 @@ public class TestFragment extends DialogFragment {
 	private Spinner mTempSpinner;
 	private Spinner mHumdSpinner;
 	private Button mUploadButton;
-	private Button mAboutButton;
+	private Button mHealthButton;
 	private Callbacks mCallbacks;
 	private Bitmap before;
 	private Bitmap after;
@@ -463,17 +464,16 @@ public class TestFragment extends DialogFragment {
 			}
 		});
 
-		mAboutButton = (Button) v.findViewById(R.id.test_aboutFormal);
-		mAboutButton.setOnClickListener(new OnClickListener() {
+		mHealthButton = (Button) v.findViewById(R.id.test_healthButton);
+		mHealthButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mCallbacks.onTestUpdated(mTest);
-				Intent browserIntent = new Intent(getActivity(), AboutFormalActivity.class);
-				startActivity(browserIntent);			}
+				Intent browserIntent = new Intent(getActivity(), HealthActivity.class);
+				startActivity(browserIntent);
+			}
 		});
 
-		// Hide about button
-		//mAboutButton.setVisibility(View.INVISIBLE);
 		showResult();
 
 		return v;
@@ -588,7 +588,7 @@ public class TestFragment extends DialogFragment {
 				mTest.setState(1);
 				long dtMili = System.currentTimeMillis();
 				mTest.setStart(new Date(dtMili));
-				mTest.setEnd(new Date(dtMili+3*24*60*60*1000l)); //72hours
+				mTest.setEnd(new Date(dtMili+3*24*60*60*1000L)); //72hours
 				try {
 					before = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
 					Drawable d = new BitmapDrawable(getResources(), before);
@@ -606,7 +606,7 @@ public class TestFragment extends DialogFragment {
 					diaBox.show();
 				}
 				mCallbacks.onTestUpdated(mTest);
-				scheduleNotification(getNotification("It's time to take the photo after 72 hours exposure!"),15*1000);
+				scheduleNotification(getNotification("It's time to take the photo after 72 hours exposure!"),3*24*60*60*1000);
 				showResult();
 
 			}
@@ -631,23 +631,25 @@ public class TestFragment extends DialogFragment {
 				Double rppb = getReading(after);
 				Double hour = getHour();
 
-				if(rppb>999) {
-					mTest.setResult(Integer.toString(999));
+				if(hour<12) {
+					mTest.setResult("Invalid");
+				} else if(rppb>120) {
+					mTest.setResult(">120");
 				} else if(rppb<0) {
-					mTest.setResult(Integer.toString(0));
-				} else {
+					mTest.setResult("0");
+				} else{
 					mTest.setResult(Integer.toString(rppb.intValue()));
 				}
 				mCallbacks.onTestUpdated(mTest);
 				showResult();
 
-				if(hour < 24) {
+				if(hour < 12) {
 					AlertDialog diaBox = ShortExposure();
 					diaBox.show();
-				} else if(rppb*hour < 1440) {
+				} else if(rppb*hour < 72*20) {
 					AlertDialog diaBox = LowReading();
 					diaBox.show();
-				} else if(rppb*hour > 6480) {
+				} else if(rppb*hour > 72*120) {
 					AlertDialog diaBox = HighReading();
 					diaBox.show();
 				}
@@ -795,7 +797,7 @@ public class TestFragment extends DialogFragment {
 		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
 				//set message, title, and icon
 				.setTitle("Your exposure time is below the detection limit")
-				.setMessage("Your badge exposure time is less than 24 hours. For a more accurate result you can optionally expose the badge for another two days and retake the photo.")
+				.setMessage("Your badge exposure time is less than 12 hours, wait 72 hours prior to take the after picture.")
 				//.setIcon(R.drawable.delete)
 
 				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
@@ -814,7 +816,7 @@ public class TestFragment extends DialogFragment {
 		@SuppressLint("RestrictedApi") AlertDialog myQuittingDialogBox =new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), edu.osu.siyang.smartform.R.style.myDialog))
 				//set message, title, and icon
 				.setTitle("Waiting for the next step?")
-				.setMessage("You can take the health survey now.")
+				.setMessage("You can take the health survey now, it can be found on bottom of this page.")
 				//.setIcon(R.drawable.delete)
 
 				.setNegativeButton("Got it!", new DialogInterface.OnClickListener() {

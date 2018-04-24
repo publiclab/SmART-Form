@@ -22,7 +22,7 @@ class ContactViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        //scrollView.contentSize = CGSize(width: 320, height: 600)
+        scrollView.contentSize = CGSize(width: 320, height: 1000)
     }
 }
 

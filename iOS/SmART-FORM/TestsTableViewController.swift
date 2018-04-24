@@ -17,14 +17,12 @@ class TestsTableViewController: UITableViewController {
     
     @IBOutlet weak var newTestBtn: UIButton!
     @IBOutlet weak var noTest: UILabel!
-    @IBOutlet weak var healthBtn: UIButton!
-    @IBOutlet weak var userBtn: UIButton!
     @IBOutlet weak var infoBtn: UIBarButtonItem!
     @IBOutlet weak var hintBtn: UIBarButtonItem!
     var toastLabel: UILabel!
     var state = 0
     var deviceID: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,45 +71,7 @@ class TestsTableViewController: UITableViewController {
             print("There is an issue")
         }
         
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        //newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoDown(_:)), for: .touchDown)
-        //newTestInfoBtn.addTarget(self, action: #selector(TestsTableViewController.newTestInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
-        
-        /*
-        healthSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.healthInfoDown(_:)), for: .touchDown)
-        healthSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.healthInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
-        
-        userSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.userInfoDown(_:)), for: .touchDown)
-        userSurveyInfoBtn.addTarget(self, action: #selector(TestsTableViewController.userInfoUp(_:)), for: [.touchUpInside, .touchUpOutside])
-        */
     }
-    
-    /*
-    @objc func newTestInfoDown(_ sender: UIButton) {
-        newTestInfo.isHidden = false
-    }
-  
-    @objc func newTestInfoUp(_ sender: UIButton) {
-        newTestInfo.isHidden = true
-    }
-  
-    func healthInfoDown(_ sender: UIButton) {
-        healthSurveyInfo.isHidden = false
-    }
-    
-    func healthInfoUp(_ sender: UIButton) {
-        healthSurveyInfo.isHidden = true
-    }
-    
-    func userInfoDown(_ sender: UIButton) {
-        userSurveyInfo.isHidden = false
-    }
-    
-    func userInfoUp(_ sender: UIButton) {
-        userSurveyInfo.isHidden = true
-    }
-    */
     
     private func saveTests() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tests, toFile: Test.ArchiveURL.path)
@@ -129,10 +89,10 @@ class TestsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
         if(tests.isEmpty) {
-            newTestBtn.isHidden = false
+            //newTestBtn.isHidden = false
             noTest.isHidden = false
         } else {
-            newTestBtn.isHidden = true
+            //newTestBtn.isHidden = true
             noTest.isHidden = true
         }
         print("In viewWillAppear")
@@ -167,7 +127,7 @@ class TestsTableViewController: UITableViewController {
         if(state == 1) {    
             toastLabel.removeFromSuperview()
         }
-        showToast(message: "Instructions:\n1.You should have a chemical badge along with the app. \n2.Open the app and select “New test”, name your test. \n3.Select the “Before” button and take a picture of the badge before exposure. \n4.Keep the badge still for 72hrs exposure. \n5.Select the “After” button and take a picture of the badge after exposure. \n6.Select “Data Survey” and complete the sampling survey. \n7.Complete the follow-up community testing surveys.")
+        showToast(message: "Instructions:\n1.You should have a chemical badge along with the app. \n2.Open the app and select “New test”, name your test. \n3.Select the “Before” button and take a picture of the badge before exposure. \n4.Save your test and keep the badge still for 72hrs exposure. \n5.Select the “After” button and take a picture of the badge after exposure. \n6.Save your test and select “Data Survey”, complete the sampling survey. \n7.Complete the follow-up community testing surveys.")
     }
     
     

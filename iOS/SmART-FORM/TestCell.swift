@@ -20,18 +20,15 @@ class TestCell: UITableViewCell {
     var test: Test! {
         didSet {
             titleLabel.text = test.title
-            timeLabel.text = test.date?.toString(dateFormat: "MMM dd, yyyy HH:mm")
+            timeLabel.text = test.date?.toString(dateFormat: "MMMdd,HH:mm")
             if(test.state) == 1 {
-                resultLabel.text = "Time"
+                resultLabel.text = test.timeEnd?.toString(dateFormat: "MMMdd,HH:mm")
+                imageLabel.backgroundColor = UIColor.yellow
+                progressLabel.text = "In-progress"
+                unitType.text = "end time"
             }
             else if(test.state) == 2 {
                 resultLabel.text = test.result
-            }
-            if test.state == 1{
-                imageLabel.backgroundColor = UIColor.yellow
-                progressLabel.text = "In-progress"
-                unitType.text = "remaining"
-            } else if test.state == 2{
                 imageLabel.backgroundColor = UIColor.orange
                 progressLabel.text = "Completed"
                 unitType.text = "ppb"

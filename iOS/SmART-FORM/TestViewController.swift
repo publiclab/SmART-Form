@@ -154,7 +154,7 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if(hintState == 1) {
             toastLabel.removeFromSuperview()
         }
-        showToast(message: "Instructions:\n1.You should have an electronic or paper copy of images of badges “before” and “after” exposures. These are just images to simulate an actual test and there will be no color change during this beta test. These images are provided so that you can give us feedback on use of the app. \n2.Open the app and select “New test” \n3.Name your test and tap the black block to take a picture of the test location \n4.Select the “Before” button and take a picture of the “Before” image \n5.Select the “After” button and take a picture of the “After” image \n6.Select “Upload” and complete the sampling survey as much as you like \n7.Complete the follow-up beta testing survey, available on the main screen.")
+        showToast(message: "Instructions:\n1.You should have a chemical badge along with the app. \n2.Open the app and select “New test”, name your test. \n3.Select the “Before” button and take a picture of the badge before exposure. \n4.Save your test and keep the badge still for 72hrs exposure. \n5.Select the “After” button and take a picture of the badge after exposure. \n6.Save your test and select “Data Survey”, complete the sampling survey. \n7.Complete the follow-up community testing surveys.")
     }
     
 
@@ -316,7 +316,7 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 }
             }
             
-            let alert = UIAlertController(title: "Waiting for the next step?", message: "You can take the health survey now.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Waiting for the next step?", message: "You can take the health survey now, it can be found by clicking the heart-shaped icon on the home screen.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
@@ -342,10 +342,12 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             let ratio = self.testBefore?.getRatio(image: self.testAfter!) ?? 42621/42402
             let rppb = (-42402*ratio + 42621)/hour
 
-            if(rppb>999) {
-                self.testResult.text = String(999)
+            if(hour<12) {
+                self.testResult.text = "Invalid"
+            } else if(rppb>120) {
+                self.testResult.text = ">120"
             } else if(rppb<0) {
-                self.testResult.text = String(0)
+                self.testResult.text = "0"
             } else {
                 self.testResult.text = String(NSInteger(rppb))
             }
@@ -360,20 +362,20 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             }
             
             // If result < 20ppb, ask user to retake after image
-            if(hour < 24) {
-                let alert = UIAlertController(title: "Your exposure time is below the detection limit", message: "Your badge exposure time is less than 24 hours. For a more accurate result you can optionally expose the badge for another two days and retake the photo.", preferredStyle: .alert)
+            if(hour < 12) {
+                let alert = UIAlertController(title: "Your exposure time is below the detection limit", message: "Your badge exposure time is less than 12 hours, wait 72 hours prior to take the after picture.", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
                 
-            } else if(rppb*hour < 1440) {
-                let alert = UIAlertController(title: "Your result is below the detection limit", message: "Your formaldehyde concentration is low (<20ppb). For a more accurate result you can optionally expose the badge for another four days and retake the photo.", preferredStyle: .alert)
+            } else if(rppb*hour < 72*20) {
+                let alert = UIAlertController(title: "Your result is below the detection limit", message: "Your formaldehyde concentration is low (<20ppb). For a more accurate result you can optionally expose the badge for another four days and retake the picture.", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
                 
-            } else if (rppb*hour > 6480) {
-                let alert = UIAlertController(title: "Your result is above the detection limit", message: "Your formaldehyde concentration is elevated and has saturated the badge. You can retest with a new badge and take an image after 24 hours for more accurate results.", preferredStyle: .alert)
+            } else if (rppb*hour > 72*120) {
+                let alert = UIAlertController(title: "Your result is above the detection limit", message: "Your formaldehyde concentration is elevated and has saturated the badge. You can retest with a new badge and take an picture after 24 hours for more accurate results.", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
