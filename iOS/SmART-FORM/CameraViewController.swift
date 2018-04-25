@@ -91,10 +91,7 @@ class CameraViewController: UIViewController {
                     if let image = UIImage(data: imageData) {
                         self.cropImage = image.cropToBounds(image: image, width: 500.0, height: 500.0)
                         print("savetoCamera")
-                        //self.ratio = String(format:"%.5f", cropImage.getRatio(image: cropImage))
-                        //self.delegate?.ratioChanged(ratio: self.ratio)
-                        //print("saveToCamera", self.ratio!)
-                        //CustomPhotoAlbum.sharedInstance.save(image: self.cropImage!)
+                        CustomPhotoAlbum.sharedInstance.save(image: self.cropImage!)
                         //UIImageWriteToSavedPhotosAlbum(cropImage, nil, nil, nil)
                     }
                 }

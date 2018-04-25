@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -51,9 +52,8 @@ import edu.osu.siyang.smartform.R;
 public class CameraActivity extends Activity implements PictureCallback, SurfaceHolder.Callback {
 
     public static final String EXTRA_CAMERA_DATA = "camera_data";
-
+    public static final String EXTRA_FILE_NAME = "file_name";
     private static final String KEY_IS_CAPTURING = "is_capturing";
-
     private static final String TAG = "CameraActivity";
 
     private static final int focusAreaSize = 300;
@@ -67,7 +67,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private Button mDoneImageButton;
     private byte[] mCameraData;
     private boolean mIsCapturing;
-    private Uri imageUri;
+    private String imagePath;
+    private String imageName;
     private TextView text_lightreading;
     private Toast toast;
 
@@ -101,6 +102,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
             if (saveFile != null) {
                 saveImageToFile(saveFile);
+                imagePath = saveToInternalStorage(mCameraBitmap);
             } else {
                 success = false;
                 Toast.makeText(CameraActivity.this, "Unable to open file for saving image.",
@@ -109,7 +111,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             // Set the photo filename on the result intent
             if (success) {
                 Intent i = new Intent();
-                i.putExtra(EXTRA_CAMERA_DATA, imageUri.toString());
+                i.putExtra(EXTRA_CAMERA_DATA, imagePath);
+                i.putExtra(EXTRA_FILE_NAME, imageName);
                 setResult(Activity.RESULT_OK, i);
             }
             else {
@@ -491,13 +494,42 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         return resizedBitmap;
     }
 
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("SmartForm", Context.MODE_PRIVATE);
+        // Create imageDir
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM_dd_hh_mm_ss",
+                Locale.getDefault());
+
+        imageName = getIntent().getStringExtra("TEST_PARAM") + "_"
+                + getIntent().getStringExtra("TEST_TAG") + "_" + dateFormat.format(new Date()) + ".png";
+        File mypath=new File(directory,imageName);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
     private File openFileForImage() {
         File imageDirectory = null;
         String storageState = Environment.getExternalStorageState();
         if (storageState.equals(Environment.MEDIA_MOUNTED)) {
             imageDirectory = new File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    "SmartForm" + "/" + getIntent().getStringExtra("TEST_EXP"));
+                    "SmartForm");
             if (!imageDirectory.exists() && !imageDirectory.mkdirs()) {
                 imageDirectory = null;
             } else {
@@ -525,7 +557,6 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
                     Toast.makeText(CameraActivity.this, "Saved image to the device",
                             Toast.LENGTH_SHORT).show();
-                    imageUri = getImageContentUri(getApplicationContext(), file);
                 }
                 outStream.close();
             } catch (Exception e) {
@@ -534,6 +565,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             }
         }
     }
+
 
     /**
      * Get image uri link in media store

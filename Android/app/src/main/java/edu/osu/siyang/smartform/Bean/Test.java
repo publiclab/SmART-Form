@@ -6,8 +6,6 @@ import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.net.Uri;
-
 public class Test {
 
     private static final String JSON_ID = "id";
@@ -23,8 +21,8 @@ public class Test {
     private String mTitle;
     private int mState;
     private Date mDate;
-    private Uri mBefore;
-    private Uri mAfter;
+    private String mBefore;
+    private String mAfter;
     private Date mStart;
     private Date mEnd;
     private String mResult;
@@ -77,19 +75,19 @@ public class Test {
 
     public void setState(int state) {mState = state;}
 
-    public Uri getBefore() {
+    public String getBefore() {
         return mBefore;
     }
 
-    public void setBefore(Uri before) {
+    public void setBefore(String before) {
         mBefore = before;
     }
 
-    public Uri getAfter() {
+    public String getAfter() {
         return mAfter;
     }
 
-    public void setAfter(Uri after) {
+    public void setAfter(String after) {
         mAfter = after;
     }
 
@@ -111,8 +109,8 @@ public class Test {
 
         mDate = new Date(json.getLong(JSON_DATE));
 
-        if(json.has(JSON_BEFORE)) mBefore = Uri.parse(json.getString(JSON_BEFORE));
-        if(json.has(JSON_AFTER)) mAfter = Uri.parse(json.getString(JSON_AFTER));
+        if(json.has(JSON_BEFORE)) mBefore = json.getString(JSON_BEFORE);
+        if(json.has(JSON_AFTER)) mAfter = json.getString(JSON_AFTER);
         if(json.has(JSON_START)) mStart = new Date(json.getLong(JSON_START));
         if(json.has(JSON_END)) mEnd = new Date(json.getLong(JSON_END));
         if(json.has(JSON_RESULT)) mResult = json.getString(JSON_RESULT);
@@ -128,8 +126,8 @@ public class Test {
         json.put(JSON_STATE, mState);
         json.put(JSON_DATE, mDate.getTime());
         if(mResult != null) json.put(JSON_RESULT, mResult);
-        if(mBefore != null) json.put(JSON_BEFORE, mBefore.toString());
-        if(mAfter != null) json.put(JSON_AFTER, mAfter.toString());
+        if(mBefore != null) json.put(JSON_BEFORE, mBefore);
+        if(mAfter != null) json.put(JSON_AFTER, mAfter);
         if(mStart != null) json.put(JSON_START, mStart.getTime());
         if(mEnd != null) json.put(JSON_END, mEnd.getTime());
 

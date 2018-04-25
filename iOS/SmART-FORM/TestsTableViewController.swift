@@ -37,6 +37,7 @@ class TestsTableViewController: UITableViewController {
             deviceID = UUID().uuidString
             UserDefaults.standard.set(deviceID, forKey: "deviceID")
             print("device id: \(String(describing: deviceID))")
+            CustomPhotoAlbum.sharedInstance.save(image: UIImage(named: "launchscreen")!)
 
             // Terms of Service
             //let terms = ELAManager.termsOfServiceViewController()

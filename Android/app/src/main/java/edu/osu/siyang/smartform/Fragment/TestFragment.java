@@ -9,6 +9,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -67,6 +68,7 @@ import android.widget.TextView;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -374,12 +376,17 @@ public class TestFragment extends DialogFragment {
 		mBeforeText = (TextView) v.findViewById(R.id.before_textView);
 		mAfterText = (TextView) v.findViewById(R.id.after_textView);
 
+		ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
+		File directory = cw.getDir("SmartForm", Context.MODE_PRIVATE);
+		String path = directory.getAbsolutePath();
+
 		// Before Button
 		mBeforeButton = (ImageView) v.findViewById(R.id.before_bitmapBtn);
 		if(mTest.getBefore() != null) {
 			Bitmap bmp = null;
 			try {
-				bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mTest.getBefore());
+				File f=new File(path, mTest.getBefore());
+				bmp = BitmapFactory.decodeStream(new FileInputStream(f));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -411,7 +418,8 @@ public class TestFragment extends DialogFragment {
 		if(mTest.getAfter() != null) {
 			Bitmap bmp = null;
 			try {
-				bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mTest.getAfter());
+				File f=new File(path, mTest.getAfter());
+				bmp = BitmapFactory.decodeStream(new FileInputStream(f));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -580,17 +588,19 @@ public class TestFragment extends DialogFragment {
 		}
 
 		else if ( requestCode == REQUEST_BEFORE) {
-			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
-			Log.e(TAG, bitmap);
-			if ( bitmap != null ) {
-				Uri uri = Uri.parse(bitmap);
-				mTest.setBefore(uri);
+			String path = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
+			String fileName = data.getStringExtra(CameraActivity.EXTRA_FILE_NAME);
+
+			Log.e(TAG, fileName);
+			if ( fileName != null ) {
+				File f = new File(path, fileName);
+				mTest.setBefore(fileName);
 				mTest.setState(1);
 				long dtMili = System.currentTimeMillis();
 				mTest.setStart(new Date(dtMili));
 				mTest.setEnd(new Date(dtMili+3*24*60*60*1000L)); //72hours
 				try {
-					before = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+					before = BitmapFactory.decodeStream(new FileInputStream(f));
 					Drawable d = new BitmapDrawable(getResources(), before);
 					mBeforeText.setVisibility(View.INVISIBLE);
 					mBeforeButton.setImageDrawable(d);
@@ -613,15 +623,16 @@ public class TestFragment extends DialogFragment {
 		}
 
 		else if ( requestCode == REQUEST_AFTER) {
-			String bitmap = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
+			String path = data.getStringExtra(CameraActivity.EXTRA_CAMERA_DATA);
+			String fileName = data.getStringExtra(CameraActivity.EXTRA_FILE_NAME);
 
-			Log.e(TAG, bitmap);
-			if ( bitmap != null ) {
-				Uri uri = Uri.parse(bitmap);
-				mTest.setAfter(uri);
+			Log.e(TAG, fileName);
+			if ( fileName != null ) {
+				File f = new File(path, fileName);
+				mTest.setAfter(fileName);
 				mTest.setState(2);
 				try {
-					after = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+					after = BitmapFactory.decodeStream(new FileInputStream(f));
 					Drawable d = new BitmapDrawable(getResources(), after);
 					mAfterText.setVisibility(View.INVISIBLE);
 					mAfterButton.setImageDrawable(d);

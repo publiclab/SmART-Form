@@ -11,7 +11,7 @@ import Photos
 
 
 class CustomPhotoAlbum: NSObject {
-    static let albumName = "Smartform"
+    static let albumName = "SmartForm"
     static let sharedInstance = CustomPhotoAlbum()
     
     var assetCollection: PHAssetCollection!
