@@ -46,17 +46,21 @@ class TestsTableViewController: UITableViewController {
         
         UIPasteboard.general.string = deviceID
 
-        if(tests.isEmpty) {
-            UserDefaults.standard.set(0, forKey: "testID")
-        }
         // Load any saved meals, otherwise load sample data.
         if let savedTests = loadTests() {
             tests += savedTests
-        }
-        else {
+        } else {
             // Load the sample data.
             tests = [Test]()
         }
+        
+        if(tests.isEmpty) {
+            print("tests is empty")
+            UserDefaults.standard.set(0, forKey: "testID")
+        }
+        
+        let storedID = UserDefaults.standard.string(forKey: "testID")
+        print("storedID: \(String(describing: storedID))")
         
         // setting a value for a key
         let userDefaults = UserDefaults.standard
