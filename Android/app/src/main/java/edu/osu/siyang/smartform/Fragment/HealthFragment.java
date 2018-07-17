@@ -61,7 +61,7 @@ public class HealthFragment extends Fragment {
         healthBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_6L62IcAaVgGyEC1"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_0xQggdNCixaXJwp"));
                 startActivity(browserIntent);
             }
         });

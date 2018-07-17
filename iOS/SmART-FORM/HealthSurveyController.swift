@@ -35,7 +35,7 @@ class HealthSurveyController: UIViewController {
     }
     
     @IBAction func uploadData(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_6L62IcAaVgGyEC1")! as URL)
+        UIApplication.shared.openURL(NSURL(string: "https://osu.az1.qualtrics.com/jfe/form/SV_0xQggdNCixaXJwp")! as URL)
     }
 
 }

@@ -213,11 +213,7 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             destinationVC.newRequest = 1
         }
     }
-    
-    func ratioChanged(ratio: String?) {
-        testResult.text = ratio
-    }
-    
+
     // segue ViewControllerB -> ViewController
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ImageViewController {
@@ -306,6 +302,21 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             }
             self.unitType.text = "remaining"
             
+            // If badge overexposure detected, ask user to retake picture
+            let overexposure = self.testBefore?.getOverexposure(image: self.testBefore!) ?? false
+            if(overexposure) {
+                let alert = UIAlertController(title: "Is the picture overexposed?", message: "The in-app camera is sensitive to the light condition. Dim the lights and retake the picture", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+            
+            let underexposure = self.testBefore?.getUnderexposure(image: self.testBefore!) ?? false
+            if(underexposure) {
+                let alert = UIAlertController(title: "Is the picture underexposed?", message: "The in-app camera is sensitive to the light condition. Turn on the lights and retake the picture", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+            
             let ratio = self.testBefore?.getRatio(image: self.testBefore!)
             
             if let ratioW = ratio {
@@ -339,7 +350,7 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
              * (final result in ppb)= [-42402*(ratio from image)+ 42621]/(hours)
              */
             
-            let ratio = self.testBefore?.getRatio(image: self.testAfter!) ?? 42621/42402
+            let ratio = self.testAfter?.getRatio(image: self.testAfter!) ?? 42621/42402
             let rppb = (-42402*ratio + 42621)/hour
 
             if(hour<12) {
@@ -352,6 +363,14 @@ class TestViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 self.testResult.text = String(NSInteger(rppb))
             }
             self.unitType.text = "ppb"
+            
+            // If badge overexposure detected, ask user to retake picture
+            let overexposure = self.testAfter?.getOverexposure(image: self.testAfter!) ?? false
+            if(overexposure) {
+                let alert = UIAlertController(title: "Is the picture overexposed?", message: "The in-app camera is sensitive to the light condition. Dim the lights and retake the picture", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
             
             // If badge bluish detected, ask user to retake experiment
             let bluish = self.testAfter?.getBluish(image: self.testAfter!) ?? false
@@ -519,21 +538,6 @@ extension UIImage {
         return sum/Double(pixelCounter)
     }
     
-    func getSaturation(image: UIImage) -> Double {
-        let width = Int(image.size.width)
-        let height = Int(image.size.height)
-        var sum = 0.0
-        var pixelCounter = 0
-        for j in stride(from: 0, through: height-1, by: 2){
-            for i in stride(from: 0, through: width-1, by: 2){
-                pixelCounter += 1
-                sum += image.getPixelSaturation(pos: CGPoint(x: CGFloat(i), y: CGFloat(j)))
-            }
-        }
-        print("saturation: ", sum/Double(pixelCounter))
-        return sum/Double(pixelCounter)
-    }
-    
     func getRatio(image: UIImage) -> Double {
         var r = 0.0
         let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
@@ -556,6 +560,67 @@ extension UIImage {
     }
     
     
+    func getSaturation(image: UIImage) -> Double {
+        let width = Int(image.size.width)
+        let height = Int(image.size.height)
+        var sum = 0.0
+        var pixelCounter = 0
+        for j in stride(from: 0, through: height-1, by: 2){
+            for i in stride(from: 0, through: width-1, by: 2){
+                pixelCounter += 1
+                sum += image.getPixelSaturation(pos: CGPoint(x: CGFloat(i), y: CGFloat(j)))
+            }
+        }
+        print("saturation: ", sum/Double(pixelCounter))
+        return sum/Double(pixelCounter)
+    }
+    
+    func getOverexposure(image: UIImage) -> Bool {
+        var l = 0.0
+        let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
+        
+        let rect1: CGRect = CGRect(x: 300.0, y: 300.0, width: 100.0, height: 100.0)
+        let rect2: CGRect = CGRect(x: 300.0, y: 100.0, width: 100.0, height: 100.0)
+        
+        // Create bitmap image from context using the rect
+        let imageA: CGImage = contextImage.cgImage!.cropping(to: rect1)!
+        let imageAct: UIImage = UIImage(cgImage: imageA)
+        
+        let imageR: CGImage = contextImage.cgImage!.cropping(to: rect2)!
+        let imageRef: UIImage = UIImage(cgImage: imageR)
+        
+        l = (getLightness(image: imageAct) + getLightness(image: imageRef))/2.0
+
+        if(l>0.8){
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func getUnderexposure(image: UIImage) -> Bool {
+        var l = 0.0
+        let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
+        
+        let rect1: CGRect = CGRect(x: 300.0, y: 300.0, width: 100.0, height: 100.0)
+        let rect2: CGRect = CGRect(x: 300.0, y: 100.0, width: 100.0, height: 100.0)
+        
+        // Create bitmap image from context using the rect
+        let imageA: CGImage = contextImage.cgImage!.cropping(to: rect1)!
+        let imageAct: UIImage = UIImage(cgImage: imageA)
+        
+        let imageR: CGImage = contextImage.cgImage!.cropping(to: rect2)!
+        let imageRef: UIImage = UIImage(cgImage: imageR)
+        
+        l = (getLightness(image: imageAct) + getLightness(image: imageRef))/2.0
+        
+        if(l<0.4){
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func getBluish(image: UIImage) -> Bool {
         var s = 0.0
         let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
@@ -572,12 +637,11 @@ extension UIImage {
         
         s = (getSaturation(image: imageAct) + getSaturation(image: imageRef))/2.0
                 
-        if(s<0.4){
+        if(s<0.6){
             return true
         } else {
             return false
         }
-        
     }
     
 }

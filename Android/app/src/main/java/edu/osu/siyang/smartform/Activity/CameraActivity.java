@@ -134,11 +134,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         public void onSensorChanged(SensorEvent event) {
             if(event.sensor.getType() == Sensor.TYPE_LIGHT){
                 mLightReading = event.values[0];
-                if(mLightReading<20) {
-                    text_lightreading.setText("LIGHT: " + mLightReading + "; " + "Low light condition!");
-                } else {
-                    text_lightreading.setText("LIGHT: " + mLightReading);
-                }
+                //text_lightreading.setText("LIGHT: " + mLightReading);
             }
         }
     };
@@ -154,7 +150,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
         toast = new Toast(getApplicationContext());
 
-        text_lightreading = (TextView)findViewById(R.id.text_lightreading);
+        //text_lightreading = (TextView)findViewById(R.id.text_lightreading);
         SensorManager mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
 
         Sensor LightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -385,6 +381,29 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mCameraImage.setVisibility(View.INVISIBLE);
         mCameraLayer.setVisibility(View.VISIBLE);
         mCameraPreview.setVisibility(View.VISIBLE);
+
+        Rect newRect = new Rect(-100, -100, 100, 100);
+        Camera.Area focusArea = new Camera.Area(newRect, 1000);
+        List<Camera.Area> focusAreas = new ArrayList<Camera.Area>();
+        focusAreas.add(focusArea);
+
+        // Customize camera parameters
+        Camera.Parameters camParams = mCamera.getParameters();
+        List<Camera.Size> sizes = camParams.getSupportedPreviewSizes();
+        int mFrameWidth = sizes.get(sizes.size()-1).width;
+        int mFrameHeight = sizes.get(sizes.size()-1).height;
+
+        camParams.setPreviewSize(mFrameWidth, mFrameHeight);
+        camParams.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        camParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+        camParams.set("mode","m");
+        camParams.set("aperture","28");
+        camParams.set("shutter-speed",9);
+        camParams.set("iso",200);
+        camParams.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_FLUORESCENT);
+        camParams.setExposureCompensation(0);
+        camParams.setFocusAreas(focusAreas);
+        mCamera.setParameters(camParams);
 
         mCamera.setDisplayOrientation(90);
         mCamera.startPreview();

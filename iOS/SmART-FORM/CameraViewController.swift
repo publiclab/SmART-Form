@@ -40,7 +40,7 @@ class CameraViewController: UIViewController {
                 try device.setTorchModeOn(level: 1.0)
                 device.torchMode = .off
                 device.autoFocusRangeRestriction = AVCaptureDevice.AutoFocusRangeRestriction.near
-                device.setWhiteBalanceModeLocked(with: device.deviceWhiteBalanceGains(for: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 5000, tint: 0)), completionHandler: { (time) in })
+                device.setWhiteBalanceModeLocked(with: device.deviceWhiteBalanceGains(for: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 4000, tint: 0)), completionHandler: { (time) in })
                 device.setExposureModeCustom(duration: CMTimeMake(1,125), iso: 200, completionHandler: { (time) in })
                 device.setExposureTargetBias(0, completionHandler: { (time) in })
                 device.unlockForConfiguration()
@@ -90,8 +90,7 @@ class CameraViewController: UIViewController {
                     
                     if let image = UIImage(data: imageData) {
                         self.cropImage = image.cropToBounds(image: image, width: 500.0, height: 500.0)
-                        print("savetoCamera")
-                        CustomPhotoAlbum.sharedInstance.save(image: self.cropImage!)
+                        
                         //UIImageWriteToSavedPhotosAlbum(cropImage, nil, nil, nil)
                     }
                 }

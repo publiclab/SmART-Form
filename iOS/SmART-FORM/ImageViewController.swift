@@ -27,6 +27,10 @@ class ImageViewController : UIViewController {
             let dvc = segue.destination as! CameraViewController
             dvc.newRequest = self.newRequest
         }
+        else if segue.identifier == "saveImage" {
+            print("savetoCamera")
+            CustomPhotoAlbum.sharedInstance.save(image: self.newImage!)
+        }
     }
     
     

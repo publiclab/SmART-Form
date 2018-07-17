@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0920"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "15BE34D2AC708719B5C8C841F7338FB1"
+               BlueprintIdentifier = "22B5684F0FA71606E1F4A615F00BE5ED"
                BuildableName = "Pods_SmART_FORM.framework"
                BlueprintName = "Pods-SmART-FORM"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "15BE34D2AC708719B5C8C841F7338FB1"
+            BlueprintIdentifier = "22B5684F0FA71606E1F4A615F00BE5ED"
             BuildableName = "Pods_SmART_FORM.framework"
             BlueprintName = "Pods-SmART-FORM"
             ReferencedContainer = "container:Pods.xcodeproj">

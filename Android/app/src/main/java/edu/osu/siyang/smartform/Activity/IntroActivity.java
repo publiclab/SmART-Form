@@ -3,20 +3,25 @@ package edu.osu.siyang.smartform.Activity;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
+import android.graphics.Color;
+import android.widget.Toast;
+
+import com.hololo.tutorial.library.PermissionStep;
+import com.hololo.tutorial.library.Step;
+import com.hololo.tutorial.library.TutorialActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.osu.siyang.smartform.R;
 
-public class IntroActivity extends AppIntro2 {
+public class IntroActivity extends TutorialActivity {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -87,33 +92,35 @@ public class IntroActivity extends AppIntro2 {
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest
-        addSlide(AppIntroFragment.newInstance("Manage multiple tests", "List View", R.drawable.app_intro1, getResources().getColor(R.color.colorBtnPressed)));
-        addSlide(AppIntroFragment.newInstance("Complete your test", "Test Detail", R.drawable.app_intro2, getResources().getColor(R.color.colorBtnPressed)));
-        addSlide(AppIntroFragment.newInstance("Contribute your data", "Data Survey", R.drawable.app_intro3, getResources().getColor(R.color.colorBtnPressed)));
+        addFragment(new Step.Builder().setTitle("Start new tests here")
+                .setContent("Access multiple tests below")
+                .setBackgroundColor(Color.parseColor("#000000")) // int background color
+                .setDrawable(R.drawable.app_intro1) // int top drawable
+                .build());
 
-        // OPTIONAL METHODS
+        addFragment(new Step.Builder().setTitle("Peel off sticker")
+                .setContent("Make sure the badge is exposed")
+                .setBackgroundColor(Color.parseColor("#000000")) // int background color
+                .setDrawable(R.drawable.app_intro2) // int top drawable
+                .build());
 
-        // SHOW or HIDE the statusbar
-        showStatusBar(true);
+        addFragment(new Step.Builder().setTitle("Take 'before' picture")
+                .setContent("Then wait 72 hours")
+                .setBackgroundColor(Color.parseColor("#000000")) // int background color
+                .setDrawable(R.drawable.app_intro3) // int top drawable
+                .build());
 
-        // Edit the color of the nav bar on Lollipop+ devices
-        setNavBarColor(R.color.colorBtnNormal);
+        addFragment(new Step.Builder().setTitle("After 72 hours, take 'after' picture")
+                .setContent("Ratake images if you see warnings")
+                .setBackgroundColor(Color.parseColor("#000000")) // int background color
+                .setDrawable(R.drawable.app_intro4) // int top drawable
+                .build());
 
-        // Turn vibration on and set intensity
-        // NOTE: you will need to ask VIBRATE permission in Manifest if you haven't already
-        setVibrate(true);
-        setVibrateIntensity(30);
-
-        // Animations -- use only one of the below. Using both could cause errors.
-        setFadeAnimation(); // OR
-        //setZoomAnimation(); // OR
-        //setFlowAnimation(); // OR
-        //setSlideOverAnimation(); // OR
-        //setDepthAnimation(); // OR
-        //setCustomTransformer(yourCustomTransformer);
-
-        // Permissions -- takes a permission and slide number
-        askForPermissions(new String[]{Manifest.permission.CAMERA}, 3);
+        addFragment(new Step.Builder().setTitle("Contribute your data!")
+                .setContent("Take the surveys")
+                .setBackgroundColor(Color.parseColor("#000000")) // int background color
+                .setDrawable(R.drawable.app_intro5) // int top drawable
+                .build());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions();
@@ -121,18 +128,8 @@ public class IntroActivity extends AppIntro2 {
     }
 
     @Override
-    public void onNextPressed() {
-        // Do something when users tap on Next button.
-    }
-
-    @Override
-    public void onDonePressed() {
-        // Do something when users tap on Done button.
-        finish();
-    }
-
-    @Override
-    public void onSlideChanged() {
-        // Do something when slide is changed
-    }
+    public void finishTutorial() {
+        // Your implementation
+        Intent i = new Intent(this, TestListActivity.class);
+        startActivity(i);    }
 }

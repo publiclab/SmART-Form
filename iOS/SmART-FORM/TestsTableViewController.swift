@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Eula
 
 class TestsTableViewController: UITableViewController {
     
@@ -124,7 +123,7 @@ class TestsTableViewController: UITableViewController {
         if(state == 1) {
             toastLabel.removeFromSuperview()
         }
-        showToast(message: "COPYRIGHT:\nCopyright 2017 SMARTFORM.\nThe Ohio State University.\nAll Rights Reserved.\n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)\nPI: Karen Dannemiller\nCo-PI: Rongjun Qin\nDeveloper: Siyang Zhang.\n\nUnique device ID: \(String(describing: deviceID))\nYour ID has been automatically copied to the clipboard, please paste it along with your survey.")
+        showToast(message: "COPYRIGHT:\nCopyright 2017 SMARTFORM.\nThe Ohio State University.\nAll Rights Reserved.\n\nSmartPhone App for Residential Testing of Formaldehyde (SmART-Form)\nDepartment of Civil, Environmental and Geodetic Engineering\n\nUnique device ID: \(String(describing: deviceID))\nYour ID has been automatically copied to the clipboard, please paste it along with your survey.")
 
     }
     

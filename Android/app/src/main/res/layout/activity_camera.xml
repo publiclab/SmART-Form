@@ -66,10 +66,9 @@
                     android:layout_weight="1"
                     android:gravity="top"
                     android:textAlignment="center"
-                    android:text="TextView"
                     android:textColor="@color/colorBtnTextNormal"
                     android:textSize="20sp"
-                    android:visibility="visible"  />
+                    android:visibility="visible" />
             </LinearLayout>
         </RelativeLayout>
 

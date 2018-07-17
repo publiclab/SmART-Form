@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "edu.osu.siyang.smartform"
         minSdkVersion 16
         targetSdkVersion 19
-        versionCode 3
-        versionName "3.1"
+        versionCode 5
+        versionName "5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,6 +24,7 @@ repositories {
     maven() {
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -35,10 +36,11 @@ dependencies {
         transitive=true
     }
     compile 'com.roughike:bottom-bar:2.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.github.paolorotolo:appintro:4.1.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:26.0.2'
+    compile 'com.android.support:recyclerview-v7:26.0.2'
+    compile 'com.android.support:support-v4:26.0.2'
+    compile 'com.android.support:design:26.0.2'
+    compile 'com.github.msayan:tutorial-view:v1.0.6'
     testCompile 'junit:junit:4.12'
 }

@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/test_list_item_result"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/test_list_item_unittype"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

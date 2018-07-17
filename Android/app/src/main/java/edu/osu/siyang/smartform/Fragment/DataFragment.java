@@ -61,7 +61,7 @@ public class DataFragment extends Fragment {
         dataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_4N4PKKzNbBdg6DH"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://osu.az1.qualtrics.com/jfe/form/SV_bNrGYLQ1uKGWmKF"));
                 startActivity(browserIntent);
             }
         });
