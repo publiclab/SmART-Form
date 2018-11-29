@@ -2,6 +2,8 @@
 
 We spend 90% of our time indoors and the air in most of our homes contains formaldehyde. Formaldehyde exposure can worsen health. This app works with color-changing badges to allow users to measure their indoor formaldehyde exposure. The app provides information on recommended formaldehyde levels and tips on reducing exposure if the concentration is high. Users will also be given the option to upload their results and complete a survey to create a national database of formaldehyde levels. The survey will ask about housing characteristics and also include the option to report health symptoms.
 
+For more information on the the proccess of development and validation of this system please see our paper in _Building and Environment_ ["Smartphone app for residential testing of formaldehyde (SmART-Form)"](https://www.sciencedirect.com/science/article/pii/S0360132318307248?via%3Dihub)
+
 Creation of this app was funded by National Science Foundation (NSF) grant 1645048. This app was created by the authors and has not been reviewed by NSF.
 
 ## Contact:
