@@ -34,6 +34,16 @@ class CameraViewController: UIViewController {
         
         captureSession.sessionPreset = AVCaptureSession.Preset.high
         
+        if (AVCaptureDevice.authorizationStatus(for: AVMediaType.video) == .notDetermined) {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (statusFirst) in
+                if statusFirst {
+                    print("allowed to access the camera")
+                } else {
+                    print("denied to access the camera")
+                }
+            })
+        }
+        
         if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
@@ -56,7 +66,9 @@ class CameraViewController: UIViewController {
                 print("error")
             }
         }
+        
     }
+    
     
     func toggleFlash() {
         if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
@@ -107,7 +119,8 @@ class CameraViewController: UIViewController {
         
         do {
             try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice!))
-            stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+                stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+            
             
             if captureSession.canAddOutput(stillImageOutput) {
                 captureSession.addOutput(stillImageOutput)
