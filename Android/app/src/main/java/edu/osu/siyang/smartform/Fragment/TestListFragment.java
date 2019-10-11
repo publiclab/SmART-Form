@@ -46,6 +46,7 @@ import java.util.UUID;
 import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.AppEULA;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
+import edu.osu.siyang.smartform.Activity.ResultActivity;
 import edu.osu.siyang.smartform.Activity.InfoActivity;
 import edu.osu.siyang.smartform.Activity.IntroActivity;
 import edu.osu.siyang.smartform.Activity.TestPagerActivity;

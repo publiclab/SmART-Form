@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    android:id="@+id/id_result">
+
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -39,7 +41,7 @@
                 android:background="@color/colorWhite"
                 android:padding="10dp"
                 android:text="@string/about_detail"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 

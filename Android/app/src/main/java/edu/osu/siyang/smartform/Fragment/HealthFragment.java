@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import edu.osu.siyang.smartform.Activity.AboutFormalActivity;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
+import edu.osu.siyang.smartform.Activity.ResultActivity;
 import edu.osu.siyang.smartform.Activity.InfoActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.R;

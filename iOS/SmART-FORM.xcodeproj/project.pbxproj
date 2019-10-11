@@ -279,7 +279,7 @@
 				TargetAttributes = {
 					6890064D1ED4B55300E81328 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = LTYWXUY99M;
+						DevelopmentTeam = 4BF8SBSRJ3;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -595,7 +595,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LTYWXUY99M;
+				DEVELOPMENT_TEAM = 4BF8SBSRJ3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SmART-FORM/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -617,7 +617,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LTYWXUY99M;
+				DEVELOPMENT_TEAM = 4BF8SBSRJ3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SmART-FORM/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

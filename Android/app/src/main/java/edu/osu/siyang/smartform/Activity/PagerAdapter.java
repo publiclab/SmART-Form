@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import edu.osu.siyang.smartform.Fragment.HealthFragment;
 import edu.osu.siyang.smartform.Fragment.TestListFragment;
+import edu.osu.siyang.smartform.Fragment.ResultFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
@@ -30,7 +31,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 HealthFragment tab2 = new HealthFragment();
                 return tab2;
             case 2:
-                return null;
+                ResultFragment tab3 = new ResultFragment();
+                return tab3;
             default:
                 return null;
         }

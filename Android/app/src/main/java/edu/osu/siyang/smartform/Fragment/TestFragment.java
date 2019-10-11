@@ -82,6 +82,8 @@ import edu.osu.siyang.smartform.Activity.DataActivity;
 import edu.osu.siyang.smartform.Activity.CameraActivity;
 import edu.osu.siyang.smartform.Activity.DataActivity;
 import edu.osu.siyang.smartform.Activity.HealthActivity;
+import edu.osu.siyang.smartform.Activity.ResultActivity;
+import edu.osu.siyang.smartform.Activity.ResultActivity;
 import edu.osu.siyang.smartform.Activity.TestListActivity;
 import edu.osu.siyang.smartform.Activity.TimerService;
 import edu.osu.siyang.smartform.Bean.Photo;
@@ -130,6 +132,7 @@ public class TestFragment extends DialogFragment {
 	private Spinner mHumdSpinner;
 	private Button mUploadButton;
 	private Button mHealthButton;
+	private Button mResultButton;
 	private Callbacks mCallbacks;
 	private Bitmap before;
 	private Bitmap after;
@@ -482,6 +485,18 @@ public class TestFragment extends DialogFragment {
 			}
 		});
 
+
+
+		mResultButton = (Button) v.findViewById(R.id.test_resultButton);
+		mResultButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mCallbacks.onTestUpdated(mTest);
+				Intent browserIntent = new Intent(getActivity(), ResultActivity.class);
+				startActivity(browserIntent);
+			}
+		});
+
 		showResult();
 
 		return v;
@@ -644,11 +659,11 @@ public class TestFragment extends DialogFragment {
 
 				if(hour<12) {
 					mTest.setResult("Invalid");
-				} else if(rppb>120) {
+				} /*else if(rppb>120) {
 					mTest.setResult(">120");
 				} else if(rppb<0) {
 					mTest.setResult("0");
-				} else{
+				}*/ else{
 					mTest.setResult(Integer.toString(rppb.intValue()));
 				}
 				mCallbacks.onTestUpdated(mTest);
@@ -944,8 +959,8 @@ public class TestFragment extends DialogFragment {
 	 * @return
 	 */
 	private double getReading(Bitmap after) {
-		double ratio = getRatio(after);
-		double result = (-36301*ratio + 36671)/getHour();
+		double ratio = getRatio2(after,after);
+		double result = (-36301*ratio + 36671)/72;//getHour();
 		return result;
 	}
 
@@ -1002,6 +1017,18 @@ public class TestFragment extends DialogFragment {
 		if(bitmap!=null) {
 			act = Bitmap.createBitmap(bitmap, 50, 150, 50, 50);
 			ref = Bitmap.createBitmap(bitmap, 150, 150, 50, 50);
+
+			ratio = getLightness(act) / getLightness(ref); // Chemical badge intensity / calibrating patch intensity
+		}
+		return ratio;
+	}
+
+	private double getRatio2(Bitmap lbitmap, Bitmap rbitmap) {
+		Bitmap ref, act;
+		double ratio = 0;
+		if(lbitmap!=null && rbitmap!=null) {
+			act = Bitmap.createBitmap(lbitmap, 50, 150, 50, 50);
+			ref = Bitmap.createBitmap(rbitmap, 150, 150, 50, 50);
 
 			ratio = getLightness(act) / getLightness(ref); // Chemical badge intensity / calibrating patch intensity
 		}

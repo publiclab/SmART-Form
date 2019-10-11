@@ -15,7 +15,7 @@ class CustomPhotoAlbum: NSObject {
     static let sharedInstance = CustomPhotoAlbum()
     
     var assetCollection: PHAssetCollection!
-    
+
     override init() {
         super.init()
         
@@ -24,6 +24,16 @@ class CustomPhotoAlbum: NSObject {
             return
         }
         
+        if (PHPhotoLibrary.authorizationStatus() == .notDetermined) {
+            PHPhotoLibrary.requestAuthorization({ (firstStatus) in
+                let result = (firstStatus == .authorized)
+                if result {
+                    print("allowed to access the album")
+                } else {
+                    print("denied to access the album")
+                }
+            })
+        }
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
             PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
                 ()
@@ -31,7 +41,11 @@ class CustomPhotoAlbum: NSObject {
         }
         
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            self.createAlbum()
+            DispatchQueue.global().async {
+                DispatchQueue.main.async {
+                    self.createAlbum()
+                }
+            }
         } else {
             PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
         }
@@ -41,7 +55,12 @@ class CustomPhotoAlbum: NSObject {
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
             // ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
             print("trying again to create the album")
-            self.createAlbum()
+            DispatchQueue.global().async {
+                DispatchQueue.main.async {
+                    self.createAlbum()
+                }
+            }
+            
         } else {
             print("should really prompt the user to let them know it's failed")
         }
