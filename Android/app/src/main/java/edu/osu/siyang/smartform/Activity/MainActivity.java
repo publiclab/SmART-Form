@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.osu.siyang.smartform.R;
 import edu.osu.siyang.smartform.Fragment.TestListFragment;
 import edu.osu.siyang.smartform.Fragment.HealthFragment;
+import edu.osu.siyang.smartform.Fragment.ResultFragment;
 import edu.osu.siyang.smartform.Fragment.InfoFragment;
 
 /**
@@ -29,9 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private LinearLayout mTabIndex, mTabHealth, mTabFind;
 
-    private ImageView mIndexImg, mHealthImg, mFindImg;
+    private RelativeLayout mTabResult;
 
-    private Fragment tabindex, tabhealth, tabfind;
+    private ImageView mIndexImg, mHealthImg, mFindImg, mResultImg;
+
+    private Fragment tabindex, tabhealth, tabfind, tabresult;
 
     private TextView title_text;
 
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabIndex = (LinearLayout) findViewById(R.id.id_index);
         mTabHealth = (LinearLayout) findViewById(R.id.id_health);
         mTabFind = (LinearLayout) findViewById(R.id.id_find);
+        mTabResult = (RelativeLayout) findViewById(R.id.id_result);
 
         mIndexImg = (ImageView) findViewById(R.id.id_indeximg);
         mHealthImg = (ImageView) findViewById(R.id.id_healthimg);
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabIndex.setOnClickListener(this);
         mTabHealth.setOnClickListener(this);
         mTabFind.setOnClickListener(this);
+        mTabResult.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.id_find:
                 setSelect(2);
+            case R.id.id_result:
+                setSelect(3);
                 break;
         }
     }
@@ -120,6 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tabfind = new InfoFragment();
                 }
                 changeFragment(tabfind);
+                break;
+            case 3:
+                if (tabresult == null) {
+                    tabresult = new ResultFragment();
+                }
+                changeFragment(tabresult);
                 break;
         }
         setTab(i);
