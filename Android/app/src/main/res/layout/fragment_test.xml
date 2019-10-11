@@ -179,6 +179,17 @@
                 android:layout_marginRight="20dp"
                 android:text="Health Survey" />
 
+            <Button
+                android:id="@+id/test_resultButton"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:text="About Formaldehyde"
+                android:textSize="30sp" />
+
         </LinearLayout>
 
     </ScrollView>
